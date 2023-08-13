@@ -1,0 +1,23 @@
+#!/bin/bash
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+sourceAliases() {
+    local file=$1
+    if [ -f "$file" ]; then
+    # shellcheck source=/dev/null
+        source "$file"
+    fi
+}
+
+sourceAliases "$HOME/.bash_aliases"
+# Aliases that are not part of dotfiles
+sourceAliases "$HOME/.bash_aliases_local"
+
+
+export GBT_CARS='Status, Os, Hostname, Dir, Kubectl, Git, Sign'
+export GBT_CAR_KUBECTL_FORMAT=' {{ Icon }} {{ Context }}/{{ Namespace }}'
+PS1='$(gbt $?)'

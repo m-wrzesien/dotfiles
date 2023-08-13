@@ -1,0 +1,18 @@
+{
+    "diffEditor.ignoreTrimWhitespace": false,
+    "go.useLanguageServer": true,
+    "go.formatTool": "goimports",
+    "editor.fontFamily": "'DejaVu Sans Code', 'monospace', monospace",
+    "workbench.enableExperiments": false,
+    "workbench.settings.enableNaturalLanguageSearch": false,
+    "javascript.format.enable": false,
+    "javascript.validate.enable": false,
+    "telemetry.enableCrashReporter": false,
+    "gitlens.telemetry.enabled": false,
+    "workbench.colorTheme": "Default Dark+",
+    "redhat.telemetry.enabled": false,
+    "vs-kubernetes": {
+        "vs-kubernetes.crd-code-completion": "disabled",
+    },
+    "editor.formatOnSave": true,
+}

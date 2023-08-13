@@ -1,0 +1,16 @@
+[user]
+	email = {{ .email | quote }}
+	name = Maksymilian Wrzesień
+[pull]
+	# https://blog.sffc.xyz/post/185195398930/why-you-should-use-git-pull-ff-only
+	ff = only
+[init]
+	defaultBranch = master
+{{ if ne .github_noreply_email "empty" -}}
+#github ssh
+[includeIf "hasconfig:remote.*.url:git@github.com*/**"]
+	path = ~/.gitconfig_github
+#github https
+[includeIf "hasconfig:remote.*.url:https://github.com/**"]
+	path = ~/.gitconfig_github
+{{ end -}}

@@ -1,0 +1,8 @@
+{{ if eq .chezmoi.osRelease.name "Arch Linux" -}}
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+{{ end -}}
+export BROWSER=/usr/bin/firefox
+export EDITOR=/usr/bin/vim
+export SUDO_EDITOR="$EDITOR"
+# uncomment if needed
+# export DOCKER_HOST='/run/user/1000/podman/podman.sock'

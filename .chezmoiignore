@@ -1,0 +1,10 @@
+*.md
+{{ if ne .chezmoi.osRelease.name "Arch Linux" }}
+.chezmoiscripts/arch/**
+# Only arch uses ssh-agent enabled by systemd
+.config/systemd/user/ssh-agent.service
+{{ end }}
+
+{{ if eq .github_noreply_email "empty" }}
+.gitconfig_github
+{{ end }}
