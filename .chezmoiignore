@@ -5,6 +5,10 @@
 .config/systemd/user/ssh-agent.service
 {{ end }}
 
-{{ if eq .github_noreply_email "empty" }}
+{{ if ne .chezmoi.osRelease.name "Ubuntu" }}
+.chezmoiscripts/ubuntu/**
+{{ end }}
+
+{{ if eq .github_noreply_email "" }}
 .gitconfig_github
 {{ end }}

@@ -5,6 +5,48 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+UBUNTU="Ubuntu"
+checkDistro() {
+    distroName=$(grep -Po '^NAME="\K.*(?=")' /etc/os-release)
+
+    if [ "$distroName" != "$UBUNTU" ]; then
+        return 1
+    fi
+}
+
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=10000
+HISTFILESIZE=100000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+if checkDistro "$UBUNTU"; then
+
+    # enable programmable completion features (you don't need to enable
+    # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+    # sources /etc/bash.bashrc).
+    if ! shopt -oq posix; then
+      if [ -f /usr/share/bash-completion/bash_completion ]; then
+        # shellcheck source=/dev/null
+        . /usr/share/bash-completion/bash_completion
+      elif [ -f /etc/bash_completion ]; then
+        # shellcheck source=/dev/null
+        . /etc/bash_completion
+      fi
+    fi
+
+    complete -C /usr/bin/terraform terraform
+fi
+
 sourceAliases() {
     local file=$1
     if [ -f "$file" ]; then

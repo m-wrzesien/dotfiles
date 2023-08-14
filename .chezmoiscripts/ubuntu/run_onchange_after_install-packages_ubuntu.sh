@@ -1,27 +1,27 @@
 #!/bin/bash
 
-ARCH="Arch Linux"
+UBUNTU="Ubuntu"
 PACKAGES=(
-    age
-    bash-completion
-    chezmoi
+    codium
     firefox
     gbt
     keepassxc
     kitty
-    kubectl
-    kubectx
-    noto-fonts
-    shellcheck-bin
+    shellcheck
     signal-desktop
     syncthing
-    thunderbird
-    ttf-hack-nerd
-    vscodium-bin
-    wireguard-tools
-    x11-ssh-askpass
-    yubikey-manager
 )
+
+addRepo() {
+    sudo add-apt-repository -y ppa:mozillateam/ppa
+    curl -sL https://packagecloud.io/gbt/release/gpgkey | sudo tee /etc/apt/trusted.gpg.d/gbt.asc > /dev/null
+    echo 'deb https://packagecloud.io/gbt/release/ubuntu/ xenial main' | sudo tee /etc/apt/sources.list.d/gbt.list >/dev/null
+    curl -sL https://updates.signal.org/desktop/apt/keys.asc | sudo tee /etc/apt/trusted.gpg.d/signal.asc > /dev/null
+    echo 'deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main' | sudo tee /etc/apt/sources.list.d/signal.list
+    curl -sL https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | sudo tee /etc/apt/trusted.gpg.d/vscodium.asc > /dev/null
+    echo 'deb https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs vscodium main' | sudo tee /etc/apt/sources.list.d/vscodium.list
+    sudo apt-get update
+}
 
 cdOrFail() {
     cd "$1" || echo "Can't cd. $1 not found"
@@ -30,7 +30,7 @@ cdOrFail() {
 checkDistro() {
     distroName=$(grep -Po '^NAME="\K.*(?=")' /etc/os-release)
 
-    if [ "$distroName" != "$ARCH" ]; then
+    if [ "$distroName" != "$UBUNTU" ]; then
         return 1
     fi
 }
@@ -38,7 +38,7 @@ checkDistro() {
 checkInstalation() {
     local notInstalled=()
     for package in "${PACKAGES[@]}"; do
-        if ! yay -Q "$package" > /dev/null; then
+        if ! dpkg -s "$package" > /dev/null; then
             notInstalled+=("$package")
         fi
     done
@@ -51,35 +51,7 @@ install() {
         return 0
     fi
     echo "Following packages will be installed: $*"
-    yay -S "$@"
-}
-
-installYay() {
-    local temp
-    local oldPWD
-
-    if pacman -Q yay > /dev/null; then
-        echo "Yay already installed"
-        return
-    fi
-    sudo pacman -S --needed git base-devel
-
-    temp=$(mktemp -d)
-    oldPWD=$(pwd)
-    cdOrFail "$temp"
-
-    git clone https://aur.archlinux.org/yay.git
-    cdOrFail yay
-
-    makepkg -si
-    cdOrFail "$oldPWD"
-
-    rm -rf "$temp"
-}
-
-postActions() {
-    systemctl --user enable ssh-agent.service 
-    systemctl --user start ssh-agent.service 
+    sudo apt-get install "$@"
 }
 
 postInstallActions() {
@@ -106,10 +78,11 @@ postInstallActions() {
 
 checkDistro || exit 0
 
-installYay
+addRepo
+
 # Chech what packages needs to be installed and put them in to array
 IFS=" " read -r -a toInstall <<< "$(checkInstalation)"
 
 install "${toInstall[@]}"
 
-postInstallActions "${toInstall[@]}"
+# postInstallActions "${toInstall[@]}"

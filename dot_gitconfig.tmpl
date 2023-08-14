@@ -6,7 +6,7 @@
 	ff = only
 [init]
 	defaultBranch = master
-{{ if ne .github_noreply_email "empty" -}}
+{{ if ne .github_noreply_email "" -}}
 #github ssh
 [includeIf "hasconfig:remote.*.url:git@github.com*/**"]
 	path = ~/.gitconfig_github
