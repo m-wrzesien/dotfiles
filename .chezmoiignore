@@ -10,5 +10,9 @@
 {{ end }}
 
 {{ if eq .github_noreply_email "" }}
-.gitconfig_github
+.gitconfig_gh
+{{ end }}
+
+{{ if ne .type "work" }}
+.gitconfig_gh_private
 {{ end }}
