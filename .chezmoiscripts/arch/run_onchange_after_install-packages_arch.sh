@@ -11,6 +11,7 @@ PACKAGES=(
     kitty
     kubectl
     kubectx
+    neofetch
     noto-fonts
     shellcheck-bin
     signal-desktop
@@ -18,6 +19,7 @@ PACKAGES=(
     thunderbird
     ttf-hack-nerd
     vscodium-bin
+    webcord-bin
     wireguard-tools
     x11-ssh-askpass
     yubikey-manager
