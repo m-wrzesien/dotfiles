@@ -8,6 +8,7 @@ PACKAGES=(
     firefox
     gbt
     hydrapaper-no-pandoc-git
+    jq
     keepassxc
     kitty
     kubectl

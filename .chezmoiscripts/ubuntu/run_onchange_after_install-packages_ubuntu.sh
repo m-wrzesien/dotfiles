@@ -6,6 +6,7 @@ PACKAGES=(
     firefox
     gbt
     hydrapaper
+    jq
     keepassxc
     kitty
     shellcheck
