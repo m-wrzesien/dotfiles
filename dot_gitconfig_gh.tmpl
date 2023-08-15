@@ -1,3 +1,5 @@
 # Use noreply email for commits to GitHub
 [user]
 	email = {{ .github_noreply_email | quote }}
+
+{{ template "gitconfig_gh_forcekey" . -}}

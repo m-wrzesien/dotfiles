@@ -6,6 +6,7 @@
 
 [data]
     email = {{ $email | quote }}
+    github_user = {{ $ghUser | quote }}
     github_noreply_email = {{ $ghNoreplyEmail | quote }}
-    github_public_key = "{{ (last (gitHubKeys $ghUser)).Key }}"
+    github_public_key = "{{ (first (gitHubKeys $ghUser)).Key }}"
     type = {{ $type | quote }}
