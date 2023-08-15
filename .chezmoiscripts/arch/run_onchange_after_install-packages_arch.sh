@@ -20,6 +20,7 @@ PACKAGES=(
     ttf-hack-nerd
     vscodium-bin
     webcord-bin
+    web-greeter
     wireguard-tools
     x11-ssh-askpass
     yubikey-manager
@@ -80,8 +81,8 @@ installYay() {
 }
 
 postActions() {
-    systemctl --user enable ssh-agent.service 
-    systemctl --user start ssh-agent.service 
+    systemctl --user enable ssh-agent.service
+    systemctl --user start ssh-agent.service
 }
 
 postInstallActions() {
@@ -89,11 +90,14 @@ postInstallActions() {
         echo "$package"
         case $package in
             syncthing)
-                systemctl --user enable syncthing.service 
-                systemctl --user start syncthing.service 
+                systemctl --user enable syncthing.service
+                systemctl --user start syncthing.service
                 ;;
             vscodium-bin)
                 sudo ln -s /usr/bin/codium /usr/local/bin/code
+                ;;
+            web-greeter)
+                sudo sed -i 's|#greeter-session=.*|greeter-session=web-greeter|' /etc/lightdm/lightdm.conf
                 ;;
             yubikey-manager*)
                 sudo systemctl enable pcscd.service
