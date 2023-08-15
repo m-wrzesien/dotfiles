@@ -5,6 +5,7 @@ PACKAGES=(
     codium
     firefox
     gbt
+    hydrapaper
     keepassxc
     kitty
     shellcheck
