@@ -28,6 +28,11 @@ PACKAGES=(
     yubikey-manager
 )
 
+# Version 1.13.2-1
+MAPTOOL_COMMIT="e31378ba08d94f72c4d26b509e38beb8fd39ed73"
+MAPTOOL_PKG="maptool-bin"
+MAPTOOL_URL="https://aur.archlinux.org/maptool-bin.git"
+
 cdOrFail() {
     cd "$1" || echo "Can't cd. $1 not found"
 }
@@ -82,6 +87,26 @@ check() {
     yay --editmenu -S hydrapaper-no-pandoc-git --save
 }
 
+installMapTool() {
+    mkdir -p "$HOME/.cache/chezmoi_makepkg"
+    cdOrFail "$HOME/.cache/chezmoi_makepkg"
+    if ! [ -d "$MAPTOOL_PKG" ]; then
+        git clone "$MAPTOOL_URL"
+    fi
+    cdOrFail "$MAPTOOL_PKG"
+    git checkout master
+    git pull
+    git checkout "$MAPTOOL_COMMIT"
+    if yay -Q "$MAPTOOL_PKG" > /dev/null; then
+        # shellcheck source=/dev/null disable=SC2154
+        if [ "$(source PKGBUILD && echo "$MAPTOOL_PKG $pkgver-$pkgrel")" == "$(yay -Q "$MAPTOOL_PKG")" ]; then
+            echo "Maptool is already installed with correct version"
+            return
+        fi
+    fi
+    makepkg -si
+}
+
 installYay() {
     local temp
     local oldPWD
@@ -114,6 +139,10 @@ postInstallActions() {
     for package in "$@"; do
         echo "$package"
         case $package in
+            maptool-bin)
+                # Exclude maptool-bin for pacman/yay, as we upgrade it manually
+                sudo sed -i 's|#IgnorePkg   =|###START ADDED BY CHEZMOI###\nIgnorePkg   = maptool-bin\n###STOP ADDED BY CHEZMOI###|' /etc/pacman.conf
+                ;;
             syncthing)
                 systemctl --user enable syncthing.service
                 systemctl --user start syncthing.service
@@ -143,4 +172,6 @@ IFS=" " read -r -a toInstall <<< "$(checkInstalation)"
 
 install "${toInstall[@]}"
 
-postInstallActions "${toInstall[@]}"
+installMapTool
+
+postInstallActions "${toInstall[@]}" "$MAPTOOL_PKG"
