@@ -12,6 +12,7 @@ ADDONS=(
     ["canvasblocker"]="CanvasBlocker@kkapsner.de"
     ["cookie-autodelete"]="CookieAutoDelete@kennydo.com"
     ["cookie-editor"]="c3c10168-4186-445c-9c5b-63f12b8e2c87"
+    ["darkreader"]="addon@darkreader.org"
     ["decentraleyes"]="jid1-BoFifL9Vbdl2zQ@jetpack"
     ["modify-header-value"]="jid0-oEwF5ZcskGhjFv4Kk4lYc@jetpack"
     ["ublock-origin"]="uBlock0@raymondhill.net"
