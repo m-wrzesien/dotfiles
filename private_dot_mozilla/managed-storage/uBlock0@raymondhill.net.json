@@ -1,0 +1,48 @@
+{
+    "name": "uBlock0@raymondhill.net",
+    "description": "ignored by firefox. http://raymondhill.net/ublock/adminSetting.html",
+    "type": "storage",
+    "data": {
+        "adminSettings": {
+            "userSettings": {
+                "externalLists": "https://www.i-dont-care-about-cookies.eu/abp/",
+                "firewallPaneMinimized": false,
+                "importedLists": [
+                    "https://www.i-dont-care-about-cookies.eu/abp/"
+                ],
+                "popupPanelSections": 63
+            },
+            "selectedFilterLists": [
+                "user-filters",
+                "ublock-filters",
+                "ublock-badware",
+                "ublock-privacy",
+                "ublock-quick-fixes",
+                "ublock-unbreak",
+                "easylist",
+                "easyprivacy",
+                "urlhaus-1",
+                "plowe-0",
+                "POL-0",
+                "POL-2",
+                "https://www.i-dont-care-about-cookies.eu/abp/"
+            ],
+            "hiddenSettings": {},
+            "whitelist": [
+                "# moz-extension-scheme",
+                "0a1fb479-97d4-46aa-9245-b234acdf7fd9.moz-extension-scheme",
+                "about-scheme",
+                "chrome-extension-scheme",
+                "chrome-scheme",
+                "edge-scheme",
+                "opera-scheme",
+                "vivaldi-scheme",
+                "wyciwyg-scheme"
+            ],
+            "dynamicFilteringString": "behind-the-scene * * noop\nbehind-the-scene * inline-script noop\nbehind-the-scene * 1p-script noop\nbehind-the-scene * 3p-script noop\nbehind-the-scene * 3p-frame noop\nbehind-the-scene * image noop\nbehind-the-scene * 3p noop",
+            "urlFilteringString": "",
+            "hostnameSwitchesString": "no-large-media: behind-the-scene false\nno-csp-reports: * true",
+            "userFilters": ""
+        }
+    }
+}
