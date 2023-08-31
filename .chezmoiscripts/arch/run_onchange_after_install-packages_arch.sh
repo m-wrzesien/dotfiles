@@ -4,6 +4,7 @@ ARCH="Arch Linux"
 PACKAGES=(
     age
     bash-completion
+    bind-tools
     chezmoi
     firefox
     gbt
@@ -15,11 +16,13 @@ PACKAGES=(
     kubectx
     neofetch
     noto-fonts
+    qbittorrent
     shellcheck-bin
     signal-desktop
     syncthing
     thunderbird
     ttf-hack-nerd
+    vlc
     vscodium-bin
     webcord-bin
     web-greeter
@@ -137,7 +140,6 @@ postActions() {
 
 postInstallActions() {
     for package in "$@"; do
-        echo "$package"
         case $package in
             maptool-bin)
                 # Exclude maptool-bin for pacman/yay, as we upgrade it manually
