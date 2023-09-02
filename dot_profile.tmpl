@@ -7,5 +7,5 @@ export SUDO_EDITOR="$EDITOR"
 # uncomment if needed
 # export DOCKER_HOST='/run/user/1000/podman/podman.sock'
 
-export GOPATH='$HOME/go'
+export GOPATH='{{ .chezmoi.homeDir }}/go'
 export PATH="${PATH}:${GOPATH}/bin"
