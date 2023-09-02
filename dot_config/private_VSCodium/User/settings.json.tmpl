@@ -7,7 +7,6 @@
     "workbench.settings.enableNaturalLanguageSearch": false,
     "javascript.format.enable": false,
     "javascript.validate.enable": false,
-    "telemetry.enableCrashReporter": false,
     "gitlens.telemetry.enabled": false,
     "workbench.colorTheme": "Default Dark+",
     "redhat.telemetry.enabled": false,
@@ -16,5 +15,10 @@
     },
 {{- if ne .type "work" }}
     "editor.formatOnSave": true,
-{{ end -}}
+{{- end }}
+    // Needed for Go template syntax highlighting
+    // https://github.com/golang/vscode-go/blob/master/docs/features.md#go-template-syntax-highlighting
+    "gopls": {
+        "ui.semanticTokens": true
+    }
 }
