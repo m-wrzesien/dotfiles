@@ -3,6 +3,7 @@
 UBUNTU="Ubuntu"
 PACKAGES=(
     codium
+    entr
     firefox
     gbt
     hydrapaper

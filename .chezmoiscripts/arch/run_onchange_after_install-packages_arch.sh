@@ -6,6 +6,7 @@ PACKAGES=(
     bash-completion
     bind-tools
     chezmoi
+    entr
     firefox
     gbt
     hydrapaper-no-pandoc-git
@@ -143,7 +144,8 @@ postInstallActions() {
         case $package in
             maptool-bin)
                 # Exclude maptool-bin for pacman/yay, as we upgrade it manually
-                sudo sed -i 's|#IgnorePkg   =|###START ADDED BY CHEZMOI###\nIgnorePkg   = maptool-bin\n###STOP ADDED BY CHEZMOI###|' /etc/pacman.conf
+                local conf=/etc/pacman.conf
+                grep "IgnorePkg   = maptool-bin" "$conf" > /dev/null || sudo sed -i 's|#IgnorePkg   =|###START ADDED BY CHEZMOI###\nIgnorePkg   = maptool-bin\n###STOP ADDED BY CHEZMOI###|' "$conf"
                 ;;
             syncthing)
                 systemctl --user enable syncthing.service
