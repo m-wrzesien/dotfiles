@@ -14,5 +14,7 @@
     "vs-kubernetes": {
         "vs-kubernetes.crd-code-completion": "disabled",
     },
+{{- if ne .type "work" }}
     "editor.formatOnSave": true,
+{{ end -}}
 }
