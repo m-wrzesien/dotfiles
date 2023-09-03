@@ -15,6 +15,7 @@ ADDONS=(
     ["darkreader"]="addon@darkreader.org"
     ["decentraleyes"]="jid1-BoFifL9Vbdl2zQ@jetpack"
     ["modify-header-value"]="jid0-oEwF5ZcskGhjFv4Kk4lYc@jetpack"
+    ["multi-account-containers"]="@testpilot-containers"
     ["ublock-origin"]="uBlock0@raymondhill.net"
 )
 
