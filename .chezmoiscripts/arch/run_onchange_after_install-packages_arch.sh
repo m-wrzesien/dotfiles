@@ -9,6 +9,7 @@ PACKAGES=(
     entr
     firefox
     gbt
+    google-cloud-cli
     hydrapaper-no-pandoc-git
     jq
     keepassxc
