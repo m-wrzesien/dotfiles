@@ -3,6 +3,7 @@
 UBUNTU="Ubuntu"
 PACKAGES=(
     codium
+    dnsutils
     entr
     firefox
     gbt
@@ -10,6 +11,8 @@ PACKAGES=(
     jq
     keepassxc
     kitty
+    meld
+    neofetch
     shellcheck
     signal-desktop
     syncthing

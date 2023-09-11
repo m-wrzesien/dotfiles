@@ -1,11 +1,13 @@
 #!/bin/bash
 
+
 ARCH="Arch Linux"
 PACKAGES=(
     age
     bash-completion
     bind-tools
     chezmoi
+    docker
     entr
     firefox
     gbt
@@ -16,6 +18,7 @@ PACKAGES=(
     kitty
     kubectl
     kubectx
+    meld
     neofetch
     noto-fonts
     qbittorrent
@@ -143,6 +146,12 @@ postActions() {
 postInstallActions() {
     for package in "$@"; do
         case $package in
+            docker)
+                sudo usermod -aG docker "$USER"
+                echo "Relog or use \"newgrp docker\" or change won't take effect."
+                sudo systemctl enable docker.service
+                sudo systemctl start docker.service
+                ;;
             maptool-bin)
                 # Exclude maptool-bin for pacman/yay, as we upgrade it manually
                 local conf=/etc/pacman.conf
