@@ -16,6 +16,7 @@ PACKAGES=(
     shellcheck
     signal-desktop
     syncthing
+    wireshark
 )
 
 addRepo() {

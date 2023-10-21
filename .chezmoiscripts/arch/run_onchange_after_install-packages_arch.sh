@@ -11,6 +11,8 @@ PACKAGES=(
     entr
     firefox
     gbt
+    gnome-calculator-gtk3
+    gnome-screenshot
     google-cloud-cli
     hydrapaper-no-pandoc-git
     jq
@@ -32,6 +34,7 @@ PACKAGES=(
     webcord-bin
     web-greeter
     wireguard-tools
+    wireshark-qt
     x11-ssh-askpass
     yubikey-manager
 )
@@ -40,6 +43,11 @@ PACKAGES=(
 MAPTOOL_COMMIT="e31378ba08d94f72c4d26b509e38beb8fd39ed73"
 MAPTOOL_PKG="maptool-bin"
 MAPTOOL_URL="https://aur.archlinux.org/maptool-bin.git"
+
+addToGrp() {
+    sudo usermod -aG "$1" "$USER"
+    echo "Relog or use \"newgrp $1\" or change won't take effect."
+}
 
 cdOrFail() {
     cd "$1" || echo "Can't cd. $1 not found"
@@ -147,8 +155,7 @@ postInstallActions() {
     for package in "$@"; do
         case $package in
             docker)
-                sudo usermod -aG docker "$USER"
-                echo "Relog or use \"newgrp docker\" or change won't take effect."
+                addToGrp docker
                 sudo systemctl enable docker.service
                 sudo systemctl start docker.service
                 ;;
@@ -167,9 +174,13 @@ postInstallActions() {
             web-greeter)
                 sudo sed -i 's|#greeter-session=.*|greeter-session=web-greeter|' /etc/lightdm/lightdm.conf
                 ;;
-            yubikey-manager*)
+            yubikey-manager)
                 sudo systemctl enable pcscd.service
                 sudo systemctl start pcscd.service
+                ;;
+            wireshark-qt)
+                # Group "wireshark" required, so app won't need to be start as root
+                addToGrp wireshark
                 ;;
             *)
                 echo "No action for $package"
