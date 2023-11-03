@@ -23,6 +23,7 @@ PACKAGES=(
     meld
     neofetch
     noto-fonts
+    pacman-cleanup-hook
     qbittorrent
     shellcheck-bin
     signal-desktop
