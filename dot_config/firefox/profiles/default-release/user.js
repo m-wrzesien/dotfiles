@@ -60,10 +60,6 @@ user_pref("browser.search.geoSpecificDefaults",			false);
 // https://hg.mozilla.org/mozilla-central/rev/52d635f2b33d
 user_pref("javascript.use_us_english_locale",			true);
 
-// PREF: Do not submit invalid URIs entered in the address bar to the default search engine
-// http://kb.mozillazine.org/Keyword.enabled
-user_pref("keyword.enabled",					false);
-
 // PREF: Don't trim HTTP off of URLs in the address bar.
 // https://bugzilla.mozilla.org/show_bug.cgi?id=665580
 user_pref("browser.urlbar.trimURLs",				false);
@@ -102,15 +98,6 @@ user_pref("dom.flyweb.enabled",		            false);
 // NOTICE: Containers are not available in Private Browsing mode
 // https://wiki.mozilla.org/Security/Contextual_Identity_Project/Containers
 user_pref("privacy.userContext.enabled",			true);
-
-// PREF: Enable Firefox's anti-fingerprinting mode ("resist fingerprinting" or RFP) (Tor Uplift project)
-// https://wiki.mozilla.org/Security/Tor_Uplift/Tracking
-// https://bugzilla.mozilla.org/show_bug.cgi?id=1333933
-// https://wiki.mozilla.org/Security/Fingerprinting
-// NOTICE: RFP breaks some keyboard shortcuts used in certain websites (see #443)
-// NOTICE: RFP changes your time zone
-// NOTICE: RFP breaks some DDoS protection pages (Cloudflare)
-user_pref("privacy.resistFingerprinting",			true);
 
 // PREF: disable mozAddonManager Web API [FF57+]
 // https://bugzilla.mozilla.org/buglist.cgi?bug_id=1384330
@@ -155,7 +142,15 @@ user_pref("signon.rememberSignons",				false);
 // https://www.mozilla.org/en-US/security/advisories/mfsa2021-31/
 user_pref("browser.vpn_promo.enabled",			false);
 
-
 // PREF: Disable sponsored in top sites
 user_pref("browser.newtabpage.activity-stream.showSponsored",	false);
 user_pref("browser.newtabpage.activity-stream.topSiteSearchShortcuts", false);
+
+// Enable DRM by default
+user_pref("media.eme.enabled", true);
+
+// Place dev tools on the right
+user_pref("devtools.toolbox.host", "right");
+
+//  By default open "Network" tab in dev tools
+user_pref("devtools.toolbox.selectedTool", "netmonitor");
