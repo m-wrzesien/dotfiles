@@ -11,9 +11,9 @@ ADDONS=(
     ["addy_io"]="browser-extension@anonaddy"
     ["canvasblocker"]="CanvasBlocker@kkapsner.de"
     ["cookie-autodelete"]="CookieAutoDelete@kennydo.com"
-    ["cookie-editor"]="c3c10168-4186-445c-9c5b-63f12b8e2c87"
     ["darkreader"]="addon@darkreader.org"
     ["decentraleyes"]="jid1-BoFifL9Vbdl2zQ@jetpack"
+    ["edithiscookie"]="{62c00091-53f5-42d0-a4d0-9e69fc3d5819}"
     ["modify-header-value"]="jid0-oEwF5ZcskGhjFv4Kk4lYc@jetpack"
     ["multi-account-containers"]="@testpilot-containers"
     ["ublock-origin"]="uBlock0@raymondhill.net"
@@ -45,9 +45,29 @@ install() {
     done
 }
 
+postInstallActions() {
+    for addon in "$@"; do
+        case $addon in
+            addy_io)
+                echo "Remember about logging in using API key"
+                ;;
+            cookie-autodelete)
+                echo "Remember to set following settings:"
+                echo "'Enable Automatic Cleaning'"
+                echo "'Enable Support for Container Tabs'"
+                ;;
+            *)
+                echo "No action for $addon"
+                ;;
+        esac
+    done
+}
+
 mkdir -p "$EXTENSIONS_DIR"
 
 # Chech what addons needs to be installed and put them in to array
 IFS=" " read -r -a toInstall <<< "$(checkInstalation)"
 
 install "${toInstall[@]}"
+
+postInstallActions "${toInstall[@]}"
