@@ -3,18 +3,14 @@
 {{- $releaseId := mozillaInstallHash "/usr/lib/firefox" -}}
 
 [Install{{ $releaseId }}]
-Default=1so17i5c.default-release
+Default={{ $releasePath }}
 Locked=1
 
 [Profile0]
-Name=default-release
-IsRelative=1
-Path=1so17i5c.default-release
-
-[Profile1]
-Name=default-release-test
+Name=dotfiles-managed
 IsRelative=0
 Path={{ $releasePath }}
+Default=1
 
 [General]
 StartWithLastProfile=1
