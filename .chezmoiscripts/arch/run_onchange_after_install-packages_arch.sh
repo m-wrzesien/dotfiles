@@ -27,6 +27,7 @@ PACKAGES=(
     qbittorrent
     shellcheck-bin
     signal-desktop
+    sops
     syncthing
     thunderbird
     ttf-hack-nerd
