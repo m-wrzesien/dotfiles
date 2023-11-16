@@ -39,7 +39,7 @@ install() {
     fi
     echo "Following addons will be installed: $*"
     for name in "$@"; do
-        fileURL=$(curl -s "https://addons.mozilla.org/api/v5/addons/addon/$name/" | tee ~/log.log | jq -r .current_version.file.url)
+        fileURL=$(curl -s "https://addons.mozilla.org/api/v5/addons/addon/$name/" | jq -r .current_version.file.url)
         curl -s -o "$EXTENSIONS_DIR/${ADDONS[$name]}.xpi" "$fileURL"
         echo "Addon \"$name\" installed"
     done
