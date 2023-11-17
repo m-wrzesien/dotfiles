@@ -2,20 +2,33 @@
 
 UBUNTU="Ubuntu"
 PACKAGES=(
+    # preview archives in ranger
+    atool
+    # provide ASCII-art image previews for ranger
+    caca-utils
     codium
     dnsutils
     entr
     firefox
     gbt
+    # syntax highlighter in ranger
+    highlight
     hydrapaper
     jq
     keepassxc
     kitty
+    # provide info about media files for ranger
+    mediainfo
     meld
     neofetch
+    # provide pdf preview for ranger
+    poppler-utils
+    ranger
     shellcheck
     signal-desktop
     syncthing
+    # preview html pagers in ranger
+    w3m
     wireshark
 )
 

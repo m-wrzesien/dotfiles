@@ -4,6 +4,8 @@
 ARCH="Arch Linux"
 PACKAGES=(
     age
+    # preview archives in ranger
+    atool
     bash-completion
     bind-tools
     chezmoi
@@ -14,16 +16,25 @@ PACKAGES=(
     gnome-calculator-gtk3
     gnome-screenshot
     google-cloud-cli
+    # syntax highlighter in ranger
+    highlight
     hydrapaper-no-pandoc-git
     jq
     keepassxc
     kitty
     kubectl
     kubectx
+    # provide ASCII-art image previews for ranger
+    libcaca
+    # provide info about media files for ranger
+    mediainfo
     meld
     neofetch
     noto-fonts
     pacman-cleanup-hook
+    # provide pdf preview for ranger
+    poppler
+    ranger
     qbittorrent
     shellcheck-bin
     signal-desktop
@@ -33,6 +44,8 @@ PACKAGES=(
     ttf-hack-nerd
     vlc
     vscodium-bin
+    # preview html pagers in ranger
+    w3m
     webcord-bin
     web-greeter
     wireguard-tools
