@@ -27,7 +27,7 @@ addRepo() {
     echo 'deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main' | sudo tee /etc/apt/sources.list.d/signal.list
     curl -sL https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | sudo tee /etc/apt/trusted.gpg.d/vscodium.asc > /dev/null
     echo 'deb https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs vscodium main' | sudo tee /etc/apt/sources.list.d/vscodium.list
-    sudo apt-get update
+    sudo apt update
 }
 
 cdOrFail() {
@@ -58,7 +58,7 @@ install() {
         return 0
     fi
     echo "Following packages will be installed: $*"
-    sudo apt-get install "$@"
+    sudo apt install "$@"
 }
 
 postInstallActions() {
