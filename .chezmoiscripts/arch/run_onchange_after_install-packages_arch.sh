@@ -56,8 +56,8 @@ PACKAGES=(
     yubikey-manager
 )
 
-# Version 1.13.2-1
-MAPTOOL_COMMIT="e31378ba08d94f72c4d26b509e38beb8fd39ed73"
+# Version 1.14.1-1
+MAPTOOL_COMMIT="227f028defeaf7c9a2c541b35089228bd128ba06"
 MAPTOOL_PKG="maptool-bin"
 MAPTOOL_URL="https://aur.archlinux.org/maptool-bin.git"
 
