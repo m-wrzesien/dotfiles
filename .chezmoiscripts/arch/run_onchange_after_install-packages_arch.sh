@@ -40,6 +40,8 @@ PACKAGES=(
     signal-desktop
     sops
     syncthing
+    terraform
+    terragrunt
     thunderbird
     ttf-hack-nerd
     vlc
