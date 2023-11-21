@@ -24,6 +24,7 @@ EXTENSIONS_DIR=".config/firefox/profiles/default-release/extensions"
 
 checkInstalation() {
     local notInstalled=()
+    # `!` is required to iterate over keys
     for name in "${!ADDONS[@]}"; do
         if ! [ -f "$EXTENSIONS_DIR/${ADDONS[$name]}.xpi" ] > /dev/null; then
             notInstalled+=("$name")
