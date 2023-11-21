@@ -15,6 +15,14 @@
     },
 {{- if ne .type "work" }}
     "editor.formatOnSave": true,
+{{- else }}
+    "cloudcode.duetAI.enable": true,
+    "cloudcode.duetAI.project": {{ .duet_ai_project | quote }},
+    "cloudcode.enableTelemetry": false,
+    "cloudcode.enableGkeAutopilotSupport": false,
+    "[yaml]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
 {{- end }}
     // Needed for Go template syntax highlighting
     // https://github.com/golang/vscode-go/blob/master/docs/features.md#go-template-syntax-highlighting
