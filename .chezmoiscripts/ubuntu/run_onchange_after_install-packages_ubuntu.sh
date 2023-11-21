@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 UBUNTU="Ubuntu"
 PACKAGES=(
     # preview archives in ranger

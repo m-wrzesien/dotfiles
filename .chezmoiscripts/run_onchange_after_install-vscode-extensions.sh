@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 EXTENSIONS=(
     eamodio.gitlens

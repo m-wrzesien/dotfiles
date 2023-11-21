@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 # Disable global discovery
 # https://docs.syncthing.net/users/config#config-option-options.globalannounceenabled
 syncthing cli config options global-ann-enabled set false
