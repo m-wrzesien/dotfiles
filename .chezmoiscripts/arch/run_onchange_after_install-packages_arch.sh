@@ -163,11 +163,6 @@ installYay() {
     rm -rf "$temp"
 }
 
-postActions() {
-    systemctl --user enable ssh-agent.service
-    systemctl --user start ssh-agent.service
-}
-
 postInstallActions() {
     for package in "$@"; do
         case $package in
