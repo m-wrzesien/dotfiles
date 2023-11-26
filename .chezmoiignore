@@ -1,8 +1,9 @@
 *.md
 {{ if ne .chezmoi.osRelease.name "Arch Linux" }}
 .chezmoiscripts/arch/**
-# Only arch uses ssh-agent enabled by systemd
+# Only arch uses ssh-agent enabled by systemd and custom ssh-askpass
 .config/systemd/user/ssh-agent.service
+.local/bin/ssh-askpass
 {{ end }}
 
 {{ if ne .chezmoi.osRelease.name "Ubuntu" }}

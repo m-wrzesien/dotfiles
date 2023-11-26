@@ -53,7 +53,6 @@ PACKAGES=(
     web-greeter
     wireguard-tools
     wireshark-qt
-    x11-ssh-askpass
     yubikey-manager
 )
 

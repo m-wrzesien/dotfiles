@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Based on https://spencerkrum.com/posts/ssh-askpass-wayland/
+
+TEXT="A PROGRAM REQUIRES AN AGENT.\nApprove?"
+# Use text provided by ssh that has following format:
+# Allow use of key <comment>?
+# Key fingerprint <fingerprint>.
+if [ -n "$1" ]; then
+    TEXT="$1"
+fi
+
+/usr/bin/zenity --title ssh-askpass --question --text "$TEXT"
