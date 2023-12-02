@@ -1,33 +1,33 @@
 {
     "diffEditor.ignoreTrimWhitespace": false,
-    "go.useLanguageServer": true,
-    "go.formatTool": "goimports",
     "editor.fontFamily": "'Hack Nerd Font', 'monospace', monospace",
-    "workbench.enableExperiments": false,
-    "workbench.settings.enableNaturalLanguageSearch": false,
-    "javascript.format.enable": false,
-    "javascript.validate.enable": false,
     "gitlens.telemetry.enabled": false,
-    "workbench.colorTheme": "Default Dark+",
-    "redhat.telemetry.enabled": false,
-    "vs-kubernetes": {
-        "vs-kubernetes.crd-code-completion": "disabled",
-    },
-{{- if ne .type "work" }}
-    "editor.formatOnSave": true,
-{{- else }}
-    "cloudcode.duetAI.enable": true,
-    "cloudcode.duetAI.project": {{ .duet_ai_project | quote }},
-    "cloudcode.enableTelemetry": false,
-    "cloudcode.enableGkeAutopilotSupport": false,
-    "[yaml]": {
-        "editor.defaultFormatter": "redhat.vscode-yaml"
-    },
-{{- end }}
+    "go.toolsManagement.autoUpdate": true,
     // Needed for Go template syntax highlighting
     // https://github.com/golang/vscode-go/blob/master/docs/features.md#go-template-syntax-highlighting
     "gopls": {
         "ui.semanticTokens": true
     },
-    "go.toolsManagement.autoUpdate": true
+    "javascript.format.enable": false,
+    "javascript.validate.enable": false,
+    "redhat.telemetry.enabled": false,
+    "shellcheck.disableVersionCheck": true,
+    "vs-kubernetes": {
+        "checkForMinikubeUpgrade": false,
+        "vs-kubernetes.crd-code-completion": "disabled",
+    },
+    "workbench.colorTheme": "Default Dark+",
+    "workbench.enableExperiments": false,
+    "workbench.settings.enableNaturalLanguageSearch": false,
+{{- if ne .type "work" }}
+    "editor.formatOnSave": true
+{{- else }}
+    "cloudcode.duetAI.enable": true,
+    "cloudcode.duetAI.project": {{ .duet_ai_project | quote }},
+    "cloudcode.enableGkeAutopilotSupport": false,
+    "cloudcode.enableTelemetry": false,
+    "[yaml]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    }
+{{- end }}
 }
