@@ -21,13 +21,5 @@
     "workbench.settings.enableNaturalLanguageSearch": false,
 {{- if ne .type "work" }}
     "editor.formatOnSave": true
-{{- else }}
-    "cloudcode.duetAI.enable": true,
-    "cloudcode.duetAI.project": {{ .duet_ai_project | quote }},
-    "cloudcode.enableGkeAutopilotSupport": false,
-    "cloudcode.enableTelemetry": false,
-    "[yaml]": {
-        "editor.defaultFormatter": "redhat.vscode-yaml"
-    }
 {{- end }}
 }

@@ -2,8 +2,6 @@
 {{- $ghNoreplyEmail := promptStringOnce . "github_noreply_email" "GitHub noreply email address" -}}
 {{- $type := promptStringOnce . "type" "PC type (work/private)" "private" -}}
 {{- $ghUser := "m-wrzesien" -}}
-{{- $duetAIProject := promptStringOnce . "duet_ai_project" "Project used for Duet AI" -}}
-
 
 [data]
     email = {{ $email | quote }}
@@ -11,4 +9,3 @@
     github_noreply_email = {{ $ghNoreplyEmail | quote }}
     github_public_key = "{{ (first (gitHubKeys $ghUser)).Key }}"
     type = {{ $type | quote }}
-    duet_ai_project = {{ $duetAIProject | quote }}
