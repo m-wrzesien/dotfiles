@@ -8,7 +8,7 @@ _serve-http() {
 	# if [[ $1 =~ .:[0-9]{2,5}$ ]]; then
 		endpoint="$1"
 	fi
-	if podman run --rm --name serve-http -v "$(pwd)":/usr/share/nginx/html -p "$endpoint":80 -d nginx:alpine; then
+	if docker run --rm --name serve-http -v "$(pwd)":/usr/share/nginx/html:ro -p "$endpoint":80 -d nginx:alpine; then
 		echo "Nginx listening at $endpoint"
 	fi
 }
