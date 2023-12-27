@@ -81,8 +81,8 @@ postInstallActions() {
         echo "$package"
         case $package in
             syncthing)
-                systemctl --user enable syncthing.service 
-                systemctl --user start syncthing.service 
+                systemctl --user enable syncthing.service
+                systemctl --user start syncthing.service
                 ;;
             vscodium-bin)
                 sudo ln -s /usr/bin/codium /usr/local/bin/code
@@ -107,4 +107,4 @@ IFS=" " read -r -a toInstall <<< "$(checkInstalation)"
 
 install "${toInstall[@]}"
 
-# postInstallActions "${toInstall[@]}"
+postInstallActions "${toInstall[@]}"
