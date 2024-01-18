@@ -32,11 +32,14 @@ PACKAGES=(
     meld
     neofetch
     noto-fonts
+    packer
     pacman-cleanup-hook
     # provide pdf preview for ranger
     poppler
     ranger
     qbittorrent
+    # Required for packer-builder-arm
+    qemu-user-static-binfmt
     shellcheck-bin
     signal-desktop
     sops
