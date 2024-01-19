@@ -40,6 +40,8 @@ PACKAGES=(
     qbittorrent
     # Required for packer-builder-arm
     qemu-user-static-binfmt
+    # modify pdfs
+    qpdf
     shellcheck-bin
     signal-desktop
     sops
