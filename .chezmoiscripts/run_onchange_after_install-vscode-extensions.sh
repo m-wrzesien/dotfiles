@@ -1,4 +1,5 @@
 #!/bin/bash
+
 set -euo pipefail
 
 EXTENSIONS=(
@@ -9,6 +10,7 @@ EXTENSIONS=(
     hashicorp.terraform
     ms-azuretools.vscode-docker
     ms-kubernetes-tools.vscode-kubernetes-tools
+    redhat.ansible
     redhat.vscode-yaml
     shardulm94.trailing-spaces
     signageos.signageos-vscode-sops
