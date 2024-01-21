@@ -3,7 +3,9 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 {{ end -}}
 export BROWSER=/usr/bin/firefox
 export EDITOR=/usr/bin/vim
+export KEEPASSXC_AGE_ENTRY="{{ .keepassxc_age_entry }}"
+export KEEPASSXC_FILE="{{ .keepassxc_file }}"
 export SUDO_EDITOR="$EDITOR"
 
-export GOPATH='{{ .chezmoi.homeDir }}/.local/state/go'
+export GOPATH="{{ .chezmoi.homeDir }}/.local/state/go"
 export PATH="${PATH}:${GOPATH}/bin:${HOME}/.local/bin"
