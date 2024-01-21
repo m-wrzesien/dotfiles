@@ -27,6 +27,8 @@ PACKAGES=(
     kubectx
     # provide ASCII-art image previews for ranger
     libcaca
+    man-db
+    man-pages
     # provide info about media files for ranger
     mediainfo
     meld
