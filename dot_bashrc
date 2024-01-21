@@ -14,15 +14,18 @@ checkDistro() {
     fi
 }
 
-# don't put duplicate lines or lines starting with space in the history.
+# don't put lines starting with space and duplicate lines in the history.
 # See bash(1) for more options
-HISTCONTROL=ignoreboth
+HISTCONTROL=ignoreboth:erasedups
 
 # append to the history file, don't overwrite it
 shopt -s histappend
 
+# add date to history
+HISTTIMEFORMAT="%F %T: "
+
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=10000
+HISTSIZE=100000
 HISTFILESIZE=100000
 
 # check the window size after each command and, if necessary,
