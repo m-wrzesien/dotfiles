@@ -35,7 +35,14 @@ PACKAGES=(
 )
 
 addRepo() {
-    sudo add-apt-repository -y ppa:mozillateam/ppa
+    # https://support.mozilla.org/en-US/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-distributions
+    curl -sL https://packages.mozilla.org/apt/repo-signing-key.gpg | sudo tee /etc/apt/trusted.gpg.d/packages.mozilla.org.asc > /dev/null
+    echo 'deb https://packages.mozilla.org/apt mozilla main' | sudo tee /etc/apt/sources.list.d/mozilla.list >/dev/null
+    echo '
+Package: *
+Pin: origin packages.mozilla.org
+Pin-Priority: 1000
+' | sudo tee /etc/apt/preferences.d/mozilla
     curl -sL https://packagecloud.io/gbt/release/gpgkey | sudo tee /etc/apt/trusted.gpg.d/gbt.asc > /dev/null
     echo 'deb https://packagecloud.io/gbt/release/ubuntu/ xenial main' | sudo tee /etc/apt/sources.list.d/gbt.list >/dev/null
     curl -sL https://updates.signal.org/desktop/apt/keys.asc | sudo tee /etc/apt/trusted.gpg.d/signal.asc > /dev/null
