@@ -18,6 +18,7 @@ PACKAGES=(
     gbt
     gnome-calculator-gtk3
     gnome-screenshot
+    go
     google-cloud-cli
     # syntax highlighter in ranger
     highlight
