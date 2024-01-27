@@ -5,6 +5,8 @@ set -euo pipefail
 ARCH="Arch Linux"
 PACKAGES=(
     age
+    ansible
+    ansible-core
     # preview archives in ranger
     atool
     bash-completion
@@ -38,6 +40,7 @@ PACKAGES=(
     pacman-cleanup-hook
     # provide pdf preview for ranger
     poppler
+    python-pylibssh
     ranger
     qbittorrent
     # Required for packer-builder-arm
