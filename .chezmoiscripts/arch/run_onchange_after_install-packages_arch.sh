@@ -24,6 +24,7 @@ PACKAGES=(
     highlight
     hydrapaper-no-pandoc-git
     jq
+    k9s
     keepassxc
     kitty
     kubectl
