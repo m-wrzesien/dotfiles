@@ -20,6 +20,7 @@ PACKAGES=(
     gnome-screenshot
     go
     google-cloud-cli
+    helm
     # syntax highlighter in ranger
     highlight
     hydrapaper-no-pandoc-git
