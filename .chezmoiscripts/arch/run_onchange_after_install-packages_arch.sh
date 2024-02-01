@@ -66,6 +66,8 @@ PACKAGES=(
     web-greeter
     wireguard-tools
     wireshark-qt
+    # enable copy in k9s
+    xsel
     yubikey-manager
 )
 
