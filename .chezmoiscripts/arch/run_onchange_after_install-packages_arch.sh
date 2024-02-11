@@ -53,6 +53,8 @@ PACKAGES=(
     shellcheck-bin
     signal-desktop
     sops
+    # canon printer scanner
+    scangearmp2
     syncthing
     terraform
     terragrunt
@@ -185,6 +187,9 @@ postInstallActions() {
                 addToGrp docker
                 sudo systemctl enable docker.service
                 sudo systemctl start docker.service
+                ;;
+            helm)
+                helm plugin install https://github.com/databus23/helm-diff
                 ;;
             maptool-bin)
                 # Exclude maptool-bin for pacman/yay, as we upgrade it manually
