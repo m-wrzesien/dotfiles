@@ -1,0 +1,3 @@
+k9s:
+  # disable check for new version to GitHub
+  skipLatestRevCheck: true
