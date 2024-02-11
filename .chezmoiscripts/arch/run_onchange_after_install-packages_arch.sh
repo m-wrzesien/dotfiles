@@ -56,6 +56,8 @@ PACKAGES=(
     # canon printer scanner
     scangearmp2
     syncthing
+    # required, so wg-quick can set up dns
+    systemd-resolvconf
     terraform
     terragrunt
     thunderbird
@@ -199,6 +201,12 @@ postInstallActions() {
             syncthing)
                 systemctl --user enable syncthing.service
                 systemctl --user start syncthing.service
+                ;;
+            systemd-resolvconf)
+                sudo systemctl enable systemd-resolved
+                sudo systemctl start systemd-resolved
+                # Force NetworkManager, to use systemd-resolved as DNS resolver
+                sudo ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
                 ;;
             vscodium-bin)
                 sudo ln -s /usr/bin/codium /usr/local/bin/code
