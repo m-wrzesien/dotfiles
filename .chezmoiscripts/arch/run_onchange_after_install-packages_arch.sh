@@ -58,6 +58,8 @@ PACKAGES=(
     syncthing
     # required, so wg-quick can set up dns
     systemd-resolvconf
+    # remote decryption for servers
+    tang
     terraform
     terragrunt
     thunderbird
