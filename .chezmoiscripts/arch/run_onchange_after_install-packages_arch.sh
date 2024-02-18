@@ -13,6 +13,7 @@ PACKAGES=(
     bind-tools
     chezmoi
     docker
+    docker-compose
     entr
     firefox
     gbt
