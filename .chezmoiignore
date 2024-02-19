@@ -6,6 +6,8 @@
 .local/bin/ssh-askpass
 # Fix for missing environment variables on Arch
 .bash_profile
+# Use default firefox profiles on non arch machines
+.mozilla/firefox/profiles.ini
 {{ end }}
 
 {{ if ne .chezmoi.osRelease.name "Ubuntu" }}
