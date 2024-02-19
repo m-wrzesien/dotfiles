@@ -4,6 +4,8 @@
 # Only arch uses ssh-agent enabled by systemd and custom ssh-askpass
 .config/systemd/user/ssh-agent.service
 .local/bin/ssh-askpass
+# Fix for missing environment variables on Arch
+.bash_profile
 {{ end }}
 
 {{ if ne .chezmoi.osRelease.name "Ubuntu" }}

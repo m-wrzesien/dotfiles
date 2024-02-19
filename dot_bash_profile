@@ -1,0 +1,7 @@
+#
+# ~/.bash_profile
+#
+
+# source ~/.profile, as it isn't sourced if this file exists
+[[ -f ~/.profile ]] && . ~/.profile
+[[ -f ~/.bashrc ]] && . ~/.bashrc
