@@ -76,6 +76,7 @@ PACKAGES=(
     wireshark-qt
     # enable copy in k9s
     xsel
+    yaycache-hook
     yubikey-manager
 )
 
