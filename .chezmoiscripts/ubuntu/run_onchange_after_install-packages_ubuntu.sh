@@ -22,6 +22,7 @@ PACKAGES=(
     # provide info about media files for ranger
     mediainfo
     meld
+    ncdu
     neofetch
     # provide pdf preview for ranger
     poppler-utils

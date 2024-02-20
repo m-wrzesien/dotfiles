@@ -38,6 +38,7 @@ PACKAGES=(
     # provide info about media files for ranger
     mediainfo
     meld
+    ncdu
     neofetch
     noto-fonts
     packer
