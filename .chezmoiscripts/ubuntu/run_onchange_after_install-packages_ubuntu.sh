@@ -12,7 +12,6 @@ PACKAGES=(
     dnsutils
     entr
     firefox
-    gbt
     # syntax highlighter in ranger
     highlight
     hydrapaper
@@ -35,6 +34,25 @@ PACKAGES=(
     wireshark
 )
 
+
+REMOVE_PACKAGES=(
+    gbt
+)
+
+REMOVE_REPO_FILES=(
+    /etc/apt/trusted.gpg.d/gbt.asc
+    /etc/apt/sources.list.d/gbt.list
+)
+
+removeRepo() {
+    for file in "${REMOVE_REPO_FILES[@]}"; do
+        if ! [ -f "$file" ]; then
+            continue
+        fi
+        sudo rm "$file"
+    done
+}
+
 addRepo() {
     # https://support.mozilla.org/en-US/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-distributions
     curl -sL https://packages.mozilla.org/apt/repo-signing-key.gpg | sudo tee /etc/apt/trusted.gpg.d/packages.mozilla.org.asc > /dev/null
@@ -44,8 +62,6 @@ Package: *
 Pin: origin packages.mozilla.org
 Pin-Priority: 1000
 ' | sudo tee /etc/apt/preferences.d/mozilla
-    curl -sL https://packagecloud.io/gbt/release/gpgkey | sudo tee /etc/apt/trusted.gpg.d/gbt.asc > /dev/null
-    echo 'deb https://packagecloud.io/gbt/release/ubuntu/ xenial main' | sudo tee /etc/apt/sources.list.d/gbt.list >/dev/null
     curl -sL https://updates.signal.org/desktop/apt/keys.asc | sudo tee /etc/apt/trusted.gpg.d/signal.asc > /dev/null
     echo 'deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main' | sudo tee /etc/apt/sources.list.d/signal.list
     curl -sL https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | sudo tee /etc/apt/trusted.gpg.d/vscodium.asc > /dev/null
@@ -65,14 +81,24 @@ checkDistro() {
     fi
 }
 
-checkInstalation() {
-    local notInstalled=()
+getPackagesToInstall() {
+    local output=()
     for package in "${PACKAGES[@]}"; do
-        if ! dpkg -s "$package" > /dev/null; then
-            notInstalled+=("$package")
+        if ! dpkg -s "$package" &> /dev/null; then
+            output+=("$package")
         fi
     done
-    echo "${notInstalled[@]}"
+    echo "${output[@]}"
+}
+
+getPackagesToRemove() {
+    local output=()
+    for package in "${REMOVE_PACKAGES[@]}"; do
+        if dpkg -s "$package" &> /dev/null; then
+            output+=("$package")
+        fi
+    done
+    echo "${output[@]}"
 }
 
 install() {
@@ -82,6 +108,15 @@ install() {
     fi
     echo "Following packages will be installed: $*"
     sudo apt install "$@"
+}
+
+remove() {
+    if [ "$#" -eq 0 ]; then
+        echo "No packages to remove"
+        return 0
+    fi
+    echo "Following packages will be removed: $*"
+    sudo apt remove "$@"
 }
 
 postInstallActions() {
@@ -108,10 +143,17 @@ postInstallActions() {
 
 checkDistro || exit 0
 
+removeRepo
+
 addRepo
 
+# Chech what packages needs to be removed and put them in to array
+IFS=" " read -r -a toRemove <<< "$(getPackagesToRemove)"
+
+remove "${toRemove[@]}"
+
 # Chech what packages needs to be installed and put them in to array
-IFS=" " read -r -a toInstall <<< "$(checkInstalation)"
+IFS=" " read -r -a toInstall <<< "$(getPackagesToInstall)"
 
 install "${toInstall[@]}"
 

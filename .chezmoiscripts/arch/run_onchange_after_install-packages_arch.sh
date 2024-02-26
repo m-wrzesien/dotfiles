@@ -16,7 +16,6 @@ PACKAGES=(
     docker-compose
     entr
     firefox
-    gbt
     gnome-calculator-gtk3
     gnome-screenshot
     go
@@ -80,6 +79,10 @@ PACKAGES=(
     yubikey-manager
 )
 
+REMOVE_PACKAGES=(
+    gbt
+)
+
 # Version 1.14.1-1
 MAPTOOL_COMMIT="227f028defeaf7c9a2c541b35089228bd128ba06"
 MAPTOOL_PKG="maptool-bin"
@@ -102,14 +105,24 @@ checkDistro() {
     fi
 }
 
-checkInstalation() {
-    local notInstalled=()
+getPackagesToInstall() {
+    local output=()
     for package in "${PACKAGES[@]}"; do
         if ! yay -Q "$package" > /dev/null; then
-            notInstalled+=("$package")
+            output+=("$package")
         fi
     done
-    echo "${notInstalled[@]}"
+    echo "${output[@]}"
+}
+
+getPackagesToRemove() {
+    local output=()
+    for package in "${REMOVE_PACKAGES[@]}"; do
+        if yay -Q "$package" > /dev/null; then
+            output+=("$package")
+        fi
+    done
+    echo "${output[@]}"
 }
 
 install() {
@@ -131,6 +144,24 @@ install() {
     done
     set -- "${newparams[@]}"  # overwrites the original positional params
     yay -S "$@"
+}
+
+remove() {
+    if [ "$#" -eq 0 ]; then
+        echo "No packages to remove"
+        return 0
+    fi
+    echo "Following packages will be removed: $*"
+    local newparams=()
+    for package in "$@"; do
+        case $package in
+            *)
+                newparams+=("$package")
+                ;;
+        esac
+    done
+    set -- "${newparams[@]}"  # overwrites the original positional params
+    yay -Rs "$@"
 }
 
 # workaround for problems with ssl certificate during checks
@@ -237,8 +268,14 @@ postInstallActions() {
 checkDistro || exit 0
 
 installYay
+
+# Chech what packages needs to be removed and put them in to array
+IFS=" " read -r -a toRemove <<< "$(getPackagesToRemove)"
+
+remove "${toRemove[@]}"
+
 # Chech what packages needs to be installed and put them in to array
-IFS=" " read -r -a toInstall <<< "$(checkInstalation)"
+IFS=" " read -r -a toInstall <<< "$(getPackagesToInstall)"
 
 install "${toInstall[@]}"
 
