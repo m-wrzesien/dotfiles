@@ -5,6 +5,7 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 export XDG_CACHE_HOME="{{ .chezmoi.homeDir }}/.cache"
 export XDG_CONFIG_HOME="{{ .chezmoi.homeDir }}/.config"
 export XDG_DATA_HOME="{{ .chezmoi.homeDir }}/.local/share"
+export XDG_STATE_HOME="{{ .chezmoi.homeDir }}/.local/state"
 
 export BROWSER=/usr/bin/firefox
 export EDITOR=/usr/bin/vim
@@ -21,6 +22,7 @@ export KUBECACHEDIR="$XDG_CACHE_HOME/kube"
 export MINIKUBE_HOME="$XDG_DATA_HOME"/minikube
 export VAGRANT_HOME="$XDG_DATA_HOME"/vagrant
 export VAGRANT_ALIAS_FILE="$XDG_DATA_HOME"/vagrant/aliases
+export VIMINIT="source $XDG_CONFIG_HOME/vim/vimrc"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export _JAVA_OPTIONS=-Djavafx.cachedir="$XDG_CACHE_HOME"/openjfx
 
