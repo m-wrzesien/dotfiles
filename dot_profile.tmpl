@@ -1,14 +1,20 @@
 {{ if eq .chezmoi.osRelease.name "Arch Linux" -}}
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 {{ end -}}
+
+export XDG_CACHE_HOME="{{ .chezmoi.homeDir }}/.cache"
+export XDG_CONFIG_HOME="{{ .chezmoi.homeDir }}/.config"
+
 export BROWSER=/usr/bin/firefox
 export EDITOR=/usr/bin/vim
 export KEEPASSXC_AGE_ENTRY="{{ .keepassxc_age_entry }}"
 export KEEPASSXC_FILE="{{ .keepassxc_file }}"
 export SUDO_EDITOR="$EDITOR"
 
-export XDG_CONFIG_HOME="{{ .chezmoi.homeDir }}/.config"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+export ANSIBLE_HOME="${XDG_CONFIG_HOME}/ansible"
+export ANSIBLE_CONFIG="${XDG_CONFIG_HOME}/ansible.cfg"
+export ANSIBLE_GALAXY_CACHE_DIR="${XDG_CACHE_HOME}/ansible/galaxy_cache"
 
 export GOPATH="{{ .chezmoi.homeDir }}/.local/state/go"
 export PATH="${PATH}:${GOPATH}/bin:${HOME}/.local/bin"
