@@ -7,5 +7,8 @@ export KEEPASSXC_AGE_ENTRY="{{ .keepassxc_age_entry }}"
 export KEEPASSXC_FILE="{{ .keepassxc_file }}"
 export SUDO_EDITOR="$EDITOR"
 
+export XDG_CONFIG_HOME="{{ .chezmoi.homeDir }}/.config"
+export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+
 export GOPATH="{{ .chezmoi.homeDir }}/.local/state/go"
 export PATH="${PATH}:${GOPATH}/bin:${HOME}/.local/bin"
