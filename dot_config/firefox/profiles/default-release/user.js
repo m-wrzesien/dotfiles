@@ -157,7 +157,7 @@ user_pref("devtools.toolbox.host", "right");
 user_pref("devtools.toolbox.selectedTool", "netmonitor");
 
 // Always display bookmark toolbar - currently doesn't work - https://bugzilla.mozilla.org/show_bug.cgi?id=1808097
-user_pref("browser.toolbars.bookmarks.visibility", "always")
+user_pref("browser.toolbars.bookmarks.visibility", "always");
 
 // Disable welcome screen
 user_pref("trailhead.firstrun.branches", "nofirstrun-empty");
@@ -167,7 +167,7 @@ user_pref("browser.aboutwelcome.enabled", false);
 user_pref("browser.uiCustomization.state", "{\"placements\":{\"widget-overflow-fixed-list\":[],\"unified-extensions-area\":[\"jid1-bofifl9vbdl2zq_jetpack-browser-action\",\"_testpilot-containers-browser-action\",\"canvasblocker_kkapsner_de-browser-action\"],\"nav-bar\":[\"back-button\",\"forward-button\",\"stop-reload-button\",\"customizableui-special-spring1\",\"urlbar-container\",\"customizableui-special-spring2\",\"save-to-pocket-button\",\"downloads-button\",\"unified-extensions-button\",\"ublock0_raymondhill_net-browser-action\",\"browser-extension_anonaddy-browser-action\",\"cookieautodelete_kennydo_com-browser-action\",\"addon_darkreader_org-browser-action\",\"jid0-oewf5zcskghjfv4kk4lyc_jetpack-browser-action\",\"_c3c10168-4186-445c-9c5b-63f12b8e2c87_-browser-action\",\"_62c00091-53f5-42d0-a4d0-9e69fc3d5819_-browser-action\"],\"toolbar-menubar\":[\"menubar-items\"],\"TabsToolbar\":[\"firefox-view-button\",\"tabbrowser-tabs\",\"new-tab-button\",\"alltabs-button\"],\"PersonalToolbar\":[\"import-button\",\"personal-bookmarks\"]},\"seen\":[\"developer-button\",\"_testpilot-containers-browser-action\",\"jid1-bofifl9vbdl2zq_jetpack-browser-action\",\"browser-extension_anonaddy-browser-action\",\"canvasblocker_kkapsner_de-browser-action\",\"cookieautodelete_kennydo_com-browser-action\",\"addon_darkreader_org-browser-action\",\"jid0-oewf5zcskghjfv4kk4lyc_jetpack-browser-action\",\"ublock0_raymondhill_net-browser-action\",\"_c3c10168-4186-445c-9c5b-63f12b8e2c87_-browser-action\",\"_62c00091-53f5-42d0-a4d0-9e69fc3d5819_-browser-action\"],\"dirtyAreaCache\":[\"nav-bar\",\"PersonalToolbar\",\"unified-extensions-area\",\"toolbar-menubar\",\"TabsToolbar\"],\"currentVersion\":19,\"newElementCount\":4}");
 
 // Disable translation for one of the languages
-user_pref("browser.translations.neverTranslateLanguages", "pl")
+user_pref("browser.translations.neverTranslateLanguages", "pl");
 
 /*** [SECTION 2800]: SHUTDOWN & SANITIZING ***/
 user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!");
