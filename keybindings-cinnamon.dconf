@@ -1,0 +1,4 @@
+[media-keys]
+area-screenshot=@as []
+area-screenshot-clip=['Print']
+screenshot=@as []

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# Forces reload of keybindings on file change
+# keybindings-cinnamon.dconf hash: {{ include "keybindings-cinnamon.dconf" | sha256sum }}
+
+dconf load /org/cinnamon/desktop/keybindings/ < {{ joinPath .chezmoi.sourceDir "keybindings-cinnamon.dconf" | quote }}
