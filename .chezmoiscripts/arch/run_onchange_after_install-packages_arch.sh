@@ -37,6 +37,7 @@ PACKAGES=(
     # provide info about media files for ranger
     mediainfo
     meld
+    minikube
     ncdu
     neofetch
     noto-fonts
