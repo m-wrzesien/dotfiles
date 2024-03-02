@@ -26,6 +26,16 @@ export VIMINIT="source $XDG_CONFIG_HOME/vim/vimrc"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export _JAVA_OPTIONS=-Djavafx.cachedir="$XDG_CACHE_HOME"/openjfx
 
+# remove ~/.nv - required for nvidia shader cache
+if command nvidia-modprobe &> /dev/null; then
+    cache_path="$XDG_CACHE_HOME/nv"
+    if [ ! -d "$cache_path" ] ; then
+            mkdir "$cache_path"
+    fi
+    export __GL_SHADER_DISK_CACHE_PATH="$cache_path"
+    unset cache_path
+fi
+
 {{- if eq .type "private" }}
 export _JAVA_OPTIONS=-DMAPTOOL_DATADIR="$XDG_DATA_HOME/maptool-rptools"
 {{- end }}
