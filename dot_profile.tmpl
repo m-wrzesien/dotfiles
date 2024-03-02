@@ -24,6 +24,10 @@ export VAGRANT_ALIAS_FILE="$XDG_DATA_HOME"/vagrant/aliases
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export _JAVA_OPTIONS=-Djavafx.cachedir="$XDG_CACHE_HOME"/openjfx
 
+{{- if eq .type "private" }}
+export _JAVA_OPTIONS=-DMAPTOOL_DATADIR="$XDG_DATA_HOME/maptool-rptools"
+{{- end }}
+
 # remove ~/.ansible - works only from version 2.13 and onward
 export ANSIBLE_HOME="${XDG_CONFIG_HOME}/ansible"
 export ANSIBLE_GALAXY_CACHE_DIR="${XDG_CACHE_HOME}/ansible/galaxy_cache"

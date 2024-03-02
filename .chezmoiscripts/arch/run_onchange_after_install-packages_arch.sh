@@ -194,8 +194,6 @@ installMapTool() {
         fi
     fi
     makepkg -si
-    # remove .maptool-rptools from $HOME
-    sudo sed -s 's|.maptool-rptools|.local/share/maptool-rptools|' -i /opt/maptool/lib/app/MapTool.cfg
 }
 
 installYay() {
