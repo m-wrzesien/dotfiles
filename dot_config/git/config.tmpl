@@ -10,13 +10,13 @@
 	defaultBranch = master
 {{ if eq .type "work" -}}
 [includeIf "gitdir:{{ .chezmoi.sourceDir }}/**"]
-	path = ~/.gitconfig_gh_private
+	path = config_gh_private
 {{ end -}}
 {{ if ne .github_noreply_email "" -}}
 #github ssh
 [includeIf "hasconfig:remote.*.url:git@github.com*/**"]
-	path = ~/.gitconfig_gh
+	path = config_gh
 #github https
 [includeIf "hasconfig:remote.*.url:https://github.com/**"]
-	path = ~/.gitconfig_gh
+	path = config_gh
 {{ end -}}
