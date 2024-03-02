@@ -12,6 +12,9 @@ export KEEPASSXC_AGE_ENTRY="{{ .keepassxc_age_entry }}"
 export KEEPASSXC_FILE="{{ .keepassxc_file }}"
 export SUDO_EDITOR="$EDITOR"
 
+# clear files from $HOME
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+export GOPATH="${XDG_DATA_HOME}/go"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 
 # remove ~/.ansible - works only from version 2.13 and onward
@@ -21,5 +24,4 @@ export ANSIBLE_LOCAL_TEMP="${XDG_CACHE_HOME}/ansible/tmp"
 export ANSIBLE_REMOTE_TEMP="${XDG_CACHE_HOME}/ansible/tmp"
 
 
-export GOPATH="${XDG_DATA_HOME}/go"
 export PATH="${PATH}:${GOPATH}/bin:${HOME}/.local/bin"
