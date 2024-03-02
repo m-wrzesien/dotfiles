@@ -37,7 +37,7 @@ if command nvidia-modprobe &> /dev/null; then
 fi
 
 {{- if eq .type "private" }}
-export _JAVA_OPTIONS=-DMAPTOOL_DATADIR="$XDG_DATA_HOME/maptool-rptools"
+export _JAVA_OPTIONS="$_JAVA_OPTIONS -DMAPTOOL_DATADIR=$XDG_DATA_HOME/maptool-rptools"
 {{- end }}
 
 # remove ~/.ansible - works only from version 2.13 and onward
