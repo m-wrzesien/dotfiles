@@ -12,6 +12,7 @@ PACKAGES=(
     bash-completion
     bind-tools
     chezmoi
+    chromium
     docker
     docker-compose
     entr
@@ -109,7 +110,7 @@ checkDistro() {
 getPackagesToInstall() {
     local output=()
     for package in "${PACKAGES[@]}"; do
-        if ! yay -Q "$package" > /dev/null; then
+        if ! yay -Q "$package" &> /dev/null; then
             output+=("$package")
         fi
     done
@@ -119,7 +120,7 @@ getPackagesToInstall() {
 getPackagesToRemove() {
     local output=()
     for package in "${REMOVE_PACKAGES[@]}"; do
-        if yay -Q "$package" > /dev/null; then
+        if yay -Q "$package" &> /dev/null; then
             output+=("$package")
         fi
     done
