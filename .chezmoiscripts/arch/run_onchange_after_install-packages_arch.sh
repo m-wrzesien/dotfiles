@@ -73,6 +73,7 @@ PACKAGES=(
     w3m
     webcord-bin
     web-greeter
+    whois
     wireguard-tools
     wireshark-qt
     # enable copy in k9s
