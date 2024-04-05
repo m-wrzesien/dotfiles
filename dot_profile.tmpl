@@ -33,6 +33,7 @@ if command nvidia-modprobe &> /dev/null; then
             mkdir "$cache_path"
     fi
     export __GL_SHADER_DISK_CACHE_PATH="$cache_path"
+    export CUDA_CACHE_PATH="$cache_path"
     unset cache_path
 fi
 
