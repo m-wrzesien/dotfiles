@@ -202,3 +202,6 @@ user_pref("privacy.clearOnShutdown.openWindows", false);
  * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Settings ***/
 user_pref("privacy.clearOnShutdown.cookies", true); // Cookies
 user_pref("privacy.clearOnShutdown.offlineApps", true); // Site Data
+
+// Disable DNS over HTTPS, as we have our own internal dns
+user_pref("network.trr.mode", 5);
