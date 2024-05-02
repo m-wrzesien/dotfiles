@@ -3,6 +3,7 @@
 set -euo pipefail
 
 ARCH="Arch Linux"
+PACMAN_CONF="/etc/pacman.conf"
 PACKAGES=(
     age
     ansible
@@ -58,6 +59,7 @@ PACKAGES=(
     sops
     # canon printer scanner
     scangearmp2
+    steam
     syncthing
     # required, so wg-quick can set up dns
     systemd-resolvconf
@@ -67,6 +69,8 @@ PACKAGES=(
     terragrunt
     thunderbird
     ttf-hack-nerd
+    # required for steam
+    ttf-liberation
     vlc
     vscodium-bin
     # preview html pagers in ranger
@@ -84,6 +88,10 @@ PACKAGES=(
 
 REMOVE_PACKAGES=(
     gbt
+)
+
+REPOS=(
+    multilib
 )
 
 # Version 1.14.1-1
@@ -105,6 +113,25 @@ checkDistro() {
 
     if [ "$distroName" != "$ARCH" ]; then
         return 1
+    fi
+}
+
+enableRepo() {
+    local repoEnabled=false
+    for repo in "${REPOS[@]}"; do
+        pattern="^#\[$repo\]"
+        if ! grep "$pattern" "$PACMAN_CONF" &> /dev/null; then
+            continue
+        fi
+        echo "Enabling $repo"
+        sudo sed -i "/${pattern}$/{n;s/^#//g;}" "$PACMAN_CONF"
+        sudo sed -i "/${pattern}/s/^#//g" "$PACMAN_CONF"
+        repoEnabled=true
+    done
+
+    if $repoEnabled; then
+        echo "Triggering system upgrade, as new repo was installed"
+        yay
     fi
 }
 
@@ -234,8 +261,11 @@ postInstallActions() {
                 ;;
             maptool-bin)
                 # Exclude maptool-bin for pacman/yay, as we upgrade it manually
-                local conf=/etc/pacman.conf
-                grep "IgnorePkg   = maptool-bin" "$conf" > /dev/null || sudo sed -i 's|#IgnorePkg   =|###START ADDED BY CHEZMOI###\nIgnorePkg   = maptool-bin\n###STOP ADDED BY CHEZMOI###|' "$conf"
+                grep "IgnorePkg   = maptool-bin" "$PACMAN_CONF" > /dev/null || sudo sed -i 's|#IgnorePkg   =|###START ADDED BY CHEZMOI###\nIgnorePkg   = maptool-bin\n###STOP ADDED BY CHEZMOI###|' "$PACMAN_CONF"
+                ;;
+            steam)
+                echo "Rembember to install OpenGL for multilib!!!"
+                echo "https://wiki.archlinux.org/title/Xorg#Driver_installation"
                 ;;
             syncthing)
                 systemctl --user enable syncthing.service
@@ -271,6 +301,8 @@ postInstallActions() {
 checkDistro || exit 0
 
 installYay
+
+enableRepo
 
 # Chech what packages needs to be removed and put them in to array
 IFS=" " read -r -a toRemove <<< "$(getPackagesToRemove)"
