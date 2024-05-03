@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Steam wrapper, so it won't create any files in our little $HOME
+# based on https://github.com/ValveSoftware/steam-for-linux/issues/1890#issuecomment-1942670943
+
+echo "LAUNCHED WRAPPER"
+FAKEHOME=$HOME/.local/share # Replace this with where you want it to be
+
+# Start program at fakehome location
+HOME=$FAKEHOME /usr/bin/steam-runtime "$@" ||
+notify-send "App not found"

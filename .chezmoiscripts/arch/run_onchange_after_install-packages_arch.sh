@@ -264,6 +264,8 @@ postInstallActions() {
                 grep "IgnorePkg   = maptool-bin" "$PACMAN_CONF" > /dev/null || sudo sed -i 's|#IgnorePkg   =|###START ADDED BY CHEZMOI###\nIgnorePkg   = maptool-bin\n###STOP ADDED BY CHEZMOI###|' "$PACMAN_CONF"
                 ;;
             steam)
+                echo "Patching steam application shortcut to use wrapper"
+                sudo sed -i 's|Exec=/usr/bin/steam-runtime|Exec=steam|' /usr/share/applications/steam.desktop
                 echo "Rembember to install OpenGL for multilib!!!"
                 echo "https://wiki.archlinux.org/title/Xorg#Driver_installation"
                 ;;

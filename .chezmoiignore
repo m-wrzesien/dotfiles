@@ -4,6 +4,8 @@
 # Only arch uses ssh-agent enabled by systemd and custom ssh-askpass
 .config/systemd/user/ssh-agent.service
 .local/bin/ssh-askpass
+# We use steam only on arch machines
+.local/bin/steam
 # Fix for missing environment variables on Arch
 .bash_profile
 # Use default firefox profiles on non arch machines

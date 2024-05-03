@@ -51,4 +51,5 @@ export ANSIBLE_LOCAL_TEMP="${XDG_CACHE_HOME}/ansible/tmp"
 export ANSIBLE_REMOTE_TEMP="${XDG_CACHE_HOME}/ansible/tmp"
 
 
-export PATH="${PATH}:${GOPATH}/bin:${HOME}/.local/bin"
+# ~/.local/bin is before path, so our steam wrapper on arch is first
+export PATH="${HOME}/.local/bin:${PATH}:${GOPATH}/bin"
