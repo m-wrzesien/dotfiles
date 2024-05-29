@@ -34,9 +34,6 @@ if command nvidia-modprobe &> /dev/null; then
     fi
     export __GL_SHADER_DISK_CACHE_PATH="$cache_path"
     export CUDA_CACHE_PATH="$cache_path"
-    # Fix problems with non-visible text in zenity
-    # source: https://bbs.archlinux.org/viewtopic.php?pid=2159690#p2159690
-    export GSK_RENDERER=gl
     unset cache_path
 fi
 
