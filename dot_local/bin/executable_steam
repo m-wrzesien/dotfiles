@@ -7,5 +7,4 @@ echo "LAUNCHED WRAPPER"
 FAKEHOME=$HOME/.local/share # Replace this with where you want it to be
 
 # Start program at fakehome location
-HOME=$FAKEHOME /usr/bin/steam-runtime "$@" ||
-notify-send "App not found"
+HOME=$FAKEHOME /usr/bin/steam-runtime "$@" || notify-send "App not found"
