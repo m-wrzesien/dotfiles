@@ -3,6 +3,12 @@
 set -euo pipefail
 
 ARCH="Arch Linux"
+LAPTOP_PACKAGES=(
+    steam
+    # required for steam
+    ttf-liberation
+)
+
 PACMAN_CONF="/etc/pacman.conf"
 PACKAGES=(
     age
@@ -59,7 +65,6 @@ PACKAGES=(
     sops
     # canon printer scanner
     scangearmp2
-    steam
     syncthing
     # required, so wg-quick can set up dns
     systemd-resolvconf
@@ -68,9 +73,7 @@ PACKAGES=(
     terraform
     terragrunt
     thunderbird
-    ttf-hack-nerd
-    # required for steam
-    ttf-liberation
+    ttf-hack-nerd  
     vlc
     vscodium-bin
     # preview html pagers in ranger
@@ -142,6 +145,13 @@ getPackagesToInstall() {
             output+=("$package")
         fi
     done
+    if chezmoi data | jq .chezmoi.hostname | grep -i thinkpad; then
+    for package in "${LAPTOP_PACKAGES[@]}"; do
+        if ! yay -Q "$package" &> /dev/null; then
+            output+=("$package")
+        fi
+    done
+    fi
     echo "${output[@]}"
 }
 
