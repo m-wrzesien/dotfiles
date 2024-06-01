@@ -18,6 +18,7 @@ PACKAGES=(
     atool
     bash-completion
     bind-tools
+    cilium-cli
     chezmoi
     chromium
     docker
