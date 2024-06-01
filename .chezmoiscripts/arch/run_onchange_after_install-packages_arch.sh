@@ -145,12 +145,12 @@ getPackagesToInstall() {
             output+=("$package")
         fi
     done
-    if chezmoi data | jq .chezmoi.hostname | grep -i thinkpad; then
-    for package in "${LAPTOP_PACKAGES[@]}"; do
-        if ! yay -Q "$package" &> /dev/null; then
-            output+=("$package")
-        fi
-    done
+    if chezmoi data | jq .chezmoi.hostname | grep -qi thinkpad; then
+        for package in "${LAPTOP_PACKAGES[@]}"; do
+            if ! yay -Q "$package" &> /dev/null; then
+                output+=("$package")
+            fi
+        done
     fi
     echo "${output[@]}"
 }
