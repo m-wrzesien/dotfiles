@@ -25,8 +25,8 @@ PACKAGES=(
     docker-compose
     entr
     firefox
+    flameshot
     gnome-calculator-gtk3
-    gnome-screenshot
     go
     google-cloud-cli
     helm
@@ -74,7 +74,7 @@ PACKAGES=(
     terraform
     terragrunt
     thunderbird
-    ttf-hack-nerd  
+    ttf-hack-nerd
     vlc
     vscodium-bin
     # preview html pagers in ranger
@@ -92,6 +92,7 @@ PACKAGES=(
 
 REMOVE_PACKAGES=(
     gbt
+    gnome-screenshot
 )
 
 REPOS=(

@@ -1,4 +1,15 @@
+[/]
+custom-list=['__dummy__', 'custom0']
+
+[custom-keybindings/custom0]
+binding=['Print']
+command='flameshot gui'
+name='Screenshot by flameshot'
+
 [media-keys]
 area-screenshot=@as []
-area-screenshot-clip=['Print']
+area-screenshot-clip=@as []
+logout=@as []
+screensaver=['XF86ScreenSaver']
 screenshot=@as []
+shutdown=['XF86PowerOff']
