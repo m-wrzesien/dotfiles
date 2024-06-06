@@ -6,3 +6,6 @@ set -euo pipefail
 # keybindings-cinnamon.dconf hash: {{ include "keybindings-cinnamon.dconf" | sha256sum }}
 
 dconf load /org/cinnamon/desktop/keybindings/ < {{ joinPath .chezmoi.sourceDir "keybindings-cinnamon.dconf" | quote }}
+
+# enable lock-on-suspend on cinnamon
+gsettings set org.cinnamon.settings-daemon.plugins.power lock-on-suspend true
