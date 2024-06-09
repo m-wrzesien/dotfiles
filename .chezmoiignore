@@ -4,12 +4,17 @@
 # Only arch uses ssh-agent enabled by systemd and custom ssh-askpass
 .config/systemd/user/ssh-agent.service
 .local/bin/ssh-askpass
-# We use steam only on arch machines
-.local/bin/steam
 # Fix for missing environment variables on Arch
 .bash_profile
 # Use default firefox profiles on non arch machines
 .mozilla/firefox/profiles.ini
+{{ end }}
+
+{{ if ne .chezmoi.hostname "arch-ThinkPad" }}
+# We use steam only on arch thinkpad
+.local/bin/steam
+.local/share/steam.desktop
+.chezmoiscripts/arch/run_onchange_after_update-desktop-database.sh.tmpl
 {{ end }}
 
 {{ if ne .chezmoi.osRelease.name "Ubuntu" }}
