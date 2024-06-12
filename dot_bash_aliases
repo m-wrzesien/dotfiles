@@ -23,7 +23,7 @@ _wg-wrapper() {
 
 _wg-wrapper-completion() {
 	# find wg configs and split by dot and slash, till we get penultimate string, which should be "name" in "wg.<name>.conf"
-    configs=$(find "$HOME/Documents/Wireguard/" -name 'wg*conf' | awk -F"[/.]" '{ printf "%s ", $(NF-1) }')
+    configs=$(find "$HOME/Documents/Wireguard/" -maxdepth 1 -name 'wg*conf' | awk -F"[/.]" '{ printf "%s ", $(NF-1) }')
 	mapfile -t COMPREPLY < <(compgen -W "${configs}" "${COMP_WORDS[1]}")
 }
 
