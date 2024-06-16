@@ -14,6 +14,7 @@ PACKAGES=(
     age
     ansible
     ansible-core
+    argocd
     # preview archives in ranger
     atool
     bash-completion
