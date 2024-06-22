@@ -87,6 +87,8 @@ PACKAGES=(
     wireshark-qt
     # enable copy in k9s
     xsel
+    # zenity replacement
+    yad
     yaycache-hook
     yubikey-manager
 )

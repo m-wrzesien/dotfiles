@@ -10,8 +10,4 @@ if [ -n "$1" ]; then
     TEXT="$1"
 fi
 
-# Fix problems with non-visible text in zenity on old graphic cards
-# source: https://bbs.archlinux.org/viewtopic.php?pid=2159690#p2159690
-export GSK_RENDERER=gl
-
-/usr/bin/zenity --title ssh-askpass --question --text "$TEXT"
+/usr/bin/yad --title ssh-askpass --center --question --button=Yes:0 --button=No:1 --text "$TEXT"
