@@ -3,10 +3,9 @@
 set -euo pipefail
 
 EXTENSIONS=(
-    eamodio.gitlens
-    EditorConfig.EditorConfig
+    editorconfig.editorconfig
     golang.go
-    Gruntfuggly.todo-tree
+    gruntfuggly.todo-tree
     hashicorp.terraform
     ms-azuretools.vscode-docker
     ms-kubernetes-tools.vscode-kubernetes-tools
@@ -17,7 +16,11 @@ EXTENSIONS=(
     timonwong.shellcheck
 )
 
-checkInstalation() {
+REMOVE_EXTENSIONS=(
+    eamodio.gitlens
+)
+
+getExtensionsToInstall() {
     local notInstalled=()
     local installed=""
     installed=$(code --list-extensions)
@@ -27,6 +30,18 @@ checkInstalation() {
         fi
     done
     echo "${notInstalled[@]}"
+}
+
+getExtensionsToRemove() {
+    local toRemove=()
+    local installed=""
+    installed=$(code --list-extensions)
+    for ext in "${REMOVE_EXTENSIONS[@]}"; do
+        if echo "$installed" | grep "$ext" > /dev/null; then
+            toRemove+=("$ext")
+        fi
+    done
+    echo "${toRemove[@]}"
 }
 
 install() {
@@ -40,7 +55,23 @@ install() {
     done
 }
 
+remove() {
+    if [ "$#" -eq 0 ]; then
+        echo "No extensions to remove"
+        return 0
+    fi
+    echo "Following extensions will be removed: $*"
+    for ext in "$@"; do
+        code --uninstall-extension "$ext"
+    done
+}
+
+# Chech what extensions needs to be removed and put them in to array
+IFS=" " read -r -a toRemove <<< "$(getExtensionsToRemove)"
+
+remove "${toRemove[@]}"
+
 # Chech what extensions needs to be installed and put them in to array
-IFS=" " read -r -a toInstall <<< "$(checkInstalation)"
+IFS=" " read -r -a toInstall <<< "$(getExtensionsToInstall)"
 
 install "${toInstall[@]}"
