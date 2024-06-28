@@ -8,6 +8,8 @@
 .bash_profile
 # Use default firefox profiles on non arch machines
 .mozilla/firefox/profiles.ini
+# Don't create public ssh key file, as it's only needed for infra repo
+.ssh/private_ed25519.pub
 {{ end }}
 
 {{ if ne .chezmoi.hostname "arch-ThinkPad" }}
