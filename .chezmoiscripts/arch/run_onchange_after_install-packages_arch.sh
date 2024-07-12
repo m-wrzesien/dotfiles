@@ -300,6 +300,14 @@ postInstallActions() {
             web-greeter)
                 sudo sed -i 's|#greeter-session=.*|greeter-session=web-greeter|' /etc/lightdm/lightdm.conf
                 ;;
+            yaycache-hook)
+                # add configuration to yaycache-hook
+                # without `cache_dirs` it will try to remove yay cache from root,
+                # while it is stored at our user at $XDG_CACHE_HOME/yay/
+                sudo sed -i 's/extra_args=.*/extra_args="-v --remove-build-files"/' /etc/yaycache-hook.conf
+                sudo sed -i "s|cache_dirs=.*|cache_dirs=(\"$XDG_CACHE_HOME/yay/*/\")|" /etc/yaycache-hook.conf
+                sudo sed -i 's/uninstalled_keep=.*/uninstalled_keep=0/' /etc/yaycache-hook.conf
+                ;;
             yubikey-manager)
                 sudo systemctl enable pcscd.service
                 sudo systemctl start pcscd.service
