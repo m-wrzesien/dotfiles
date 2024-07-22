@@ -15,6 +15,7 @@ PACKAGES=(
     ansible
     ansible-core
     argocd
+    apache-tools
     # preview archives in ranger
     atool
     bash-completion
