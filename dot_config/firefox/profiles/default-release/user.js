@@ -145,6 +145,7 @@ user_pref("browser.vpn_promo.enabled",			false);
 
 // PREF: Disable sponsored in top sites
 user_pref("browser.newtabpage.activity-stream.showSponsored",	false);
+user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites",	false);
 user_pref("browser.newtabpage.activity-stream.topSiteSearchShortcuts", false);
 
 // Enable DRM by default
