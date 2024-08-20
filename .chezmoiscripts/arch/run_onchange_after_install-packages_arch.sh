@@ -24,6 +24,7 @@ PACKAGES=(
     chezmoi
     chromium
     docker
+    docker-buildx
     docker-compose
     entr
     firefox
