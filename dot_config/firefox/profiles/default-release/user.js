@@ -206,3 +206,8 @@ user_pref("privacy.clearOnShutdown.offlineApps", true); // Site Data
 
 // Disable DNS over HTTPS, as we have our own internal dns
 user_pref("network.trr.mode", 5);
+
+// https://make-firefox-private-again.com/
+// https://blog.mozilla.org/en/mozilla/privacy-preserving-attribution-for-advertising/
+// Disable mozilla advertising
+user_pref("dom.private-attribution.submission.enabled", false);
