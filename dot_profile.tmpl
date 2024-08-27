@@ -9,8 +9,12 @@ export XDG_STATE_HOME="{{ .chezmoi.homeDir }}/.local/state"
 
 export BROWSER=/usr/bin/firefox
 export EDITOR=/usr/bin/vim
+{{ if ne .keepassxc_age_entry "" -}}
 export KEEPASSXC_AGE_ENTRY="{{ .keepassxc_age_entry }}"
+{{ end -}}
+{{ if ne .keepassxc_file "" -}}
 export KEEPASSXC_FILE="{{ .keepassxc_file }}"
+{{ end -}}
 export SUDO_EDITOR="$EDITOR"
 
 # clear files from $HOME
