@@ -1,15 +1,17 @@
 {{- $email := promptStringOnce . "email" "Email address" -}}
+{{- $ghKeyPath := promptStringOnce . "github_key_path" "Path to GitHub SSH key" "~/.ssh/private_github_ed25519.pub" -}}
 {{- $ghNoreplyEmail := promptStringOnce . "github_noreply_email" "GitHub noreply email address" -}}
-{{- $type := promptStringOnce . "type" "PC type (work/private)" "private" -}}
 {{- $ghUser := "m-wrzesien" -}}
 {{- $kxc_age := promptStringOnce . "keepassxc_age_entry" "Path in KeepassXC db to Age private key" -}}
 {{- $kxc_file := promptStringOnce . "keepassxc_file" "Path to KeepassXC database file" -}}
+{{- $type := promptStringOnce . "type" "PC type (work/private)" "private" -}}
 
 [data]
     email = {{ $email | quote }}
-    github_user = {{ $ghUser | quote }}
+    github_key_path = {{ $ghKeyPath | quote }}
     github_noreply_email = {{ $ghNoreplyEmail | quote }}
     github_public_key = "{{ (first (gitHubKeys $ghUser)).Key }}"
+    github_user = {{ $ghUser | quote }}
     keepassxc_age_entry =  {{ $kxc_age | quote }}
     keepassxc_file = {{ $kxc_file | quote }}
     type = {{ $type | quote }}
