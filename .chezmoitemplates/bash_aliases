@@ -12,33 +12,13 @@ _serve-http() {
 	fi
 }
 
-_wg-wrapper() {
-	local action="$1"
-	local conf="$2"
-	set -x;
-	trap 'set +x' RETURN SIGINT SIGABRT
-
-	sudo wg-quick "$action" "$HOME/Documents/Wireguard/wg.$conf.conf"
-}
-
-_wg-wrapper-completion() {
-	# find wg configs and split by dot and slash, till we get penultimate string, which should be "name" in "wg.<name>.conf"
-    configs=$(find "$HOME/Documents/Wireguard/" -maxdepth 1 -name 'wg*conf' | awk -F"[/.]" '{ printf "%s ", $(NF-1) }')
-	mapfile -t COMPREPLY < <(compgen -W "${configs}" "${COMP_WORDS[1]}")
-}
-
 alias drop-history-from-current-shell='unset HISTFILE'
 alias grep='grep --color=auto'
 alias k='kubectl'
 alias ls='ls --color=auto'
 alias qrencode='qrencode -t ansiutf8'
 alias serve-http='_serve-http'
-alias start-wg='_wg-wrapper up'
-alias stop-wg='_wg-wrapper down'
 alias vi='vim'
-
-# assign wrapper completion to wg aliases
-complete -F _wg-wrapper-completion start-wg stop-wg
 
 # load kubectl completions
 _completion_loader kubectl

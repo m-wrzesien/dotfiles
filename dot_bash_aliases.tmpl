@@ -1,0 +1,4 @@
+{{- template "bash_aliases" . -}}
+{{ if eq .type "private" }}
+{{- template "bash_aliases_private" . -}}
+{{- end }}
