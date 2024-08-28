@@ -1,3 +1,4 @@
+{{- $name := "Maksymilian Wrzesień" -}}
 {{- $email := promptStringOnce . "email" "Email address" -}}
 {{- $typeChoices := list "private" "work" -}}
 {{- $type := promptChoiceOnce . "type" "PC type (work/private)" $typeChoices -}}
@@ -13,6 +14,7 @@
 
 [data]
     email = {{ $email | quote }}
+    name = {{ $name | quote }}
     type = {{ $type | quote }}
 {{- if eq $type "private" }}
     github_key_path = {{ $ghKeyPath | quote }}
