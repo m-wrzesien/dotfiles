@@ -4,10 +4,10 @@
 
 {{/* only used in private type */}}
 {{- $ghKeyPath := "~/.ssh/private_github_ed25519.pub" -}}
-{{- $ghNoreplyEmail := promptStringOnce . "github_noreply_email" "GitHub noreply email address" "63720564+m-wrzesien@users.noreply.github.com" -}}
+{{- $ghNoreplyEmail := "63720564+m-wrzesien@users.noreply.github.com" -}}
 {{- $ghUser := "m-wrzesien" -}}
-{{- $kxcAge := promptStringOnce . "keepassxc_age_entry" "Path in KeepassXC db to Age private key" "IT/Keys/Age" -}}
-{{- $kxcFile := promptStringOnce . "keepassxc_file" "Path to KeepassXC database file" "~/Documents/KeePass/Passwords.kdbx" -}}
+{{- $kxcAge := "IT/Keys/Age" -}}
+{{- $kxcFile := "~/Documents/KeePass/Passwords.kdbx" -}}
 {{- $kxcSSH := "IT/Keys/id_ed25519" -}}
 {{- $kxcSSHAttachment := "id_ed25519.pub" -}}
 
