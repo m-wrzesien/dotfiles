@@ -12,6 +12,7 @@ PACKAGES=(
     dnsutils
     entr
     firefox
+    flameshot
     # syntax highlighter in ranger
     highlight
     hydrapaper
