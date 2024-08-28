@@ -31,5 +31,6 @@
 .config/git/config_gh_private
 {{ end }}
 
-# Ignore keybindings for cinnamon, as those are loaded by one of the scripts
+# Ignore dconf dumps, as those are loaded by one of the scripts
 keybindings-cinnamon.dconf
+custom-keybindings-gnome.dconf
