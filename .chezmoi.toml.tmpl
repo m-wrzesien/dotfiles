@@ -1,9 +1,9 @@
 {{- $name := "Maksymilian Wrzesień" -}}
 {{- $email := promptStringOnce . "email" "Email address" -}}
 {{- $typeChoices := list "private" "work" -}}
-{{- $type := promptChoiceOnce . "type" "PC type (work/private)" $typeChoices -}}
+{{- $type := promptChoiceOnce . "type" "PC type" $typeChoices -}}
 
-{{/* only used in private type */}}
+{{- /* only used in private type */ -}}
 {{- $ghKeyPath := clean (printf "%s/%s" .chezmoi.homeDir ".ssh/private_github_ed25519.pub") }}
 {{- $ghNoreplyEmail := "63720564+m-wrzesien@users.noreply.github.com" -}}
 {{- $ghUser := "m-wrzesien" -}}
@@ -11,6 +11,12 @@
 {{- $kxcFile := clean (printf "%s/%s" .chezmoi.homeDir "Documents/KeePass/Passwords.kdbx") -}}
 {{- $kxcSSH := "IT/Keys/id_ed25519" -}}
 {{- $kxcSSHAttachment := "id_ed25519.pub" -}}
+
+{{- /* keepassxc needs to be defined first, as otherwise ssh_key won't be correctly templated */ -}}
+{{- if eq $type "private" }}
+[keepassxc]
+    database = {{ $kxcFile | quote }}
+{{ end -}}
 
 [data]
     email = {{ $email | quote }}
@@ -29,7 +35,4 @@
         {{- keepassxcAttachment $kxcSSH $kxcSSHAttachment -}}
     """
 {{ end -}}
-
-[keepassxc]
-    database = {{ $kxcFile | quote }}
-{{ end }}
+{{ end -}}
