@@ -211,3 +211,7 @@ user_pref("network.trr.mode", 5);
 // https://blog.mozilla.org/en/mozilla/privacy-preserving-attribution-for-advertising/
 // Disable mozilla advertising
 user_pref("dom.private-attribution.submission.enabled", false);
+
+// Disable info about weather in new tab, as it is based on AccuWeather
+user_pref("browser.newtabpage.activity-stream.showWeather", false);
+user_pref("browser.newtabpage.activity-stream.system.showWeather", false);
