@@ -7,6 +7,7 @@ EXTENSIONS=(
     golang.go
     gruntfuggly.todo-tree
     hashicorp.terraform
+    html-validate.vscode-html-validate
     ms-azuretools.vscode-docker
     ms-kubernetes-tools.vscode-kubernetes-tools
     redhat.ansible
