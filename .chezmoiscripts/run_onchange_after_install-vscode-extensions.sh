@@ -15,6 +15,7 @@ EXTENSIONS=(
     shardulm94.trailing-spaces
     signageos.signageos-vscode-sops
     timonwong.shellcheck
+    ziyasal.vscode-open-in-github
 )
 
 REMOVE_EXTENSIONS=(
