@@ -11,6 +11,7 @@
 {{- $kxcFile := clean (printf "%s/%s" .chezmoi.homeDir "Documents/KeePass/Passwords.kdbx") -}}
 {{- $kxcSSH := "IT/Keys/id_ed25519" -}}
 {{- $kxcSSHAttachment := "id_ed25519.pub" -}}
+{{- $kxcSyncthingURL := "IT/Infra/Syncthing Discovery URL" -}}
 
 {{- /* keepassxc needs to be defined first, as otherwise ssh_key won't be correctly templated */ -}}
 {{- if eq $type "private" }}
@@ -31,6 +32,7 @@
     keepassxc_file = {{ $kxcFile | quote }}
 {{- /* workaround for first init on which keepassxc.database is empty */ -}}
 {{- if ne .chezmoi.config.keepassxc.database "" }}
+    syncthing_url = {{ keepassxcAttribute $kxcSyncthingURL "URL" | quote }}
     ssh_key = """
         {{- keepassxcAttachment $kxcSSH $kxcSSHAttachment -}}
     """
