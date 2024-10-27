@@ -12,6 +12,7 @@ LAPTOP_PACKAGES=(
 PACMAN_CONF="/etc/pacman.conf"
 PACKAGES=(
     age
+    android-tools
     ansible
     ansible-core
     argocd
