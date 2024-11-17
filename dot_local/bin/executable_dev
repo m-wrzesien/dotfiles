@@ -1,0 +1,44 @@
+#!/bin/bash
+
+set -euo pipefail
+
+maxWindow() {
+  if grep -q Ubuntu /etc/os-release ; then
+    # ubuntu has to old kitty - needs to be >= 0.22.0
+    return
+  fi
+
+  if [ "$XDG_SESSION_TYPE" != "x11" ]; then
+    return
+  fi
+
+  windowID=$(xdotool getwindowfocus)
+  if xprop -id "$windowID" | grep -v "grep" | grep -q "_NET_WM_STATE_MAXIMIZED_HORZ" && xprop -id "$windowID" | grep -v "grep" | grep -q "_NET_WM_STATE_MAXIMIZED_VERT"; then
+    # window already maximized
+    return
+  fi
+
+  kitty @ resize-os-window --action toggle-maximized
+  sleep 0.25
+}
+
+dir=$(readlink -m "$1")
+projectName=$(basename "$dir")
+cd "$dir" || (echo "Dir doesn't exist" && exit 1)
+
+maxWindow
+
+kitty @ goto-layout fat
+kitty @ set-window-title "$(basename "$EDITOR"):$projectName"
+# needs to be calculated before other windows are created
+isPivot=$(jq -n "($(kitty @ ls | jq .[0].tabs[].windows[].lines)/$(kitty @ ls | jq .[0].tabs[].windows[].columns)) > 0.5")
+
+kitty @ launch --title "terminal:$projectName" --keep-focus --cwd="$(pwd)" --no-response
+
+if $isPivot; then
+  kitty @ resize-window --self --axis vertical -i 25
+else
+  kitty @ resize-window --self --axis vertical -i 10
+fi
+
+$EDITOR .

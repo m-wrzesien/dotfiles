@@ -15,25 +15,32 @@ PACKAGES=(
     android-tools
     ansible
     ansible-core
-    argocd
     apache-tools
+    argocd
     # preview archives in ranger
     atool
     bash-completion
+    bash-language-server
     bind-tools
-    cilium-cli
     chezmoi
     chromium
+    cilium-cli
     docker
     docker-buildx
     docker-compose
+    dockerfile-language-server-bin
     entr
     firefox
     flameshot
     gnome-calculator-gtk3
     go
     google-cloud-cli
+    gopls
+    helix
+    # create symlink hx -> helix
+    helixbinhx
     helm
+    helm-ls-bin
     # syntax highlighter in ranger
     highlight
     hydrapaper-no-pandoc-git
@@ -53,33 +60,39 @@ PACKAGES=(
     minikube
     ncdu
     neofetch
+    nodejs-compose-language-service
     noto-fonts
     packer
     pacman-cleanup-hook
     # provide pdf preview for ranger
     poppler
     python-pylibssh
-    ranger
     qbittorrent
     # Required for packer-builder-arm
     qemu-user-static-binfmt
     # modify pdfs
     qpdf
-    shellcheck-bin
-    signal-desktop
-    sops
+    ranger
     # canon printer scanner
     scangearmp2
+    shellcheck-bin
+    shfmt
+    signal-desktop
+    sops
     syncthing
     # required, so wg-quick can set up dns
     systemd-resolvconf
     # remote decryption for servers
     tang
     terraform
+    terraform-ls-bin
     terragrunt
     thunderbird
     ttf-hack-nerd
     vlc
+    vscode-css-languageserver
+    vscode-html-languageserver
+    vscode-json-languageserver
     vscodium-bin
     # preview html pagers in ranger
     w3m
@@ -92,6 +105,7 @@ PACKAGES=(
     xsel
     # zenity replacement
     yad
+    yaml-language-server
     yaycache-hook
     yubikey-manager
 )

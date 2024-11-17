@@ -1,0 +1,11 @@
+[editor]
+{{ if eq .type "work" -}}
+auto-format = false
+{{ end -}}
+bufferline = "always"
+
+[editor.statusline]
+right = ["diagnostics", "selections", "register", "position","position-percentage", "file-encoding"]
+
+[editor.file-picker]
+hidden = false

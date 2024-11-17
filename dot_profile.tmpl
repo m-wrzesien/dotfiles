@@ -8,7 +8,7 @@ export XDG_DATA_HOME="{{ .chezmoi.homeDir }}/.local/share"
 export XDG_STATE_HOME="{{ .chezmoi.homeDir }}/.local/state"
 
 export BROWSER=/usr/bin/firefox
-export EDITOR=/usr/bin/vim
+export EDITOR=/usr/bin/hx
 export SUDO_EDITOR="$EDITOR"
 
 # clear files from $HOME
@@ -48,3 +48,7 @@ export ANSIBLE_GALAXY_CACHE_DIR="${XDG_CACHE_HOME}/ansible/galaxy_cache"
 
 # ~/.local/bin is before path, so our steam wrapper on arch is first
 export PATH="${HOME}/.local/bin:${PATH}:${GOPATH}/bin"
+
+{{- if eq .type "work" }}
+export PATH="${PATH}:${XDG_STATE_HOME}/npm-global/bin"
+{{- end }}

@@ -19,3 +19,11 @@
     ```
     dconf dump /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ > custom-keybindings-gnome.dconf
     ```
+
+## TODO
+
+* Add instalation of following to ubuntu
+* * gopls
+* * vscode-css-languageservice
+* * vscode-html-languageservice
+

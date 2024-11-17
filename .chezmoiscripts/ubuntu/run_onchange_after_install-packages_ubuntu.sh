@@ -13,6 +13,7 @@ PACKAGES=(
     entr
     firefox
     flameshot
+    helix
     # syntax highlighter in ranger
     highlight
     hydrapaper
@@ -24,14 +25,18 @@ PACKAGES=(
     meld
     ncdu
     neofetch
+    nodejs
     # provide pdf preview for ranger
     poppler-utils
     ranger
     shellcheck
+    shfmt
     syncthing
+    terraform-ls
     # preview html pagers in ranger
     w3m
     wireshark
+    xdotool
 )
 
 
@@ -61,9 +66,16 @@ addRepo() {
 Package: *
 Pin: origin packages.mozilla.org
 Pin-Priority: 1000
-' | sudo tee /etc/apt/preferences.d/mozilla
+' | sudo tee /etc/apt/preferences.d/mozilla > /dev/null
     curl -sL https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | sudo tee /etc/apt/trusted.gpg.d/vscodium.asc > /dev/null
     echo 'deb https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs vscodium main' | sudo tee /etc/apt/sources.list.d/vscodium.list
+    curl -sL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/nodesource.gpg
+    echo "deb [arch=amd64] https://deb.nodesource.com/node_22.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list > /dev/null
+    echo "Package: nodejs" | sudo tee /etc/apt/preferences.d/nodejs > /dev/null
+    echo "Pin: origin deb.nodesource.com" | sudo tee -a /etc/apt/preferences.d/nodejs > /dev/null
+    echo "Pin-Priority: 1000" | sudo tee -a /etc/apt/preferences.d/nodejs > /dev/null
+    
+    sudo add-apt-repository -y ppa:maveonair/helix-editor
     sudo apt update
 }
 
@@ -121,6 +133,9 @@ postInstallActions() {
     for package in "$@"; do
         echo "$package"
         case $package in
+            nodejs)
+                npm config set prefix "${XDG_STATE_HOME}/npm-global"
+                ;;
             syncthing)
                 systemctl --user enable syncthing.service
                 systemctl --user start syncthing.service
