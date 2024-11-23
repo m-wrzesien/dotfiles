@@ -1,0 +1,100 @@
+#!/bin/bash
+
+set -euo pipefail
+
+EDITOR_CONTENT="#!/bin/sh
+cat \$SOPS_DECRYPTED_FILE_PATH > \$1"
+DECRYPTED_PREFIX=".decrypted~"
+
+debug() {
+  if ! ${DEBUG-false}; then
+    return
+  fi
+  echo "$@"
+}
+
+getFileNameFromTerm() {
+  if [ -z "$KITTY_PID" ]; then
+    return
+  fi
+  kitty @ get-text --self | tail -n 5 | grep -E "(NOR|SEL|INS)" | awk '{print $2}'
+}
+
+getFileType() {
+  case "$1" in
+  *.json)
+    echo "json"
+    ;;
+  *.env)
+    echo "dotenv"
+    ;;
+  *.yaml)
+    echo "yaml"
+    ;;
+  *.yml)
+    echo "yaml"
+    ;;
+  *)
+    echo "binary"
+    ;;
+  esac
+}
+
+sopsDecrypt() {
+  decryptedFile="$(dirname "$1")/${DECRYPTED_PREFIX}$(basename "$1")"
+  debug "Decrypted file is \"$decryptedFile\""
+  sops -d "$1" >"$decryptedFile"
+}
+
+# We don't use sops --encrypt file and instead use EDITOR to edit in place
+# This will only reencrypt modified fields, while keeping existing one as it is.
+sopsEncrypt() {
+  if sops filestatus "$1" | jq .encrypted | grep true; then
+    echo "File already encrypted. Exiting."
+    exit 1
+  fi
+  encryptedFile="${1/$DECRYPTED_PREFIX/}"
+  debug "Encrypted file is \"$encryptedFile\""
+
+  tmpEncryptedFile=$(mktemp)
+  tmpEditor=$(mktemp)
+  trap 'rm $tmpEncryptedFile $tmpEditor' EXIT
+  debug "Editor file \"$tmpEditor\""
+  debug "Temporary encrypted file \"$tmpEncryptedFile\""
+  cp "$encryptedFile" "$tmpEncryptedFile"
+
+  echo "$EDITOR_CONTENT" >"$tmpEditor"
+  chmod +x "$tmpEditor"
+
+  fileType=$(getFileType "$1")
+  debug "File type is $fileType"
+
+  SOPS_DECRYPTED_FILE_PATH="$1" EDITOR="$tmpEditor" sops --input-type="$fileType" --output-type="$fileType" "$tmpEncryptedFile"
+  cp "$tmpEncryptedFile" "$encryptedFile"
+}
+
+mode="$1"
+file="${2-}"
+
+termFileName=$(getFileNameFromTerm)
+if [ -n "$termFileName" ]; then
+  file="$termFileName"
+fi
+
+if ! [ -f "$file" ]; then
+  echo "file \"$file\" does not exist"
+  exit 1
+fi
+
+case "$mode" in
+decrypt)
+  sopsDecrypt "$file"
+  ;;
+encrypt)
+  sopsEncrypt "$file"
+  ;;
+*)
+  echo "Mode incorrect. Only \"decrypt\" and \"encrypt\" are allowed."
+  exit 1
+  ;;
+esac

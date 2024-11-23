@@ -1,0 +1,2 @@
+# unignore sops decrypted files
+!.decrypted~*

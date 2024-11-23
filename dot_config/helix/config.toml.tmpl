@@ -2,10 +2,15 @@
 {{ if eq .type "work" -}}
 auto-format = false
 {{ end -}}
-bufferline = "always"
+bufferline = "multiple"
 
 [editor.statusline]
 right = ["diagnostics", "selections", "register", "position","position-percentage", "file-encoding"]
 
 [editor.file-picker]
 hidden = false
+
+# create a new minor mode bound to `+`
+[keys.normal."+"]
+e = [":w", ":run-shell-command sops-wrapper encrypt"]
+d = ":run-shell-command sops-wrapper decrypt"
