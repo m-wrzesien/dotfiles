@@ -3,7 +3,7 @@
 set -euo pipefail
 
 maxWindow() {
-  if grep -q Ubuntu /etc/os-release ; then
+  if grep -q Ubuntu /etc/os-release; then
     # ubuntu has to old kitty - needs to be >= 0.22.0
     return
   fi

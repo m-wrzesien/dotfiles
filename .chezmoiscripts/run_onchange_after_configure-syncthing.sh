@@ -20,17 +20,17 @@ syncthing cli config defaults folder path set "$HOME/Documents/Syncthing"
 syncthing cli config defaults folder versioning type set simple
 
 if [ "$TYPE" = "private" ]; then
-    url="$(chezmoi data | jq .syncthing_url -r)"
-    # Use internal discovery server
-    sed -i "s|<globalAnnounceServer>.*</globalAnnounceServer>|<globalAnnounceServer>$url</globalAnnounceServer>|" "$XDG_CONFIG_HOME/syncthing/config.xml"
+  url="$(chezmoi data | jq .syncthing_url -r)"
+  # Use internal discovery server
+  sed -i "s|<globalAnnounceServer>.*</globalAnnounceServer>|<globalAnnounceServer>$url</globalAnnounceServer>|" "$XDG_CONFIG_HOME/syncthing/config.xml"
 
-    # Enable global discovery
-    # https://docs.syncthing.net/users/config#config-option-options.globalannounceenabled
-    syncthing cli config options global-ann-enabled set true
+  # Enable global discovery
+  # https://docs.syncthing.net/users/config#config-option-options.globalannounceenabled
+  syncthing cli config options global-ann-enabled set true
 else
-    # Disable global discovery for work syncthing
-    # https://docs.syncthing.net/users/config#config-option-options.globalannounceenabled
-    syncthing cli config options global-ann-enabled set false
+  # Disable global discovery for work syncthing
+  # https://docs.syncthing.net/users/config#config-option-options.globalannounceenabled
+  syncthing cli config options global-ann-enabled set false
 fi
 
 systemctl restart --user syncthing.service

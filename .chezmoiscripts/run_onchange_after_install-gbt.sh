@@ -10,23 +10,23 @@ PKG="gbt"
 URL="git@github.com:jtyr/gbt.git"
 
 cdOrFail() {
-    cd "$1" || echo "Can't cd. $1 not found"
+  cd "$1" || echo "Can't cd. $1 not found"
 }
 
 installGbt() {
-    mkdir -p "$HOME/.cache/chezmoi_$PKG"
-    cdOrFail "$HOME/.cache/chezmoi_$PKG"
-    if ! [ -d "$PKG" ]; then
-        git clone "$URL"
-    fi
-    cdOrFail "$PKG"
-    git checkout main
-    git pull
-    git checkout "$COMMIT"
-    cdOrFail "cmd/$PKG"
-    go build
-    mkdir -p "$HOME/.local/bin/"
-    cp $PKG "$HOME/.local/bin/"
+  mkdir -p "$HOME/.cache/chezmoi_$PKG"
+  cdOrFail "$HOME/.cache/chezmoi_$PKG"
+  if ! [ -d "$PKG" ]; then
+    git clone "$URL"
+  fi
+  cdOrFail "$PKG"
+  git checkout main
+  git pull
+  git checkout "$COMMIT"
+  cdOrFail "cmd/$PKG"
+  go build
+  mkdir -p "$HOME/.local/bin/"
+  cp $PKG "$HOME/.local/bin/"
 }
 
 installGbt

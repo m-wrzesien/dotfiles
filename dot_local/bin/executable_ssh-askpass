@@ -7,7 +7,7 @@ TEXT="A PROGRAM REQUIRES AN AGENT.\nApprove?"
 # Allow use of key <comment>?
 # Key fingerprint <fingerprint>.
 if [ -n "$1" ]; then
-    TEXT="$1"
+  TEXT="$1"
 fi
 
 /usr/bin/yad --title ssh-askpass --center --question --button=Yes:0 --button=No:1 --text "$TEXT"
