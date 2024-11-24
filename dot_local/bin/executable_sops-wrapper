@@ -13,8 +13,12 @@ debug() {
   echo "$@"
 }
 
+echoErr() {
+  echo "$@" >&2
+}
+
 getFileNameFromTerm() {
-  if [ -z "$KITTY_PID" ]; then
+  if [ -z "${KITTY_WINDOW_ID-}" ]; then
     return
   fi
   kitty @ get-text --self | tail -n 5 | grep -E "(NOR|SEL|INS)" | awk '{print $2}'
@@ -50,7 +54,7 @@ sopsDecrypt() {
 # This will only reencrypt modified fields, while keeping existing one as it is.
 sopsEncrypt() {
   if sops filestatus "$1" | jq .encrypted | grep true; then
-    echo "File already encrypted. Exiting."
+    echoErr "File already encrypted. Exiting."
     exit 1
   fi
   encryptedFile="${1/$DECRYPTED_PREFIX/}"
@@ -69,7 +73,7 @@ sopsEncrypt() {
   fileType=$(getFileType "$1")
   debug "File type is $fileType"
 
-  SOPS_DECRYPTED_FILE_PATH="$1" EDITOR="$tmpEditor" sops --input-type="$fileType" --output-type="$fileType" "$tmpEncryptedFile"
+  SOPS_DECRYPTED_FILE_PATH="$1" EDITOR="$tmpEditor" sops --config /dev/null --input-type="$fileType" --output-type="$fileType" "$tmpEncryptedFile"
   cp "$tmpEncryptedFile" "$encryptedFile"
 }
 
@@ -82,7 +86,7 @@ if [ -n "$termFileName" ]; then
 fi
 
 if ! [ -f "$file" ]; then
-  echo "file \"$file\" does not exist"
+  echoErr "file \"$file\" does not exist"
   exit 1
 fi
 
@@ -94,7 +98,7 @@ encrypt)
   sopsEncrypt "$file"
   ;;
 *)
-  echo "Mode incorrect. Only \"decrypt\" and \"encrypt\" are allowed."
+  echoErr "Mode incorrect. Only \"decrypt\" and \"encrypt\" are allowed."
   exit 1
   ;;
 esac
