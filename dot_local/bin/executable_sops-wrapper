@@ -52,6 +52,7 @@ sopsDecrypt() {
 
 # We don't use sops --encrypt file and instead use EDITOR to edit in place
 # This will only reencrypt modified fields, while keeping existing one as it is.
+# Based on https://github.com/signageos/vscode-sops/blob/0ca45095a43ee9cff4ffb990accb68a74175ac61/src/extension.ts#L367
 sopsEncrypt() {
   if sops filestatus "$1" | jq .encrypted | grep true; then
     echoErr "File already encrypted. Exiting."
