@@ -8,6 +8,18 @@
 	detachedHead = false
 [init]
 	defaultBranch = master
+[alias]
+    kitty-diff = difftool --no-symlinks --dir-diff
+[diff]
+    tool = kitty
+    guitool = kitty.gui
+[difftool]
+    prompt = false
+    trustExitCode = true
+[difftool "kitty"]
+    cmd = kitty +kitten diff $LOCAL $REMOTE
+[difftool "kitty.gui"]
+    cmd = kitty +kitten diff $LOCAL $REMOTE
 {{ if eq .type "private" -}}
 #github ssh
 [includeIf "hasconfig:remote.*.url:git@github.com*/**"]
