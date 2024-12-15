@@ -1,14 +1,19 @@
+theme = "catppuccin_frappe"
 [editor]
 {{ if eq .type "work" -}}
 auto-format = false
 {{ end -}}
 bufferline = "multiple"
-
-[editor.statusline]
-right = ["diagnostics", "selections", "register", "position","position-percentage", "file-encoding"]
+completion-trigger-len = 1
 
 [editor.file-picker]
 hidden = false
+
+[editor.soft-wrap]
+enable = true
+
+[editor.statusline]
+right = ["diagnostics", "selections", "register", "position","position-percentage", "file-encoding"]
 
 # create a new minor mode bound to `+`
 [keys.normal."+"]
