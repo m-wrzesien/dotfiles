@@ -40,6 +40,7 @@ PACKAGES=(
   # create symlink hx -> helix
   helixbinhx
   helm
+  helm-diff
   helm-ls-bin
   # syntax highlighter in ranger
   highlight
@@ -288,8 +289,8 @@ postInstallActions() {
       sudo systemctl enable docker.service
       sudo systemctl start docker.service
       ;;
-    helm)
-      helm plugin install https://github.com/databus23/helm-diff
+    helm-diff)
+      helm plugin install /usr/lib/helm/plugins/diff
       ;;
     maptool-bin)
       # Exclude maptool-bin for pacman/yay, as we upgrade it manually
