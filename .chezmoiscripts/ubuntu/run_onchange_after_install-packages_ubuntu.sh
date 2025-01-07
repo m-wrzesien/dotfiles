@@ -13,7 +13,6 @@ PACKAGES=(
   entr
   firefox
   flameshot
-  helix
   # syntax highlighter in ranger
   highlight
   hydrapaper
@@ -41,11 +40,15 @@ PACKAGES=(
 
 REMOVE_PACKAGES=(
   gbt
+  helix
 )
 
 REMOVE_REPO_FILES=(
   /etc/apt/trusted.gpg.d/gbt.asc
+  /etc/apt/trusted.gpg.d/maveonair-ubuntu-helix-editor.gpg
+  /etc/apt/trusted.gpg.d/maveonair-ubuntu-helix-editor.gpg~
   /etc/apt/sources.list.d/gbt.list
+  /etc/apt/sources.list.d/maveonair-ubuntu-helix-editor-jammy.list
 )
 
 removeRepo() {
@@ -74,7 +77,6 @@ Pin-Priority: 1000
   echo "Pin: origin deb.nodesource.com" | sudo tee -a /etc/apt/preferences.d/nodejs >/dev/null
   echo "Pin-Priority: 1000" | sudo tee -a /etc/apt/preferences.d/nodejs >/dev/null
 
-  sudo add-apt-repository -y ppa:maveonair/helix-editor
   sudo apt update
 }
 

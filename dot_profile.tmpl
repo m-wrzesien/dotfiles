@@ -8,7 +8,11 @@ export XDG_DATA_HOME="{{ .chezmoi.homeDir }}/.local/share"
 export XDG_STATE_HOME="{{ .chezmoi.homeDir }}/.local/state"
 
 export BROWSER=/usr/bin/firefox
+{{- if eq .type "work" }}
+export EDITOR="$HOME/.local/bin/hx"
+{{- else }}
 export EDITOR=/usr/bin/hx
+{{- end }}
 export SUDO_EDITOR="$EDITOR"
 
 # clear files from $HOME
