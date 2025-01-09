@@ -143,11 +143,6 @@ user_pref("signon.rememberSignons",				false);
 // https://www.mozilla.org/en-US/security/advisories/mfsa2021-31/
 user_pref("browser.vpn_promo.enabled",			false);
 
-// PREF: Disable sponsored in top sites
-user_pref("browser.newtabpage.activity-stream.showSponsored",	false);
-user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites",	false);
-user_pref("browser.newtabpage.activity-stream.topSiteSearchShortcuts", false);
-
 // Enable DRM by default
 user_pref("media.eme.enabled", true);
 
@@ -215,3 +210,11 @@ user_pref("dom.private-attribution.submission.enabled", false);
 // Disable info about weather in new tab, as it is based on AccuWeather
 user_pref("browser.newtabpage.activity-stream.showWeather", false);
 user_pref("browser.newtabpage.activity-stream.system.showWeather", false);
+
+/* 0802: disable location bar contextual suggestions
+ * [NOTE] The UI is controlled by the .enabled pref
+ * [SETTING] Search>Address Bar>Suggestions from...
+ * [1] https://blog.mozilla.org/data/2021/09/15/data-and-firefox-suggest/ ***/
+user_pref("browser.urlbar.quicksuggest.enabled", false); // [FF92+]
+user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false); // [FF95+]
+user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false); // [FF92+]
