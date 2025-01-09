@@ -5,9 +5,15 @@ auto-format = false
 {{ end -}}
 bufferline = "multiple"
 completion-trigger-len = 1
+end-of-line-diagnostics = "hint"
 
 [editor.file-picker]
 hidden = false
+
+[editor.inline-diagnostics]
+# Minimum severity to show a diagnostic on the primary cursor's line.
+# Note that `cursor-line` diagnostics are hidden in insert mode.
+cursor-line = "warning"
 
 [editor.indent-guides]
 render = true
