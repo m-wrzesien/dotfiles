@@ -107,6 +107,7 @@ PACKAGES=(
   # zenity replacement
   yad
   yaml-language-server
+  yamlfmt
   yaycache-hook
   yubikey-manager
 )

@@ -1,3 +1,8 @@
 [[language]]
 name = "bash"
 auto-format = true
+
+[[language]]
+name = "yaml"
+auto-format = true
+formatter = { command = "yamlfmt", args = ["-"] }
