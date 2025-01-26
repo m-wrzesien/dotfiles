@@ -6,6 +6,7 @@ declare -A ADDONS
 
 # Key is addons slug and value is GUID
 # https://addons-server.readthedocs.io/en/latest/topics/api/addons.html#detail
+# https://addons.mozilla.org/api/v5/addons/addon/[SLUG]/
 ADDONS=(
   ["addy_io"]="browser-extension@anonaddy"
   ["canvasblocker"]="CanvasBlocker@kkapsner.de"
@@ -13,6 +14,7 @@ ADDONS=(
   ["darkreader"]="addon@darkreader.org"
   ["decentraleyes"]="jid1-BoFifL9Vbdl2zQ@jetpack"
   ["edithiscookie"]="{62c00091-53f5-42d0-a4d0-9e69fc3d5819}"
+  ["keepassxc-browser"]="keepassxc-browser@keepassxc.org"
   ["modify-header-value"]="jid0-oEwF5ZcskGhjFv4Kk4lYc@jetpack"
   ["multi-account-containers"]="@testpilot-containers"
   ["ublock-origin"]="uBlock0@raymondhill.net"
