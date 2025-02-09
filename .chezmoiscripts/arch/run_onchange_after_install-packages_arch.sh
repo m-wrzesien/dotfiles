@@ -34,6 +34,8 @@ PACKAGES=(
   flameshot
   gnome-calculator-gtk3
   go
+  golangci-lint-bin
+  golangci-lint-langserver-bin
   google-cloud-cli
   gopls
   helix
