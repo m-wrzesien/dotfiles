@@ -44,10 +44,34 @@ getFileType() {
   esac
 }
 
+listDecrypted() {
+  find "$PWD" -name "${DECRYPTED_PREFIX}*"
+}
+
+openFileInTerm() {
+  if [ -z "${KITTY_WINDOW_ID-}" ]; then
+    return
+  fi
+
+  kitty @ send-text ":buffer-close\r"
+  kitty @ send-text ":open $1\r"
+}
+
+shredDecrypted() {
+  find "$PWD" -name "${DECRYPTED_PREFIX}*" -exec shred -uvz {} \;
+}
+
 sopsDecrypt() {
+  if sops filestatus "$1" | jq .encrypted | grep false; then
+    echoErr "File already decrypted. Exiting."
+    exit 1
+  fi
+
   decryptedFile="$(dirname "$1")/${DECRYPTED_PREFIX}$(basename "$1")"
   debug "Decrypted file is \"$decryptedFile\""
   sops -d "$1" >"$decryptedFile"
+
+  openFileInTerm "$decryptedFile"
 }
 
 # We don't use sops --encrypt file and instead use EDITOR to edit in place
@@ -76,6 +100,8 @@ sopsEncrypt() {
 
   SOPS_DECRYPTED_FILE_PATH="$1" EDITOR="$tmpEditor" sops --config /dev/null --input-type="$fileType" --output-type="$fileType" "$tmpEncryptedFile"
   cp "$tmpEncryptedFile" "$encryptedFile"
+
+  openFileInTerm "$encryptedFile"
 }
 
 mode="$1"
@@ -97,6 +123,12 @@ decrypt)
   ;;
 encrypt)
   sopsEncrypt "$file"
+  ;;
+list)
+  listDecrypted
+  ;;
+shred)
+  shredDecrypted
   ;;
 *)
   echoErr "Mode incorrect. Only \"decrypt\" and \"encrypt\" are allowed."
