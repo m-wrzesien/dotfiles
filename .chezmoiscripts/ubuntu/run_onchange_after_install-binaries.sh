@@ -1,6 +1,15 @@
 #!/bin/bash
 
 set -euo pipefail
+set -x
+
+GOLANGCI_LINT_CHECKSUM="e6bd399a0479c5fd846dcf9f3990d20448b4f0d1e5027d82348eab9f80f7ac71"
+GOLANGCI_LINT_VERSION="1.64.5"
+GOLANGCI_LINT_TMP="/tmp/golangci-lint.tar.gz"
+
+GOLANGCI_LINT_LANGSERVER_CHECKSUM="5c9d0be947d9e61b0df241d90e13454a38b928f011b45044c5f11d97e637caf9"
+GOLANGCI_LINT_LANGSERVER_VERSION="v0.0.10"
+GOLANGCI_LINT_LANGSERVER_TMP="/tmp/golangci-lint-langserver.tar.gz"
 
 HELIX_CHECKSUM="548fe3c557327e3c023dd84617b667dbb982112b2078fc288c5b4e79059d91ef"
 HELIX_VERSION="v25.01"
@@ -20,3 +29,13 @@ if [ -f "$HOME/.local/bin/hx" ]; then
   rm -r "${HOME}"/.local/bin/{hx,runtime}
 fi
 tar -xf ${HELIX_TMP} --strip-components=1 -C "${HOME}/.local/bin/" helix-${HELIX_VERSION}-x86_64-unknown-linux-gnu/{hx,runtime}
+
+curl -L https://github.com/golangci/golangci-lint/releases/download/v${GOLANGCI_LINT_VERSION}/golangci-lint-${GOLANGCI_LINT_VERSION}-linux-amd64.tar.gz --output ${GOLANGCI_LINT_TMP}
+trap 'rm ${GOLANGCI_LINT_TMP}' EXIT
+echo "${GOLANGCI_LINT_CHECKSUM} ${GOLANGCI_LINT_TMP}" | sha256sum --check --status
+tar -xf ${GOLANGCI_LINT_TMP} --strip-components=1 -C "${HOME}/.local/bin/" golangci-lint-${GOLANGCI_LINT_VERSION}-linux-amd64/golangci-lint
+
+curl -L https://github.com/nametake/golangci-lint-langserver/releases/download/${GOLANGCI_LINT_LANGSERVER_VERSION}/golangci-lint-langserver_Linux_x86_64.tar.gz --output ${GOLANGCI_LINT_LANGSERVER_TMP}
+trap 'rm ${GOLANGCI_LINT_LANGSERVER_TMP}' EXIT
+echo "${GOLANGCI_LINT_LANGSERVER_CHECKSUM} ${GOLANGCI_LINT_LANGSERVER_TMP}" | sha256sum --check --status
+tar -xf ${GOLANGCI_LINT_LANGSERVER_TMP} -C "${HOME}/.local/bin/"
