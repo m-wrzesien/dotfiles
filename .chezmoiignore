@@ -10,6 +10,7 @@
 
 {{ if ne .chezmoi.osRelease.name "Ubuntu" }}
 .chezmoiscripts/ubuntu/**
+.local/bin/vscode-json-language-server
 {{ end }}
 
 {{ if ne .type "private" }}
