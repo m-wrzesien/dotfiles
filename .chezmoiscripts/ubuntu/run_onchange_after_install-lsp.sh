@@ -7,11 +7,13 @@ PACKAGES=(
   bash-language-server
   dockerfile-language-server-nodejs
   @microsoft/compose-language-service
-  vscode-json-languageserver
+  vscode-langservers-extracted
   yaml-language-server
 )
 
-REMOVE_PACKAGES=()
+REMOVE_PACKAGES=(
+  vscode-json-languageserver
+)
 
 checkDistro() {
   distroName=$(grep -Po '^NAME="\K.*(?=")' /etc/os-release)
