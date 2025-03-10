@@ -17,6 +17,7 @@ ADDONS=(
   ["keepassxc-browser"]="keepassxc-browser@keepassxc.org"
   ["modify-header-value"]="jid0-oEwF5ZcskGhjFv4Kk4lYc@jetpack"
   ["multi-account-containers"]="@testpilot-containers"
+  ["polish-spellchecker-dictionary"]="pl@dictionaries.addons.mozilla.org"
   ["ublock-origin"]="uBlock0@raymondhill.net"
 )
 
