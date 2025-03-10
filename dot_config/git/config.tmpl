@@ -21,6 +21,10 @@
     cmd = kitty +kitten diff $LOCAL $REMOTE
 [difftool "kitty.gui"]
     cmd = kitty +kitten diff $LOCAL $REMOTE
+[safe]
+# don't treat `config` in repos subdirs that look like a bare repo as git config
+# https://old.reddit.com/r/rust/comments/1j2i3s0/psa_do_not_run_any_cargo_commands_on_untrusted/mft1rbl/
+	bareRepository = explicit
 {{ if eq .type "private" -}}
 #github ssh
 [includeIf "hasconfig:remote.*.url:git@github.com*/**"]
