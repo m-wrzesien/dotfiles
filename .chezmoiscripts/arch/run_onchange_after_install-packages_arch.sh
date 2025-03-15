@@ -11,6 +11,7 @@ LAPTOP_PACKAGES=(
 
 PACMAN_CONF="/etc/pacman.conf"
 PACKAGES=(
+  7zip
   age
   android-tools
   ansible
