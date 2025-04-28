@@ -14,6 +14,7 @@ PACKAGES=(
   7zip
   age
   android-tools
+  android-udev
   ansible
   ansible-core
   apache-tools
