@@ -2,5 +2,7 @@ k9s:
   ui:
     # Set to true to hide K9s header. Default false
     headless: true
+    # disable emojis
+    noIcons: true
   # Toggles whether k9s should check for the latest revision from the Github repository releases. Default is false.
   skipLatestRevCheck: true
