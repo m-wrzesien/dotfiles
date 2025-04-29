@@ -30,7 +30,7 @@ PACKAGES=(
   docker
   docker-buildx
   docker-compose
-  dockerfile-language-server-bin
+  dockerfile-language-server
   entr
   firefox
   flameshot
@@ -117,6 +117,7 @@ PACKAGES=(
 )
 
 REMOVE_PACKAGES=(
+  dockerfile-language-server-bin
   gbt
   gnome-screenshot
 )
