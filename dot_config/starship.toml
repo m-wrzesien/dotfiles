@@ -1,0 +1,34 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Don't insert a blank line between shell prompts
+add_newline = false
+format = "$os$all"
+
+# [line_break]
+# disabled = true
+
+[directory]
+truncation_length = 2
+
+[git_branch]
+truncation_length = 32
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+[kubernetes]
+disabled = false
+format ="[$symbol$context( \\($namespace\\))]($style)|"
+style = "blue bold"
+
+[hostname]
+ssh_only = false
+format = "[$ssh_symbol$hostname]($style)|"
+
+[os]
+disabled = false
+
+[os.symbols]
+Arch = " "

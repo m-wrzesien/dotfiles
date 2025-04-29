@@ -61,7 +61,4 @@ sourceAliases "$HOME/.bash_aliases"
 # Aliases that are not part of dotfiles
 sourceAliases "$HOME/.bash_aliases_local"
 
-
-export GBT_CARS='Status, Os, Hostname, Dir, Kubectl, Git, Sign'
-export GBT_CAR_KUBECTL_FORMAT=' {{ Icon }} {{ Context }}/{{ Namespace }}'
-PS1='$(gbt $?)'
+eval "$(starship init bash)"

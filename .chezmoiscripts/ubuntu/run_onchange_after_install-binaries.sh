@@ -18,6 +18,10 @@ HELIX_TMP="/tmp/helix.tar.xz"
 HELM_LS_CHECKSUM="f52a23175bde03d467e44a3d8b87793ae4daec526db8b5c1ab1832eed81a584b"
 HELM_LS_VERSION="v0.1.0"
 
+STARSHIP_CHECKSUM="cef41df04378c6f692913c5d9c1032d3b9a4369a1d2f3296c8300ed8838c2197"
+STARSHIP_VERSION="v1.23.0"
+STARSHIP_TMP="/tmp/starship.tar.gz"
+
 curl -L https://github.com/mrjosh/helm-ls/releases/download/${HELM_LS_VERSION}/helm_ls_linux_amd64 --output ~/.local/bin/helm_ls
 echo "${HELM_LS_CHECKSUM} ${HOME}/.local/bin/helm_ls" | sha256sum --check --status
 chmod +x ~/.local/bin/helm_ls
@@ -39,3 +43,8 @@ curl -L https://github.com/nametake/golangci-lint-langserver/releases/download/$
 trap 'rm ${GOLANGCI_LINT_LANGSERVER_TMP}' EXIT
 echo "${GOLANGCI_LINT_LANGSERVER_CHECKSUM} ${GOLANGCI_LINT_LANGSERVER_TMP}" | sha256sum --check --status
 tar -xf ${GOLANGCI_LINT_LANGSERVER_TMP} -C "${HOME}/.local/bin/"
+
+curl -L "https://github.com/starship/starship/releases/download/${STARSHIP_VERSION}/starship-x86_64-unknown-linux-gnu.tar.gz" --output "${STARSHIP_TMP}"
+echo "${STARSHIP_CHECKSUM} ${STARSHIP_TMP}" | sha256sum --check --status
+trap 'rm ${STARSHIP_TMP}' EXIT
+tar -xf "${STARSHIP_TMP}" -C "${HOME}/.local/bin/"

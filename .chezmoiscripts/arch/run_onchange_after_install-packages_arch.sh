@@ -67,6 +67,7 @@ PACKAGES=(
   neofetch
   nodejs-compose-language-service
   noto-fonts
+  noto-fonts-emoji
   packer
   pacman-cleanup-hook
   # provide pdf preview for ranger
@@ -84,11 +85,14 @@ PACKAGES=(
   shfmt
   signal-desktop
   sops
+  starship
   syncthing
   # required, so wg-quick can set up dns
   systemd-resolvconf
   # remote decryption for servers
   tang
+  # for toml lsp
+  taplo
   terraform
   terraform-ls-bin
   terragrunt

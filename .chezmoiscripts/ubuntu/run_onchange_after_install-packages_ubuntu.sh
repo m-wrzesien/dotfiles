@@ -13,6 +13,7 @@ PACKAGES=(
   entr
   firefox
   flameshot
+  fonts-noto-color-emoji
   # syntax highlighter in ranger
   highlight
   hydrapaper
