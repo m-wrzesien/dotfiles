@@ -38,7 +38,6 @@ PACKAGES=(
   go
   golangci-lint-bin
   golangci-lint-langserver-bin
-  google-cloud-cli
   gopls
   helix
   # create symlink hx -> helix
@@ -124,6 +123,7 @@ REMOVE_PACKAGES=(
   dockerfile-language-server-bin
   gbt
   gnome-screenshot
+  google-cloud-cli
 )
 
 REPOS=(
