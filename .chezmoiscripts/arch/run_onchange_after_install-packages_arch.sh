@@ -53,6 +53,7 @@ PACKAGES=(
   keepassxc
   kitty
   kubectl
+  kubectl-cnpg
   kubectx
   # provide ASCII-art image previews for ranger
   libcaca
