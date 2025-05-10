@@ -3,6 +3,11 @@ name = "bash"
 auto-format = true
 
 [[language]]
+name = "helm"
+# use same indention as in yaml - by default tabs would be used
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
 name = "yaml"
 auto-format = true
 formatter = { command = "yamlfmt", args = ["-"] }
