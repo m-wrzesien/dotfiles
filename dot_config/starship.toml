@@ -3,20 +3,29 @@
 
 # Don't insert a blank line between shell prompts
 add_newline = false
-format = "$os$all"
 
-# [line_break]
-# disabled = true
+# use custom format so most of modules will stay disabled (especially those related to languages)
+format = """
+$os\
+$hostname\
+$kubernetes\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$cmd_duration\
+$line_break\
+$jobs\
+$battery\
+$character\
+"""
 
 [directory]
 truncation_length = 2
 
 [git_branch]
 truncation_length = 32
-
-# Disable the package module, hiding it from the prompt completely
-[package]
-disabled = true
 
 [kubernetes]
 disabled = false
