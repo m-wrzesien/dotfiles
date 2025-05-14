@@ -36,7 +36,7 @@ PACKAGES=(
   flameshot
   gnome-calculator-gtk3
   go
-  golangci-lint-bin
+  golangci-lint
   golangci-lint-langserver-bin
   gopls
   helix
@@ -124,6 +124,8 @@ REMOVE_PACKAGES=(
   dockerfile-language-server-bin
   gbt
   gnome-screenshot
+  golangci-lint-bin
+  golangci-lint-bin-debug
   google-cloud-cli
 )
 
