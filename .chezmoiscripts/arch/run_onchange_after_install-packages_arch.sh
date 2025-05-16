@@ -65,6 +65,7 @@ PACKAGES=(
   minikube
   ncdu
   neofetch
+  nmap
   nodejs-compose-language-service
   noto-fonts
   noto-fonts-emoji
