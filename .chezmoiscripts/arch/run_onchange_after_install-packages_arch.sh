@@ -19,8 +19,6 @@ PACKAGES=(
   ansible-core
   apache-tools
   argocd
-  # preview archives in ranger
-  atool
   bash-completion
   bash-language-server
   bind-tools
@@ -45,8 +43,6 @@ PACKAGES=(
   helm
   helm-diff
   helm-ls-bin
-  # syntax highlighter in ranger
-  highlight
   hydrapaper-no-pandoc-git
   jq
   k9s
@@ -55,31 +51,27 @@ PACKAGES=(
   kubectl
   kubectl-cnpg
   kubectx
-  # provide ASCII-art image previews for ranger
-  libcaca
   man-db
   man-pages
-  # provide info about media files for ranger
-  mediainfo
   meld
   minikube
   ncdu
   neofetch
   nmap
   nodejs-compose-language-service
+  # font used by desktop apps (like cinnamon and firefox)
   noto-fonts
-  noto-fonts-emoji
   packer
   pacman-cleanup-hook
-  # provide pdf preview for ranger
+  # provide pdf preview for yazi
   poppler
+  poppler-data
   python-pylibssh
   qbittorrent
   # Required for packer-builder-arm
   qemu-user-static-binfmt
   # modify pdfs
   qpdf
-  ranger
   # canon printer scanner
   scangearmp2
   shellcheck-bin
@@ -99,35 +91,42 @@ PACKAGES=(
   terragrunt
   thunderbird
   ttf-hack-nerd
+  ttf-nerd-fonts-symbols
+  ttf-nerd-fonts-symbols-common
   vlc
   vscode-css-languageserver
   vscode-html-languageserver
   vscode-json-languageserver
   vscodium-bin
-  # preview html pagers in ranger
-  w3m
   webcord-bin
   web-greeter
   whois
   wireguard-tools
   wireshark-qt
-  # enable copy in k9s
+  # enable copy in k9s and yazi
   xsel
   # zenity replacement
   yad
   yaml-language-server
   yamlfmt
   yaycache-hook
+  yazi
   yubikey-manager
 )
 
 REMOVE_PACKAGES=(
+  atool
   dockerfile-language-server-bin
   gbt
   gnome-screenshot
   golangci-lint-bin
   golangci-lint-bin-debug
+  highlight
+  libcaca
   google-cloud-cli
+  mediainfo
+  noto-fonts-emoji
+  w3m
 )
 
 REPOS=(
@@ -339,6 +338,10 @@ postInstallActions() {
       sudo sed -i 's/extra_args=.*/extra_args="-v --remove-build-files"/' /etc/yaycache-hook.conf
       sudo sed -i "s|cache_dirs=.*|cache_dirs=(\"$XDG_CACHE_HOME/yay/*/\")|" /etc/yaycache-hook.conf
       sudo sed -i 's/uninstalled_keep=.*/uninstalled_keep=0/' /etc/yaycache-hook.conf
+      ;;
+    yazi)
+      # install all yazi packages (like flavors)
+      ya pack -u
       ;;
     yubikey-manager)
       sudo systemctl enable pcscd.service

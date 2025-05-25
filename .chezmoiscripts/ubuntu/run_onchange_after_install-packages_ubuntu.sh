@@ -4,44 +4,40 @@ set -euo pipefail
 
 UBUNTU="Ubuntu"
 PACKAGES=(
-  # preview archives in ranger
-  atool
-  # provide ASCII-art image previews for ranger
-  caca-utils
   codium
   dnsutils
   entr
   firefox
   flameshot
-  fonts-noto-color-emoji
-  # syntax highlighter in ranger
-  highlight
   hydrapaper
   jq
   keepassxc
   kitty
-  # provide info about media files for ranger
-  mediainfo
   meld
   ncdu
   neofetch
   nodejs
-  # provide pdf preview for ranger
+  # provide pdf preview for yazi
+  poppler-data
   poppler-utils
-  ranger
   shellcheck
   shfmt
   syncthing
   terraform-ls
-  # preview html pagers in ranger
-  w3m
   wireshark
   xdotool
 )
 
 REMOVE_PACKAGES=(
+  atool
+  caca-utils
+  fonts-noto-color-emoji
   gbt
   helix
+  highlight
+  mediainfo
+  ranger
+  w3m
 )
 
 REMOVE_REPO_FILES=(

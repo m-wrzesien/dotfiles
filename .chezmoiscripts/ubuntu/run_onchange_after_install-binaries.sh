@@ -22,6 +22,10 @@ STARSHIP_CHECKSUM="cef41df04378c6f692913c5d9c1032d3b9a4369a1d2f3296c8300ed8838c2
 STARSHIP_VERSION="v1.23.0"
 STARSHIP_TMP="/tmp/starship.tar.gz"
 
+YAZI_CHECKSUM="01128a2d9d79018721cc557976ade57c28c61daa47e9f7207f2cbd3d5553a734"
+YAZI_VERSION="25.4.8"
+YAZI_TMP="/tmp/yazi.zip"
+
 curl -L https://github.com/mrjosh/helm-ls/releases/download/${HELM_LS_VERSION}/helm_ls_linux_amd64 --output ~/.local/bin/helm_ls
 echo "${HELM_LS_CHECKSUM} ${HOME}/.local/bin/helm_ls" | sha256sum --check --status
 chmod +x ~/.local/bin/helm_ls
@@ -48,3 +52,10 @@ curl -L "https://github.com/starship/starship/releases/download/${STARSHIP_VERSI
 echo "${STARSHIP_CHECKSUM} ${STARSHIP_TMP}" | sha256sum --check --status
 trap 'rm ${STARSHIP_TMP}' EXIT
 tar -xf "${STARSHIP_TMP}" -C "${HOME}/.local/bin/"
+
+curl -L https://github.com/sxyazi/yazi/releases/download/v${YAZI_VERSION}/yazi-x86_64-unknown-linux-musl.zip --output ${YAZI_TMP}
+trap 'rm ${YAZI_TMP}' EXIT
+echo "${YAZI_CHECKSUM} ${YAZI_TMP}" | sha256sum --check --status
+unzip -j -d "${HOME}/.local/bin/" ${YAZI_TMP} yazi-x86_64-unknown-linux-musl/{ya,yazi}
+# install all yazi packages (like flavors)
+ya pack -u
