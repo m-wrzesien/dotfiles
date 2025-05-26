@@ -6,24 +6,17 @@ UBUNTU="Ubuntu"
 PACKAGES=(
   codium
   dnsutils
-  entr
   firefox
   flameshot
   hydrapaper
-  jq
   keepassxc
   kitty
   meld
-  ncdu
   neofetch
-  nodejs
   # provide pdf preview for yazi
   poppler-data
   poppler-utils
-  shellcheck
-  shfmt
   syncthing
-  terraform-ls
   wireshark
   xdotool
 )
@@ -31,21 +24,31 @@ PACKAGES=(
 REMOVE_PACKAGES=(
   atool
   caca-utils
+  entr
   fonts-noto-color-emoji
   gbt
   helix
   highlight
+  jq
   mediainfo
+  ncdu
+  nodejs
   ranger
+  shellcheck
+  shfmt
+  terraform-ls
   w3m
 )
 
 REMOVE_REPO_FILES=(
+  /etc/apt/preferences.d/nodejs
+  /etc/apt/sources.list.d/gbt.list
+  /etc/apt/sources.list.d/maveonair-ubuntu-helix-editor-jammy.list
+  /etc/apt/sources.list.d/nodesource.list
   /etc/apt/trusted.gpg.d/gbt.asc
   /etc/apt/trusted.gpg.d/maveonair-ubuntu-helix-editor.gpg
   /etc/apt/trusted.gpg.d/maveonair-ubuntu-helix-editor.gpg~
-  /etc/apt/sources.list.d/gbt.list
-  /etc/apt/sources.list.d/maveonair-ubuntu-helix-editor-jammy.list
+  /etc/apt/trusted.gpg.d/nodesource.gpg
 )
 
 removeRepo() {
@@ -68,11 +71,6 @@ Pin-Priority: 1000
 ' | sudo tee /etc/apt/preferences.d/mozilla >/dev/null
   curl -sL https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | sudo tee /etc/apt/trusted.gpg.d/vscodium.asc >/dev/null
   echo 'deb https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs vscodium main' | sudo tee /etc/apt/sources.list.d/vscodium.list
-  curl -sL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/nodesource.gpg
-  echo "deb [arch=amd64] https://deb.nodesource.com/node_22.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list >/dev/null
-  echo "Package: nodejs" | sudo tee /etc/apt/preferences.d/nodejs >/dev/null
-  echo "Pin: origin deb.nodesource.com" | sudo tee -a /etc/apt/preferences.d/nodejs >/dev/null
-  echo "Pin-Priority: 1000" | sudo tee -a /etc/apt/preferences.d/nodejs >/dev/null
 
   sudo apt update
 }
@@ -131,9 +129,6 @@ postInstallActions() {
   for package in "$@"; do
     echo "$package"
     case $package in
-    nodejs)
-      npm config set prefix "${XDG_STATE_HOME}/npm-global"
-      ;;
     syncthing)
       systemctl --user enable syncthing.service
       systemctl --user start syncthing.service

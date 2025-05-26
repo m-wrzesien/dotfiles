@@ -4,15 +4,16 @@ set -euo pipefail
 
 UBUNTU="Ubuntu"
 PACKAGES=(
-  bash-language-server
-  dockerfile-language-server-nodejs
   @microsoft/compose-language-service
-  vscode-langservers-extracted
-  yaml-language-server
 )
 
 REMOVE_PACKAGES=(
+  # those are installed via brew
+  bash-language-server
+  dockerfile-language-server-nodejs
   vscode-json-languageserver
+  vscode-langservers-extracted
+  yaml-language-server
 )
 
 checkDistro() {
