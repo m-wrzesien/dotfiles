@@ -122,10 +122,10 @@ REMOVE_PACKAGES=(
   golangci-lint-bin
   golangci-lint-bin-debug
   highlight
-  libcaca
   google-cloud-cli
   mediainfo
   noto-fonts-emoji
+  ranger
   w3m
 )
 
