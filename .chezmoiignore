@@ -28,6 +28,11 @@
 .chezmoiscripts/arch/update-desktop-database.sh
 {{ end }}
 
+
+{{ if eq .chezmoi.osRelease.name "Arch Linux" }}
+.chezmoiscripts/non-arch/**
+{{ end }}
+
 # Ignore dconf dumps, as those are loaded by one of the scripts
 keybindings-cinnamon.dconf
 custom-keybindings-gnome.dconf
