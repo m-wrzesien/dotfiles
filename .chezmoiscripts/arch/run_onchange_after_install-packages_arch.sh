@@ -51,6 +51,8 @@ PACKAGES=(
   kubectl
   kubectl-cnpg
   kubectx
+  # fixes problem with missing libxml2.so.2 for gnome-calculator-gtk3
+  libxml2-legacy
   man-db
   man-pages
   meld
