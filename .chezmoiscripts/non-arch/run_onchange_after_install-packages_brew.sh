@@ -6,6 +6,7 @@ PACKAGES=(
   bash-language-server
   dockerfile-language-server
   entr
+  fzf
   go
   golangci-lint
   golangci-lint-langserver

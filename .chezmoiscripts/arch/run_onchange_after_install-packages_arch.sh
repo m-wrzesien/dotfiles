@@ -32,6 +32,7 @@ PACKAGES=(
   entr
   firefox
   flameshot
+  fzf
   gnome-calculator-gtk3
   go
   golangci-lint
