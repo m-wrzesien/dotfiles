@@ -12,6 +12,14 @@ _serve-http() {
 	fi
 }
 
+# don't follow wineprefix folder that has symlinks (e.g. to /), as this can burn cpu at least in ~
+_fzf_compgen_path() {
+	echo "$1"
+	command find "$1" \
+		-name .git -prune -o -name .hg -prune -o -name .svn -prune -o \( -type d -o -type f -o -type l \) \
+		-a -not -path "$1" -print 2> /dev/null | command sed 's@^\./@@'
+}
+
 alias drop-history-from-current-shell='unset HISTFILE'
 alias grep='grep --color=auto'
 alias k='kubectl'

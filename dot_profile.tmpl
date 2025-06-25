@@ -49,6 +49,8 @@ export _JAVA_OPTIONS="$_JAVA_OPTIONS -DMAPTOOL_DATADIR=$XDG_DATA_HOME/maptool-rp
 export ANSIBLE_HOME="${XDG_CONFIG_HOME}/ansible"
 export ANSIBLE_GALAXY_CACHE_DIR="${XDG_CACHE_HOME}/ansible/galaxy_cache"
 
+# don't follow wineprefix folder that has symlinks (e.g. to /), as this can burn cpu at least in ~
+export FZF_DEFAULT_OPTS="--walker-skip dosdevices"
 
 # ~/.local/bin is before path, so our steam wrapper on arch is first
 export PATH="${HOME}/.local/bin:${PATH}:${GOPATH}/bin"
