@@ -22,6 +22,31 @@ maxWindow() {
   sleep 0.25
 }
 
+helixSecurityCheck() {
+  # remove this, after a workaround for following vulnerability has been implemented
+  # https://github.com/helix-editor/helix/issues/2697#issuecomment-1925473432
+
+  if ! echo "$EDITOR" | awk -F/ '{print $NF}' | grep "^hx$" -q; then
+    return
+  fi
+
+  if ! [ -d ".helix" ]; then
+    return
+  fi
+
+  read -p "There exists a '.helix' directory in this directory. Do you want it bo removed(y) or want to keep it (n)?" -n 1 -r
+  echo # (optional) move to a new line
+  if [[ $REPLY =~ ^[Nn]$ ]]; then
+    return
+  elif [[ $REPLY =~ ^[Yy]$ ]]; then
+    echo "Removing .helix"
+    rm -r ".helix"
+    echo "Dir removed"
+    sleep 5
+    return
+  fi
+}
+
 dir=$(readlink -m "$1")
 projectName=$(basename "$dir")
 cd "$dir" || (echo "Dir doesn't exist" && exit 1)
@@ -40,5 +65,7 @@ if $isPivot; then
 else
   kitty @ resize-window --self --axis vertical -i 10
 fi
+
+helixSecurityCheck
 
 $EDITOR .
