@@ -45,10 +45,12 @@ PACKAGES=(
   helm-diff
   helm-ls-bin
   hydrapaper-no-pandoc-git
+  imagemagick
   jq
   k9s
   keepassxc
   kitty
+  kolourpaint
   kubectl
   kubectl-cnpg
   kubectx
