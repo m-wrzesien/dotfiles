@@ -26,7 +26,7 @@ right = ["diagnostics", "selections", "register", "position","position-percentag
 
 # create a new minor mode bound to `+`
 [keys.normal."+"]
-e = [":w", ":run-shell-command sops-wrapper encrypt"]
-d = ":run-shell-command sops-wrapper decrypt"
+e = [":w", ":run-shell-command sops-wrapper encrypt '%{buffer_name}'"]
+d = ":run-shell-command sops-wrapper decrypt '%{buffer_name}'"
 l = ":run-shell-command sops-wrapper list"
 s = ":run-shell-command sops-wrapper shred"
