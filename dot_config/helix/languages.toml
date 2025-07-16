@@ -11,3 +11,13 @@ indent = { tab-width = 2, unit = "  " }
 name = "yaml"
 auto-format = true
 formatter = { command = "yamlfmt", args = ["-"] }
+
+# custom language, so we have colors and autocomplete in values files 
+[[language]]
+name = "helm-values"
+grammar = "gotmpl"
+scope = "source.helm-values"
+roots = ["Chart.yaml"]
+comment-token = "#"
+language-servers = ["helm_ls"]
+file-types = [ { glob = "values*.yaml"}, { glob = "values*.yml"},{ glob = ".decrypted~values*.yaml"}, { glob = ".decrypted~values*.yml"}   ]
