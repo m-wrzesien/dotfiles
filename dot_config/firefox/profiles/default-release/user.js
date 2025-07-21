@@ -194,3 +194,5 @@ user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false); // [FF92+]
 
 // Disable adding amazon, google and potentially others as pinned shortcuts on home page
 user_pref("browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts", false);
+user_pref("browser.newtabpage.activity-stream.showSponsored", false);
+user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false);

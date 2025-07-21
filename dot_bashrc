@@ -4,15 +4,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-UBUNTU="Ubuntu"
-checkDistro() {
-    distroName=$(grep -Po '^NAME="\K.*(?=")' /etc/os-release)
-
-    if [ "$distroName" != "$UBUNTU" ]; then
-        return 1
-    fi
-}
-
 # don't put lines starting with space and duplicate lines in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth:erasedups
@@ -31,22 +22,15 @@ HISTFILESIZE=100000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-if checkDistro "$UBUNTU"; then
+# needs to be before other things, as otherwise aliases will have problem with overrides
+if [ -f /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+    [[ -r "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh" ]] && . "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
 
-    # enable programmable completion features (you don't need to enable
-    # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-    # sources /etc/bash.bashrc).
-    if ! shopt -oq posix; then
-      if [ -f /usr/share/bash-completion/bash_completion ]; then
-        # shellcheck source=/dev/null
-        . /usr/share/bash-completion/bash_completion
-      elif [ -f /etc/bash_completion ]; then
-        # shellcheck source=/dev/null
-        . /etc/bash_completion
-      fi
-    fi
+    [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
+    [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 
-    complete -C /usr/bin/terraform terraform
+    [ -s "$HOMEBREW_PREFIX/bin/direnv" ] && eval "$(direnv hook bash)"
 fi
 
 sourceAliases() {
@@ -61,9 +45,6 @@ sourceAliases "$HOME/.bash_aliases"
 # Aliases that are not part of dotfiles
 sourceAliases "$HOME/.bash_aliases_local"
 
-if [ -f /home/linuxbrew/.linuxbrew/bin/brew ]; then
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-fi
 
 eval "$(fzf --bash)"
 eval "$(starship init bash)"

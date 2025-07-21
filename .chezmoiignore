@@ -1,14 +1,16 @@
 *.md
-{{ if ne .chezmoi.osRelease.name "Arch Linux" }}
+{{ if or (ne .chezmoi.os "linux") (ne .chezmoi.osRelease.name "Arch Linux") }}
+# those scripts should launched at the end somehow?
+.chezmoiscripts/configure-syncthing.sh
+{{ end }}
+{{ if or (ne .chezmoi.os "linux") (ne .chezmoi.osRelease.name "Arch Linux") }}
 .chezmoiscripts/arch/**
 # Only arch uses ssh-agent enabled by systemd and custom ssh-askpass
 .config/systemd/user/ssh-agent.service
 .local/bin/ssh-askpass
-# Fix for missing environment variables on Arch
-.bash_profile
 {{ end }}
 
-{{ if ne .chezmoi.osRelease.name "Ubuntu" }}
+{{ if or (ne .chezmoi.os "linux") (ne .chezmoi.osRelease.name "Ubuntu") }}
 .chezmoiscripts/ubuntu/**
 {{ end }}
 
@@ -29,8 +31,13 @@
 {{ end }}
 
 
-{{ if eq .chezmoi.osRelease.name "Arch Linux" }}
+{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.name "Arch Linux") }}
 .chezmoiscripts/non-arch/**
+{{ end }}
+
+{{ if ne .chezmoi.os "darwin" }}
+.inputrc
+Library
 {{ end }}
 
 # Ignore dconf dumps, as those are loaded by one of the scripts

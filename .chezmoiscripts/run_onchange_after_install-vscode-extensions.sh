@@ -1,4 +1,8 @@
 #!/bin/bash
+# force to use bash from homebrew on mac
+if command -v brew >/dev/null && [[ "$(uname)" == "Darwin" && "$BASH" != "$(brew --prefix)/bin/bash" && -x "$(brew --prefix)/bin/bash" ]]; then
+  exec "$(brew --prefix)/bin/bash" "$0" "$@"
+fi
 
 set -euo pipefail
 
@@ -12,20 +16,21 @@ EXTENSIONS=(
   ms-kubernetes-tools.vscode-kubernetes-tools
   redhat.ansible
   redhat.vscode-yaml
+  reduckted.vscode-gitweblinks
   shardulm94.trailing-spaces
   signageos.signageos-vscode-sops
   timonwong.shellcheck
-  ziyasal.vscode-open-in-github
 )
 
 REMOVE_EXTENSIONS=(
   eamodio.gitlens
+  ziyasal.vscode-open-in-github
 )
 
 getExtensionsToInstall() {
   local notInstalled=()
   local installed=""
-  installed=$(code --list-extensions)
+  installed=$(codium --list-extensions)
   for ext in "${EXTENSIONS[@]}"; do
     if ! echo "$installed" | grep "$ext" >/dev/null; then
       notInstalled+=("$ext")
@@ -37,7 +42,7 @@ getExtensionsToInstall() {
 getExtensionsToRemove() {
   local toRemove=()
   local installed=""
-  installed=$(code --list-extensions)
+  installed=$(codium --list-extensions)
   for ext in "${REMOVE_EXTENSIONS[@]}"; do
     if echo "$installed" | grep "$ext" >/dev/null; then
       toRemove+=("$ext")
@@ -53,7 +58,7 @@ install() {
   fi
   echo "Following extensions will be installed: $*"
   for ext in "$@"; do
-    code --install-extension "$ext"
+    codium --install-extension "$ext"
   done
 }
 
@@ -64,7 +69,7 @@ remove() {
   fi
   echo "Following extensions will be removed: $*"
   for ext in "$@"; do
-    code --uninstall-extension "$ext"
+    codium --uninstall-extension "$ext"
   done
 }
 

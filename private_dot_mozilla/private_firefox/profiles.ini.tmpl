@@ -1,18 +1,1 @@
-{{- $releasePath := joinPath .chezmoi.homeDir "/.config/firefox/profiles/default-release" -}}
-{{- /* IDs for each installation version */ -}}
-{{- $releaseId := mozillaInstallHash "/usr/lib/firefox" -}}
-
-[Install{{ $releaseId }}]
-Default={{ $releasePath }}
-Locked=1
-
-[Profile0]
-Name=dotfiles-managed
-IsRelative=0
-Path={{ $releasePath }}
-Default=1
-
-[General]
-StartWithLastProfile=1
-Version=2
-
+{{- template "firefox-profiles.ini" . -}}
