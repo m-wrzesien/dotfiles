@@ -347,7 +347,7 @@ postInstallActions() {
       ;;
     yazi)
       # install all yazi packages (like flavors)
-      ya pack -u
+      ya pkg install
       ;;
     yubikey-manager)
       sudo systemctl enable pcscd.service

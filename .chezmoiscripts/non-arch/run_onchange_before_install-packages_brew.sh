@@ -1,26 +1,42 @@
 #!/bin/bash
+# force to use bash from homebrew on mac
+if command -v brew >/dev/null && [[ "$(uname)" == "Darwin" && "$BASH" != "$(brew --prefix)/bin/bash" && -x "$(brew --prefix)/bin/bash" ]]; then
+  exec "$(brew --prefix)/bin/bash" "$0" "$@"
+fi
 
 set -euo pipefail
 
 PACKAGES=(
+  # completion for bash installed via brew
+  bash-completion@2
   bash-language-server
+  chezmoi
+  coreutils
   dockerfile-language-server
   entr
+  firefox
+  font-hack-nerd-font
   fzf
+  git
   go
   golangci-lint
   golangci-lint-langserver
   helix
   helm-ls
+  htop
   jq
+  keepassxc
+  kitty
   ncdu
   # required for lang servers
   node
+  qrencode
   shellcheck
   shfmt
   starship
   terraform-ls
   vscode-langservers-extracted
+  vscodium
   yaml-language-server
   yazi
 )
@@ -100,11 +116,29 @@ installBrew() {
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 }
 
+# mac uses version 3 ...
+installBash() {
+  major="${BASH_VERSION%%[^0-9]*}"
+  if [ "$major" -ge "4" ]; then
+    echo "Installed bash version is new enough"
+    return
+  fi
+
+  brew install --ask bash
+  # allow using shell from brew as the default one
+  echo "$(brew --prefix)/bin/bash" | sudo tee -a /etc/shells
+  # use this shell as default
+  chsh -s "$(brew --prefix)/bin/bash"
+}
 postInstallActions() {
   for package in "$@"; do
     case $package in
-    node)
-      npm config set prefix "${XDG_STATE_HOME}/npm-global"
+    vscodium)
+      sudo ln -s "$(brew --prefix)/bin/codium" /usr/local/bin/code
+      ;;
+    yazi)
+      # install all yazi packages (like flavors)
+      ya pkg install
       ;;
     *)
       echo "No action for $package"
@@ -114,6 +148,8 @@ postInstallActions() {
 }
 
 installBrew
+
+installBash
 
 # Chech what packages needs to be removed and put them in to array
 IFS=" " read -r -a toRemove <<<"$(getPackagesToRemove)"

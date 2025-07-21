@@ -1,4 +1,4 @@
-font_family      family="Hack Nerd Font"
+font_family      family="Hack Nerd Font Mono"
 bold_font        auto
 italic_font      auto
 bold_italic_font auto
@@ -21,5 +21,15 @@ input_delay 0
 
 allow_remote_control socket-only
 listen_on unix:/tmp/kitty-{kitty_pid}.sock
+
+{{- if eq .chezmoi.os "darwin" }}
+# force brew bash in shell instead of zsh
+shell /opt/homebrew/bin/bash --login
+# required for readline terminal keybindings to work (like Alt + ←/→), but with Option instead of Alt
+macos_option_as_alt left
+macos_quit_when_last_window_closed yes
+
+font_size 13.0
+{{- end }}
 
 include current-theme.conf

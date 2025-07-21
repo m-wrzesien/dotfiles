@@ -1,4 +1,8 @@
 #!/bin/bash
+# force to use bash from homebrew on mac
+if command -v brew >/dev/null && [[ "$(uname)" == "Darwin" && "$BASH" != "$(brew --prefix)/bin/bash" && -x "$(brew --prefix)/bin/bash" ]]; then
+  exec "$(brew --prefix)/bin/bash" "$0" "$@"
+fi
 
 set -euo pipefail
 

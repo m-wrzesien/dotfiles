@@ -1,4 +1,8 @@
 #!/bin/bash
+# force to use bash from homebrew on mac
+if command -v brew >/dev/null && [[ "$(uname)" == "Darwin" && "$BASH" != "$(brew --prefix)/bin/bash" && -x "$(brew --prefix)/bin/bash" ]]; then
+  exec "$(brew --prefix)/bin/bash" "$0" "$@"
+fi
 
 set -euo pipefail
 
@@ -12,14 +16,15 @@ EXTENSIONS=(
   ms-kubernetes-tools.vscode-kubernetes-tools
   redhat.ansible
   redhat.vscode-yaml
+  reduckted.vscode-gitweblinks
   shardulm94.trailing-spaces
   signageos.signageos-vscode-sops
   timonwong.shellcheck
-  ziyasal.vscode-open-in-github
 )
 
 REMOVE_EXTENSIONS=(
   eamodio.gitlens
+  ziyasal.vscode-open-in-github
 )
 
 getExtensionsToInstall() {

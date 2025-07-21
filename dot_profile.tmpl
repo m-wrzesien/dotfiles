@@ -1,4 +1,4 @@
-{{ if eq .chezmoi.osRelease.name "Arch Linux" -}}
+{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.name "Arch Linux") -}}
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 {{ end -}}
 
@@ -7,10 +7,12 @@ export XDG_CONFIG_HOME="{{ .chezmoi.homeDir }}/.config"
 export XDG_DATA_HOME="{{ .chezmoi.homeDir }}/.local/share"
 export XDG_STATE_HOME="{{ .chezmoi.homeDir }}/.local/state"
 
-export BROWSER=/usr/bin/firefox
-{{- if eq .type "work" }}
-export EDITOR="/home/linuxbrew/.linuxbrew/bin/hx"
+{{- if eq .chezmoi.os "darwin" }}
+export BROWSER="open -a Firefox"
+export EDITOR="$(brew --prefix)/bin/hx"
+export SHELL="$(brew --prefix)/bin/bash"
 {{- else }}
+export BROWSER=/usr/bin/firefox
 export EDITOR=/usr/bin/hx
 {{- end }}
 export SUDO_EDITOR="$EDITOR"
@@ -56,5 +58,10 @@ export FZF_DEFAULT_OPTS="--walker-skip dosdevices"
 export PATH="${HOME}/.local/bin:${PATH}:${GOPATH}/bin"
 
 {{- if eq .type "work" }}
-export PATH="${PATH}:${XDG_STATE_HOME}/npm-global/bin"
+export NVM_DIR="${XDG_DATA_HOME}/nvm"
+export NODE_VERSIONS="${NVM_DIR}/versions/node"
+export NODE_VERSION_PREFIX="v"
+export PNPM_HOME="${XDG_DATA_HOME}/pnpm"
+
+export PATH="${PNPM_HOME}:${PATH}"
 {{- end }}
