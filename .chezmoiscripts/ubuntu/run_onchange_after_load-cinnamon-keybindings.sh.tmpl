@@ -1,8 +1,0 @@
-#!/bin/bash
-
-set -euo pipefail
-
-# Forces reload of keybindings on file change
-# custom-keybindings-gnome.dconf hash: {{ include "custom-keybindings-gnome.dconf" | sha256sum }}
-
-dconf load /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ < {{ joinPath .chezmoi.sourceDir "custom-keybindings-gnome.dconf" | quote }}

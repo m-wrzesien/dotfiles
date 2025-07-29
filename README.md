@@ -12,9 +12,3 @@
     ```
 
 ## TODO
-
-* Add instalation of following to ubuntu
-* * gopls
-* * vscode-css-languageservice
-* * vscode-html-languageservice
-

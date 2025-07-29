@@ -10,10 +10,6 @@
 .local/bin/ssh-askpass
 {{ end }}
 
-{{ if or (ne .chezmoi.os "linux") (ne .chezmoi.osRelease.name "Ubuntu") }}
-.chezmoiscripts/ubuntu/**
-{{ end }}
-
 {{ if ne .type "private" }}
 .config/git/config_gh_private
 .ssh/private_ed25519.pub
