@@ -59,6 +59,7 @@ PACKAGES=(
   libxml2-legacy
   man-db
   man-pages
+  marksman-bin
   meld
   minikube
   ncdu
@@ -67,6 +68,8 @@ PACKAGES=(
   nodejs-compose-language-service
   # font used by desktop apps (like cinnamon and firefox)
   noto-fonts
+  # enabled emojis in terminal
+  noto-fonts-emoji
   packer
   pacman-cleanup-hook
   # provide pdf preview for yazi
@@ -130,7 +133,6 @@ REMOVE_PACKAGES=(
   highlight
   google-cloud-cli
   mediainfo
-  noto-fonts-emoji
   ranger
   w3m
 )

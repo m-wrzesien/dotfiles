@@ -5,6 +5,8 @@
 {{ end }}
 {{ if or (ne .chezmoi.os "linux") (ne .chezmoi.osRelease.name "Arch Linux") }}
 .chezmoiscripts/arch/**
+# flameshot is only installed on Arch
+.config/flameshot
 # Only arch uses ssh-agent enabled by systemd and custom ssh-askpass
 .config/systemd/user/ssh-agent.service
 .local/bin/ssh-askpass
