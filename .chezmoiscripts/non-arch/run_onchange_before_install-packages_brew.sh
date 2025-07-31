@@ -27,6 +27,7 @@ PACKAGES=(
   jq
   keepassxc
   kitty
+  marksman
   ncdu
   # required for lang servers
   node
