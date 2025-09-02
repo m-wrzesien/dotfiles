@@ -31,6 +31,7 @@ if [ -f /opt/homebrew/bin/brew ]; then
     [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 
     [ -s "$HOMEBREW_PREFIX/bin/direnv" ] && eval "$(direnv hook bash)"
+    [ -s "$HOMEBREW_PREFIX/bin/mise" ] && eval "$(mise activate bash)"
 fi
 
 sourceAliases() {

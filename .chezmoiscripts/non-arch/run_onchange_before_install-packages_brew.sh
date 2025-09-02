@@ -28,6 +28,7 @@ PACKAGES=(
   keepassxc
   kitty
   marksman
+  mise
   ncdu
   # required for lang servers
   node
