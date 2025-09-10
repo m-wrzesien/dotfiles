@@ -6,7 +6,7 @@ fi
 
 set -euo pipefail
 
-declare -A ADDONS REMOVE_ADDONS
+declare -A ADDONS REMOVE_ADDONS WORK_ADDONS
 
 # Key is addons slug and value is GUID
 # https://addons-server.readthedocs.io/en/latest/topics/api/addons.html#detail
@@ -29,7 +29,18 @@ REMOVE_ADDONS=(
   ["modify-header-value"]="jid0-oEwF5ZcskGhjFv4Kk4lYc@jetpack"
 )
 
+WORK_ADDONS=(
+  ["granted"]="{b5e0e8de-ebfe-4306-9528-bcc18241a490}"
+)
+
 EXTENSIONS_DIR=".config/firefox/profiles/default-release/extensions"
+TYPE="$(chezmoi data | jq .type -r)"
+
+if [ "$TYPE" = "work" ]; then
+  for name in "${!WORK_ADDONS[@]}"; do
+    ADDONS["$name"]+="${WORK_ADDONS[$name]}"
+  done
+fi
 
 getAddonsToInstall() {
   local notInstalled=()
@@ -60,6 +71,7 @@ install() {
   fi
   echo "Following addons will be installed: $*"
   for name in "$@"; do
+    echo "Installing addon $name"
     fileURL=$(curl -s "https://addons.mozilla.org/api/v5/addons/addon/$name/" | jq -r .current_version.file.url)
     curl -s -o "$EXTENSIONS_DIR/${ADDONS[$name]}.xpi" "$fileURL"
     echo "Addon \"$name\" installed"
