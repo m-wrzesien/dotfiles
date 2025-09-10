@@ -39,6 +39,7 @@ PACKAGES=(
   terraform-ls
   vscode-langservers-extracted
   vscodium
+  watch
   yaml-language-server
   yazi
 )
