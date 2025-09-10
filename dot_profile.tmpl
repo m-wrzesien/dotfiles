@@ -58,6 +58,7 @@ export FZF_DEFAULT_OPTS="--walker-skip dosdevices"
 export PATH="${HOME}/.local/bin:${PATH}:${GOPATH}/bin"
 
 {{- if eq .type "work" }}
+export GRANTED_ALIAS_CONFIGURED="true"
 export NVM_DIR="${XDG_DATA_HOME}/nvm"
 export NODE_VERSIONS="${NVM_DIR}/versions/node"
 export NODE_VERSION_PREFIX="v"

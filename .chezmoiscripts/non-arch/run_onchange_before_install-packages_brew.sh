@@ -21,6 +21,7 @@ PACKAGES=(
   go
   golangci-lint
   golangci-lint-langserver
+  granted
   helix
   helm-ls
   htop
@@ -47,6 +48,10 @@ PACKAGES=(
 REMOVE_PACKAGES=(
 )
 
+REPOS=(
+  common-fate/granted
+)
+
 cdOrFail() {
   cd "$1" || echo "Can't cd. $1 not found"
 }
@@ -69,6 +74,16 @@ getPackagesToRemove() {
     fi
   done
   echo "${output[@]}"
+}
+
+enableRepo() {
+  for repo in "${REPOS[@]}"; do
+    if brew tap | grep "$repo" &>/dev/null; then
+      continue
+    fi
+    echo "Enabling $repo"
+    brew tap "$repo"
+  done
 }
 
 install() {
@@ -153,6 +168,8 @@ postInstallActions() {
 installBrew
 
 installBash
+
+enableRepo
 
 # Chech what packages needs to be removed and put them in to array
 IFS=" " read -r -a toRemove <<<"$(getPackagesToRemove)"

@@ -1,4 +1,7 @@
-{{- template "bash_aliases" . -}}
-{{ if eq .type "private" }}
-{{- template "bash_aliases_private" . -}}
-{{- end }}
+{{- template "bash_aliases.sh" . -}}
+{{- if eq .type "private" -}}
+{{- template "bash_aliases_private.sh" . -}}
+{{- end -}}
+{{- if eq .type "work" -}}
+{{- template "bash_aliases_work.sh" . -}}
+{{- end -}}
