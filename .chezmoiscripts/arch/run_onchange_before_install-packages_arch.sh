@@ -22,6 +22,7 @@ PACKAGES=(
   bash-completion
   bash-language-server
   bind-tools
+  bolt
   chezmoi
   chromium
   cilium-cli
