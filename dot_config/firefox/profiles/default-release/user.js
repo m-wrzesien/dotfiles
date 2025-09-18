@@ -196,3 +196,6 @@ user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false); // [FF92+]
 user_pref("browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts", false);
 user_pref("browser.newtabpage.activity-stream.showSponsored", false);
 user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false);
+
+// Disable AI chat ui
+user_pref("browser.ml.chat.enabled", false);
