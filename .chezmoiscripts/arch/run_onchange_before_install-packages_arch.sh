@@ -142,8 +142,8 @@ REPOS=(
   multilib
 )
 
-# Version 1.14.1-1
-MAPTOOL_COMMIT="227f028defeaf7c9a2c541b35089228bd128ba06"
+# Version 1.17.1-1
+MAPTOOL_COMMIT="6ea7a3b67c8a055098a1a5137a14d4e2a37cd449"
 MAPTOOL_PKG="maptool-bin"
 MAPTOOL_URL="https://aur.archlinux.org/maptool-bin.git"
 
