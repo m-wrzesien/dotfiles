@@ -60,7 +60,7 @@ PACKAGES=(
   libxml2-legacy
   man-db
   man-pages
-  marksman-bin
+  marksman
   meld
   minikube
   ncdu
@@ -133,6 +133,7 @@ REMOVE_PACKAGES=(
   golangci-lint-bin-debug
   highlight
   google-cloud-cli
+  marksman-bin
   mediainfo
   ranger
   w3m
