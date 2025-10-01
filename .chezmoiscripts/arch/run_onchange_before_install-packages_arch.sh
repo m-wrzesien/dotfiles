@@ -87,6 +87,7 @@ PACKAGES=(
   shellcheck-bin
   shfmt
   signal-desktop
+  smartmontools
   sops
   starship
   syncthing
