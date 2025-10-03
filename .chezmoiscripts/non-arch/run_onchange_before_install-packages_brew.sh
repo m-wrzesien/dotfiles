@@ -26,6 +26,7 @@ PACKAGES=(
   helm-ls
   htop
   jq
+  karabiner-elements
   keepassxc
   kitty
   marksman
@@ -151,10 +152,13 @@ installBash() {
 postInstallActions() {
   for package in "$@"; do
     case $package in
-    vscodium)
+    "karabiner-elements")
+      echo "Open Karabiner and allow all neded permissions + write 'System default configuration' in 'Misc' section of settings!"
+      ;;
+    "vscodium")
       sudo ln -s "$(brew --prefix)/bin/codium" /usr/local/bin/code
       ;;
-    yazi)
+    "yazi")
       # install all yazi packages (like flavors)
       ya pkg install
       ;;

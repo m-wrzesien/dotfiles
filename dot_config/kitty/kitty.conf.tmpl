@@ -24,6 +24,7 @@ listen_on unix:/tmp/kitty-{kitty_pid}.sock
 # force brew bash in shell instead of zsh
 shell /opt/homebrew/bin/bash --login
 # required for readline terminal keybindings to work (like Alt + ←/→), but with Option instead of Alt
+# this is required even when karabiner is used
 macos_option_as_alt left
 macos_quit_when_last_window_closed yes
 

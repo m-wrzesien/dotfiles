@@ -34,6 +34,8 @@
 {{ end }}
 
 {{ if ne .chezmoi.os "darwin" }}
+# macos specific app for making shortcuts behave as in other ecosystems
+.config/karabiner
 .inputrc
 Library
 {{ end }}
