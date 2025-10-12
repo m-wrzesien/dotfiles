@@ -97,6 +97,7 @@ PACKAGES=(
   tang
   # for toml lsp
   taplo
+  termux-language-server
   terraform
   terraform-ls-bin
   terragrunt
