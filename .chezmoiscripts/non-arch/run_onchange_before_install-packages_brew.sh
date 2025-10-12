@@ -33,6 +33,8 @@ PACKAGES=(
   ncdu
   # required for lang servers
   node
+  # provide pdf preview for yazi
+  poppler
   qrencode
   shellcheck
   shfmt
