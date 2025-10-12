@@ -13,6 +13,15 @@ JSONNET_LANGUAGE_SERVER_CHECKSUM="8b6e642374d3004c3ac35254874ed1d14203a85c979f66
 JSONNET_LANGUAGE_SERVER_VERSION="0.16.0"
 JSONNET_LANGUAGE_SERVER_BINARY="jsonnet-language-server"
 
+MPLS_CHECKSUM="c70296a4ac92a4af3c1bf1a91bd3e03a027790703ea7df96cd221c3938d4b23b"
+MPLS_VERSION="0.15.4"
+MPLS_BINARY="mpls"
+MPLS_ARCHIVE_PATH="/tmp/mpls.tar.gz"
+
 curl -L "https://github.com/grafana/jsonnet-language-server/releases/download/v${JSONNET_LANGUAGE_SERVER_VERSION}/jsonnet-language-server_${JSONNET_LANGUAGE_SERVER_VERSION}_darwin_arm64" --output "${HOME}/.local/bin/${JSONNET_LANGUAGE_SERVER_BINARY}"
 echo "${JSONNET_LANGUAGE_SERVER_CHECKSUM} ${HOME}/.local/bin/${JSONNET_LANGUAGE_SERVER_BINARY}" | sha256sum --check --status
 chmod +x "${HOME}/.local/bin/${JSONNET_LANGUAGE_SERVER_BINARY}"
+
+curl -L "https://github.com/mhersson/mpls/releases/download/v${MPLS_VERSION}/mpls_${MPLS_VERSION}_darwin_arm64.tar.gz" --output "${MPLS_ARCHIVE_PATH}"
+echo "${MPLS_CHECKSUM} ${MPLS_ARCHIVE_PATH}" | sha256sum --check --status
+tar -C "${HOME}/.local/bin" -xzf "${MPLS_ARCHIVE_PATH}" "${MPLS_BINARY}"

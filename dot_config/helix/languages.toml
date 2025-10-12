@@ -12,6 +12,15 @@ name = "jsonnet"
 auto-format = true
 
 [[language]]
+auto-format = true
+language-servers = ["marksman", "mpls"]
+name = "markdown"
+
+[language-server.mpls]
+command = "mpls"
+args = ["--dark-mode", "--enable-emoji"]
+
+[[language]]
 name = "yaml"
 auto-format = true
 formatter = { command = "yamlfmt", args = ["-"] }
