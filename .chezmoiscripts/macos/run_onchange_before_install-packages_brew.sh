@@ -7,6 +7,7 @@ fi
 set -euo pipefail
 
 PACKAGES=(
+  alt-tab
   # completion for bash installed via brew
   bash-completion@2
   bash-language-server
@@ -26,6 +27,7 @@ PACKAGES=(
   helm-ls
   htop
   jq
+  karabiner-elements
   keepassxc
   kitty
   marksman
@@ -35,6 +37,7 @@ PACKAGES=(
   node
   # provide pdf preview for yazi
   poppler
+  rectangle
   qrencode
   shellcheck
   shfmt
@@ -153,10 +156,16 @@ installBash() {
 postInstallActions() {
   for package in "$@"; do
     case $package in
-    vscodium)
+    "alt-tab")
+      echo "Open alt-tab and allow all neded permissions!"
+      ;;
+    "karabiner-elements")
+      echo "Open Karabiner and allow all neded permissions + write 'System default configuration' in 'Misc' section of settings!"
+      ;;
+    "vscodium")
       sudo ln -s "$(brew --prefix)/bin/codium" /usr/local/bin/code
       ;;
-    yazi)
+    "yazi")
       # install all yazi packages (like flavors)
       ya pkg install
       ;;

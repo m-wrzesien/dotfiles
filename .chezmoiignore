@@ -28,12 +28,10 @@
 .chezmoiscripts/arch/update-desktop-database.sh
 {{ end }}
 
-
-{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.name "Arch Linux") }}
-.chezmoiscripts/non-arch/**
-{{ end }}
-
 {{ if ne .chezmoi.os "darwin" }}
+.chezmoiscripts/macos/**
+# macos specific app for making shortcuts behave as in other ecosystems
+.config/karabiner
 .inputrc
 Library
 {{ end }}
