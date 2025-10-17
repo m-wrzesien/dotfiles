@@ -22,6 +22,7 @@ PACKAGES=(
   go
   golangci-lint
   golangci-lint-langserver
+  gopls
   granted
   helix
   helm-ls
