@@ -48,6 +48,7 @@ PACKAGES=(
   vscodium
   watch
   yaml-language-server
+  yamlfmt
   yazi
 )
 
