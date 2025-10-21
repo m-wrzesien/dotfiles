@@ -20,6 +20,10 @@ name = "markdown"
 command = "mpls"
 args = ["--dark-mode", "--enable-emoji"]
 
+[language-server.yaml-language-server.config.yaml]
+# we use yamlfmt ot nothing at all
+format = { enable = false }
+
 [[language]]
 name = "yaml"
 auto-format = true
