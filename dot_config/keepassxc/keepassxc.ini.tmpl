@@ -4,6 +4,7 @@ GlobalAutoTypeKey=0
 GlobalAutoTypeModifiers=0
 HideWindowOnCopy=false
 MinimizeOnCopy=true
+UpdateCheckMessageShown=true
 
 [Browser]
 CustomProxyLocation=
@@ -14,6 +15,7 @@ Enabled=false
 
 [GUI]
 ApplicationTheme=dark
+CheckForUpdates=false
 HidePasswords=true
 HideUsernames=false
 TrayIconAppearance=monochrome-light
@@ -34,8 +36,10 @@ Math=false
 SpecialChars=false
 UpperCase=true
 
+{{ if eq .type "private" -}}
 [SSHAgent]
 Enabled=true
+{{- end }}
 
 [Security]
 AutotypeAsk=false
