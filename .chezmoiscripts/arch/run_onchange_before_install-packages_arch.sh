@@ -63,7 +63,7 @@ PACKAGES=(
   marksman
   meld
   minikube
-  mpls
+  mpls-bin
   ncdu
   neofetch
   nmap
