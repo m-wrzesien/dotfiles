@@ -58,6 +58,8 @@ PACKAGES=(
   libreoffice-still
   # fixes problem with missing libxml2.so.2 for gnome-calculator-gtk3
   libxml2-legacy
+  lxdm
+  lxdm-themes
   man-db
   man-pages
   marksman
@@ -112,7 +114,6 @@ PACKAGES=(
   vscode-json-languageserver
   vscodium-bin
   webcord-bin
-  web-greeter
   whois
   wireguard-tools
   wireshark-qt
@@ -135,11 +136,14 @@ REMOVE_PACKAGES=(
   golangci-lint-bin
   golangci-lint-bin-debug
   highlight
+  lightdm
+  lightdm-gtk-greeter
   google-cloud-cli
   marksman-bin
   mediainfo
   ranger
   w3m
+  web-greeter
 )
 
 REPOS=(
@@ -318,6 +322,14 @@ postInstallActions() {
     helm-diff)
       helm plugin install /usr/lib/helm/plugins/diff
       ;;
+    lxdm)
+      sudo sed -i 's|# session=/usr/bin/startlxde|session=/usr/bin/cinnamon-session|' /etc/lxdm/lxdm.conf
+      sudo systemctl enable lxdm.service
+      ;;
+    lxdm-themes)
+      sudo sed -i 's|gtk_theme=.*|# gtk_theme=disabled|' /etc/lxdm/lxdm.conf
+      sudo sed -i 's|theme=.*|theme=ArchlinuxFull|' /etc/lxdm/lxdm.conf
+      ;;
     maptool-bin)
       # Exclude maptool-bin for pacman/yay, as we upgrade it manually
       grep "IgnorePkg   = maptool-bin" "$PACMAN_CONF" >/dev/null || sudo sed -i 's|#IgnorePkg   =|###START ADDED BY CHEZMOI###\nIgnorePkg   = maptool-bin\n###STOP ADDED BY CHEZMOI###|' "$PACMAN_CONF"
@@ -341,9 +353,6 @@ postInstallActions() {
     vscodium-bin)
       sudo ln -s /usr/bin/codium /usr/local/bin/code
       ;;
-    web-greeter)
-      sudo sed -i 's|#greeter-session=.*|greeter-session=web-greeter|' /etc/lightdm/lightdm.conf
-      ;;
     yaycache-hook)
       # add configuration to yaycache-hook
       # without `cache_dirs` it will try to remove yay cache from root,
@@ -365,7 +374,20 @@ postInstallActions() {
       addToGrp wireshark
       ;;
     *)
-      echo "No action for $package"
+      echo "No postInstall action for $package"
+      ;;
+    esac
+  done
+}
+
+postRemoveActions() {
+  for package in "$@"; do
+    case $package in
+    lightdm)
+      sudo rm -rf /etc/lightdm
+      ;;
+    *)
+      echo "No postRemove action for $package"
       ;;
     esac
   done
@@ -381,6 +403,8 @@ enableRepo
 IFS=" " read -r -a toRemove <<<"$(getPackagesToRemove)"
 
 remove "${toRemove[@]}"
+
+postRemoveActions "${toRemove[@]}"
 
 # Chech what packages needs to be installed and put them in to array
 IFS=" " read -r -a toInstall <<<"$(getPackagesToInstall)"
