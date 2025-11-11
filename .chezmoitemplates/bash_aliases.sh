@@ -17,7 +17,7 @@ _fzf_compgen_path() {
 	echo "$1"
 	command find "$1" \
 		-name .git -prune -o -name .hg -prune -o -name .svn -prune -o \( -type d -o -type f -o -type l \) \
-		-a -not -path "$1" -print 2> /dev/null | command sed 's@^\./@@'
+		-a -not -path "$1" -print 2>/dev/null | command sed 's@^\./@@'
 }
 
 alias drop-history-from-current-shell='unset HISTFILE'
@@ -27,7 +27,7 @@ alias ls='ls --color=auto'
 alias qrencode='qrencode -t ansiutf8'
 alias serve-http='_serve-http'
 # required, so we don't have to install kitty-terminfo on every host we visit
-[[ "$TERM" == "xterm-kitty" ]] && alias ssh="TERM=xterm-256color ssh" 
+[[ "$TERM" == "xterm-kitty" ]] && alias ssh="TERM=xterm-256color ssh"
 alias vi='vim'
 
 # load kubectl completions

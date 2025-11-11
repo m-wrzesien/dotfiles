@@ -323,20 +323,20 @@ postInstallActions() {
       helm plugin install /usr/lib/helm/plugins/diff
       ;;
     lxdm)
-      sudo sed -i 's|# session=/usr/bin/startlxde|session=/usr/bin/cinnamon-session|' /etc/lxdm/lxdm.conf
+      sudo sed -i 's|^# session=/usr/bin/startlxde|session=/usr/bin/cinnamon-session|' /etc/lxdm/lxdm.conf
       sudo systemctl enable lxdm.service
       ;;
     lxdm-themes)
-      sudo sed -i 's|gtk_theme=.*|# gtk_theme=disabled|' /etc/lxdm/lxdm.conf
-      sudo sed -i 's|theme=.*|theme=ArchlinuxFull|' /etc/lxdm/lxdm.conf
+      sudo sed -i 's|^gtk_theme=.*|# gtk_theme=disabled|' /etc/lxdm/lxdm.conf
+      sudo sed -i 's|^theme=.*|theme=ArchlinuxFull|' /etc/lxdm/lxdm.conf
       ;;
     maptool-bin)
       # Exclude maptool-bin for pacman/yay, as we upgrade it manually
-      grep "IgnorePkg   = maptool-bin" "$PACMAN_CONF" >/dev/null || sudo sed -i 's|#IgnorePkg   =|###START ADDED BY CHEZMOI###\nIgnorePkg   = maptool-bin\n###STOP ADDED BY CHEZMOI###|' "$PACMAN_CONF"
+      grep "IgnorePkg   = maptool-bin" "$PACMAN_CONF" >/dev/null || sudo sed -i 's|^#IgnorePkg   =|###START ADDED BY CHEZMOI###\nIgnorePkg   = maptool-bin\n###STOP ADDED BY CHEZMOI###|' "$PACMAN_CONF"
       ;;
     steam)
       echo "Patching steam application shortcut to use wrapper"
-      sudo sed -i 's|Exec=/usr/bin/steam-runtime|Exec=steam|' /usr/share/applications/steam.desktop
+      sudo sed -i 's|^Exec=/usr/bin/steam-runtime|Exec=steam|' /usr/share/applications/steam.desktop
       echo "Rembember to install OpenGL for multilib!!!"
       echo "https://wiki.archlinux.org/title/Xorg#Driver_installation"
       ;;
@@ -357,9 +357,9 @@ postInstallActions() {
       # add configuration to yaycache-hook
       # without `cache_dirs` it will try to remove yay cache from root,
       # while it is stored at our user at $XDG_CACHE_HOME/yay/
-      sudo sed -i 's/extra_args=.*/extra_args="-v --remove-build-files"/' /etc/yaycache-hook.conf
-      sudo sed -i "s|cache_dirs=.*|cache_dirs=(\"$XDG_CACHE_HOME/yay/*/\")|" /etc/yaycache-hook.conf
-      sudo sed -i 's/uninstalled_keep=.*/uninstalled_keep=0/' /etc/yaycache-hook.conf
+      sudo sed -i 's|extra_args=.*|extra_args="-v --remove-build-files"|' /etc/yaycache-hook.conf
+      sudo sed -i "s|^cache_dirs=.*|cache_dirs=(\"$XDG_CACHE_HOME/yay/*/\")|" /etc/yaycache-hook.conf
+      sudo sed -i 's|^uninstalled_keep=.*|uninstalled_keep=0|' /etc/yaycache-hook.conf
       ;;
     yazi)
       # install all yazi packages (like flavors)
