@@ -47,6 +47,7 @@ PACKAGES=(
   helm-ls-bin
   hydrapaper-no-pandoc-git
   imagemagick
+  iperf3
   jq
   k9s
   keepassxc
