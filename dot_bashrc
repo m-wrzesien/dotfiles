@@ -6,7 +6,7 @@
 
 # don't put lines starting with space and duplicate lines in the history.
 # See bash(1) for more options
-HISTCONTROL=ignoreboth:erasedups
+HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -17,6 +17,8 @@ HISTTIMEFORMAT="%F %T: "
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=100000
 HISTFILESIZE=100000
+
+HISTIGNORE="clear:history:exit:date:* --help"
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
