@@ -2593,6 +2593,7 @@
                     },
                     {
                         "description": "PC-Style Back/Forward (Alt+Left Arrow/Alt+Right Arrow)",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
