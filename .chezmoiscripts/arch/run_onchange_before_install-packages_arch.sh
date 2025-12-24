@@ -23,6 +23,7 @@ PACKAGES=(
   bash-language-server
   bind-tools
   bolt
+  caffeine
   chezmoi
   chromium
   cilium-cli
@@ -110,6 +111,7 @@ PACKAGES=(
   ttf-nerd-fonts-symbols
   ttf-nerd-fonts-symbols-common
   vlc
+  vlc-plugin-ffmpeg
   vscode-css-languageserver
   vscode-html-languageserver
   vscode-json-languageserver
