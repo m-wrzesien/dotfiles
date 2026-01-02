@@ -27,6 +27,10 @@ enable = true
 [editor.statusline]
 right = ["diagnostics", "selections", "register", "position","position-percentage", "file-encoding"]
 
+[keys.normal."space"]
+# start mpls based preview for markdown file
+m = ":lsp-workspace-command open-preview"
+
 # create a new minor mode bound to `+`
 [keys.normal."+"]
 e = [":w", ":run-shell-command sops-wrapper encrypt '%{buffer_name}'"]
