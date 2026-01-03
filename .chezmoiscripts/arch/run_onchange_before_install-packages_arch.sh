@@ -132,22 +132,7 @@ PACKAGES=(
 )
 
 REMOVE_PACKAGES=(
-  atool
-  dockerfile-language-server-bin
-  gbt
-  gnome-screenshot
-  golangci-lint-bin
-  golangci-lint-bin-debug
-  highlight
-  lightdm
-  lightdm-gtk-greeter
-  google-cloud-cli
-  marksman-bin
-  mediainfo
   neofetch
-  ranger
-  w3m
-  web-greeter
 )
 
 REPOS=(
@@ -387,9 +372,6 @@ postInstallActions() {
 postRemoveActions() {
   for package in "$@"; do
     case $package in
-    lightdm)
-      sudo rm -rf /etc/lightdm
-      ;;
     *)
       echo "No postRemove action for $package"
       ;;
