@@ -15,6 +15,7 @@ PACKAGES=(
   coreutils
   dockerfile-language-server
   entr
+  fastfetch
   firefox
   font-hack-nerd-font
   fzf

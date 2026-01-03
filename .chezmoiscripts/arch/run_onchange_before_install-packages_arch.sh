@@ -32,6 +32,7 @@ PACKAGES=(
   docker-compose
   dockerfile-language-server
   entr
+  fastfetch
   firefox
   flameshot
   fzf
@@ -69,7 +70,6 @@ PACKAGES=(
   minikube
   mpls-bin
   ncdu
-  neofetch
   nmap
   nodejs-compose-language-service
   # font used by desktop apps (like cinnamon and firefox)
@@ -144,6 +144,7 @@ REMOVE_PACKAGES=(
   google-cloud-cli
   marksman-bin
   mediainfo
+  neofetch
   ranger
   w3m
   web-greeter
