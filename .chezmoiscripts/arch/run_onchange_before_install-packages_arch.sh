@@ -27,6 +27,7 @@ PACKAGES=(
   chezmoi
   chromium
   cilium-cli
+  cinnamon
   docker
   docker-buildx
   docker-compose
