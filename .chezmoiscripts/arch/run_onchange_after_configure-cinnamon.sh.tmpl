@@ -1,0 +1,43 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# Forces reload of keybindings on file change
+# keybindings-cinnamon.dconf hash: {{ include "keybindings-cinnamon.dconf" | sha256sum }}
+
+if [[ -z "${CHEZMOI_WORKING_TREE}" ]]; then
+  echo "CHEZMOI_WORKING_TREE is empty. Exiting"
+  exit 1
+fi
+
+KEYBINDINGS_FILE="${CHEZMOI_WORKING_TREE}/keybindings-cinnamon.dconf"
+
+if ! [ -f "${KEYBINDINGS_FILE}" ]; then
+  echo "Keybindings file missing. Exiting"
+  exit 1
+fi
+
+dconf load /org/cinnamon/desktop/keybindings/ <"${KEYBINDINGS_FILE}"
+
+# enable lock-on-suspend on cinnamon
+gsettings set org.cinnamon.settings-daemon.plugins.power lock-on-suspend true
+
+THEME_NAME="Adapta-Nokto"
+
+if ! [ -d "$HOME/.themes/$THEME_NAME" ]; then
+  echo "Download '$THEME_NAME' theme..."
+  echo "Close window, after this is done"
+  cinnamon-settings -t download themes
+fi
+
+# configure theme
+gsettings set org.cinnamon.desktop.interface cursor-theme 'Adwaita'
+gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
+
+gsettings set org.cinnamon.desktop.interface gtk-theme "$THEME_NAME"
+gsettings set org.gnome.desktop.interface gtk-theme "$THEME_NAME"
+
+gsettings set org.cinnamon.desktop.interface icon-theme 'breeze-dark'
+gsettings set org.gnome.desktop.interface icon-theme 'breeze-dark'
+
+gsettings set org.cinnamon.theme name 'cinnamon'
