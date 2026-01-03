@@ -17,7 +17,6 @@ ADDONS=(
   ["cookie-autodelete"]="CookieAutoDelete@kennydo.com"
   ["darkreader"]="addon@darkreader.org"
   ["decentraleyes"]="jid1-BoFifL9Vbdl2zQ@jetpack"
-  ["edithiscookie"]="{62c00091-53f5-42d0-a4d0-9e69fc3d5819}"
   ["elasticvue"]="{2879bc11-6e9e-4d73-82c9-1ed8b78df296}"
   ["keepassxc-browser"]="keepassxc-browser@keepassxc.org"
   ["multi-account-containers"]="@testpilot-containers"
@@ -26,6 +25,7 @@ ADDONS=(
 )
 
 REMOVE_ADDONS=(
+  ["edithiscookie"]="{62c00091-53f5-42d0-a4d0-9e69fc3d5819}"
   ["modify-header-value"]="jid0-oEwF5ZcskGhjFv4Kk4lYc@jetpack"
 )
 
