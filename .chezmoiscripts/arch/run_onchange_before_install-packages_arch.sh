@@ -111,6 +111,7 @@ PACKAGES=(
   ttf-hack-nerd
   ttf-nerd-fonts-symbols
   ttf-nerd-fonts-symbols-common
+  usbutils
   vlc
   vlc-plugin-ffmpeg
   vscode-css-languageserver
