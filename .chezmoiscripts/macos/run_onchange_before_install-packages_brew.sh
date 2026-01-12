@@ -33,6 +33,7 @@ PACKAGES=(
   keepassxc
   kitty
   marksman
+  meld
   mise
   ncdu
   # required for lang servers
