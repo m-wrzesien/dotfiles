@@ -6,11 +6,15 @@
     "userSettings": [
       [
         "externalLists",
-        "https://www.i-dont-care-about-cookies.eu/abp/"
+        "https://www.i-dont-care-about-cookies.eu/abp/",
+        "https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/adblock_social_filters/adblock_social_list.txt",
+        "https://raw.githubusercontent.com/FiltersHeroes/PolishAnnoyanceFilters/master/PPB.txt"
       ],
       [
         "importedLists",
-        "https://www.i-dont-care-about-cookies.eu/abp/"
+        "https://www.i-dont-care-about-cookies.eu/abp/",
+        "https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/adblock_social_filters/adblock_social_list.txt",
+        "https://raw.githubusercontent.com/FiltersHeroes/PolishAnnoyanceFilters/master/PPB.txt"
       ],
       [
         "popupPanelSections",
@@ -26,6 +30,7 @@
         "ublock-quick-fixes",
         "ublock-unbreak",
         "ublock-annoyances",
+        "ublock-experimental",
         "adguard-generic",
         "adguard-mobile",
         "easylist",
@@ -51,7 +56,9 @@
         "ublock-cookies-easylist",
         "POL-0",
         "POL-3",
-        "https://www.i-dont-care-about-cookies.eu/abp/"
+        "https://www.i-dont-care-about-cookies.eu/abp/",
+        "https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/adblock_social_filters/adblock_social_list.txt",
+        "https://raw.githubusercontent.com/FiltersHeroes/PolishAnnoyanceFilters/master/PPB.txt"
       ]
     }
   }
