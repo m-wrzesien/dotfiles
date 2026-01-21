@@ -18,7 +18,7 @@ name = "markdown"
 
 [language-server.mpls]
 command = "mpls"
-args = ["--dark-mode", "--enable-emoji", "--no-auto"]
+args = ["--theme=catppuccin-frappe", "--enable-emoji", "--no-auto"]
 
 [language-server.yaml-language-server.config.yaml]
 # we use yamlfmt ot nothing at all
