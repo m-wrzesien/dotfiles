@@ -16,6 +16,16 @@ auto-format = true
 language-servers = ["marksman", "mpls"]
 name = "markdown"
 
+[language-server.efm]
+command = "efm-langserver"
+
+[[language]]
+name = "dockerfile"
+language-servers = [
+  { name = "efm", only-features = [ "diagnostics" ] },
+  "docker-langserver"
+]
+
 [language-server.mpls]
 command = "mpls"
 args = ["--theme=catppuccin-frappe", "--enable-emoji", "--no-auto"]

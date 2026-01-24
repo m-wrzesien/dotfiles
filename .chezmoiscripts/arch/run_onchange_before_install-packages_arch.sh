@@ -32,6 +32,7 @@ PACKAGES=(
   docker-buildx
   docker-compose
   dockerfile-language-server
+  efm-langserver
   entr
   fastfetch
   firefox
@@ -42,6 +43,7 @@ PACKAGES=(
   golangci-lint
   golangci-lint-langserver-bin
   gopls
+  hadolint-bin
   helix
   # create symlink hx -> helix
   helixbinhx

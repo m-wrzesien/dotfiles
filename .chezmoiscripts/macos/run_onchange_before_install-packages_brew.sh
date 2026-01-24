@@ -14,6 +14,7 @@ PACKAGES=(
   chezmoi
   coreutils
   dockerfile-language-server
+  efm-langserver
   entr
   fastfetch
   firefox
@@ -25,6 +26,7 @@ PACKAGES=(
   golangci-lint-langserver
   gopls
   granted
+  hadolint
   helix
   helm-ls
   htop
