@@ -32,6 +32,7 @@ PACKAGES=(
   docker-buildx
   docker-compose
   dockerfile-language-server
+  dosfstools
   efm-langserver
   entr
   fastfetch
