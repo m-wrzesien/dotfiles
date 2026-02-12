@@ -38,6 +38,7 @@ PACKAGES=(
   fastfetch
   firefox
   flameshot
+  fluffychat-bin
   fzf
   gnome-calculator-gtk3
   go
