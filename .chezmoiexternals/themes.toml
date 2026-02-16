@@ -1,0 +1,9 @@
+[".config/kitty/current-theme.conf"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/catppuccin/kitty/refs/heads/main/themes/frappe.conf"
+  refreshPeriod = "168h"
+
+[".config/kitty/diff-theme.conf"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/catppuccin/kitty/refs/heads/main/themes/diff-frappe.conf"
+  refreshPeriod = "168h"
