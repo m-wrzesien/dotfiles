@@ -21,6 +21,11 @@
         "15"
       ]
     ],
+    "toAdd": {
+      "trustedSiteDirectives": [
+        "wrzesien.me"
+      ]
+    },
     "toOverwrite": {
       "filterLists": [
         "user-filters",
