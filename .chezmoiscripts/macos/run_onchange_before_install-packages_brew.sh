@@ -171,10 +171,6 @@ postInstallActions() {
     "vscodium")
       sudo ln -s "$(brew --prefix)/bin/codium" /usr/local/bin/code
       ;;
-    "yazi")
-      # install all yazi packages (like flavors)
-      ya pkg install
-      ;;
     *)
       echo "No action for $package"
       ;;

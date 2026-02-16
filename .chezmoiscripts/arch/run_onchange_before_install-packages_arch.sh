@@ -356,10 +356,6 @@ postInstallActions() {
       sudo sed -i "s|^cache_dirs=.*|cache_dirs=(\"$XDG_CACHE_HOME/yay/*/\")|" /etc/yaycache-hook.conf
       sudo sed -i 's|^uninstalled_keep=.*|uninstalled_keep=0|' /etc/yaycache-hook.conf
       ;;
-    yazi)
-      # install all yazi packages (like flavors)
-      ya pkg install
-      ;;
     yubikey-manager)
       sudo systemctl enable pcscd.service
       sudo systemctl start pcscd.service
