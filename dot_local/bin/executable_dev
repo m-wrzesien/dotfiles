@@ -31,7 +31,7 @@ helixSecurityCheck() {
   fi
 }
 
-dir=$(realpath "$1")
+dir=$(realpath "${1:-.}")
 projectName=$(basename "$dir")
 cd "$dir" || (echo "Dir doesn't exist" && exit 1)
 
