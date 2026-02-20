@@ -17,6 +17,7 @@ ADDONS=(
   ["cookie-autodelete"]="CookieAutoDelete@kennydo.com"
   ["darkreader"]="addon@darkreader.org"
   ["decentraleyes"]="jid1-BoFifL9Vbdl2zQ@jetpack"
+  ["dotgit"]="{84cbda23-345f-4e74-9695-9a52b9599dc0}"
   ["elasticvue"]="{2879bc11-6e9e-4d73-82c9-1ed8b78df296}"
   ["keepassxc-browser"]="keepassxc-browser@keepassxc.org"
   ["multi-account-containers"]="@testpilot-containers"
