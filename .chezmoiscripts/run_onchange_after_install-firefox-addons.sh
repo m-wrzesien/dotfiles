@@ -26,8 +26,6 @@ ADDONS=(
 )
 
 REMOVE_ADDONS=(
-  ["edithiscookie"]="{62c00091-53f5-42d0-a4d0-9e69fc3d5819}"
-  ["modify-header-value"]="jid0-oEwF5ZcskGhjFv4Kk4lYc@jetpack"
 )
 
 WORK_ADDONS=(
