@@ -21,11 +21,12 @@ ADDONS=(
   ["elasticvue"]="{2879bc11-6e9e-4d73-82c9-1ed8b78df296}"
   ["keepassxc-browser"]="keepassxc-browser@keepassxc.org"
   ["multi-account-containers"]="@testpilot-containers"
-  ["polish-spellchecker-dictionary"]="pl@dictionaries.addons.mozilla.org"
+  ["pl-en-spellchecker"]="pl-en@magnus"
   ["ublock-origin"]="uBlock0@raymondhill.net"
 )
 
 REMOVE_ADDONS=(
+  ["polish-spellchecker-dictionary"]="pl@dictionaries.addons.mozilla.org"
 )
 
 WORK_ADDONS=(
