@@ -161,8 +161,6 @@ user_pref("browser.aboutwelcome.enabled", false);
 
 // Set Toolbar style - can be fetched from `prefs.js` in profile directory
 user_pref("browser.uiCustomization.state", "{\"placements\":{\"widget-overflow-fixed-list\":[],\"unified-extensions-area\":[\"browser-extension_anonaddy-browser-action\",\"jid1-bofifl9vbdl2zq_jetpack-browser-action\",\"_testpilot-containers-browser-action\",\"canvasblocker_kkapsner_de-browser-action\",\"_2879bc11-6e9e-4d73-82c9-1ed8b78df296_-browser-action\"],\"nav-bar\":[\"back-button\",\"forward-button\",\"stop-reload-button\",\"vertical-spacer\",\"customizableui-special-spring1\",\"urlbar-container\",\"customizableui-special-spring2\",\"downloads-button\",\"unified-extensions-button\",\"ublock0_raymondhill_net-browser-action\",\"keepassxc-browser_keepassxc_org-browser-action\",\"cookieautodelete_kennydo_com-browser-action\",\"addon_darkreader_org-browser-action\",\"_c3c10168-4186-445c-9c5b-63f12b8e2c87_-browser-action\",\"reset-pbm-toolbar-button\",\"_84cbda23-345f-4e74-9695-9a52b9599dc0_-browser-action\"],\"toolbar-menubar\":[\"menubar-items\"],\"TabsToolbar\":[\"firefox-view-button\",\"tabbrowser-tabs\",\"new-tab-button\",\"alltabs-button\"],\"vertical-tabs\":[],\"PersonalToolbar\":[\"personal-bookmarks\"]},\"seen\":[\"developer-button\",\"_testpilot-containers-browser-action\",\"jid1-bofifl9vbdl2zq_jetpack-browser-action\",\"browser-extension_anonaddy-browser-action\",\"canvasblocker_kkapsner_de-browser-action\",\"cookieautodelete_kennydo_com-browser-action\",\"addon_darkreader_org-browser-action\",\"ublock0_raymondhill_net-browser-action\",\"_c3c10168-4186-445c-9c5b-63f12b8e2c87_-browser-action\",\"keepassxc-browser_keepassxc_org-browser-action\",\"_2879bc11-6e9e-4d73-82c9-1ed8b78df296_-browser-action\",\"screenshot-button\",\"_84cbda23-345f-4e74-9695-9a52b9599dc0_-browser-action\"],\"dirtyAreaCache\":[\"nav-bar\",\"PersonalToolbar\",\"unified-extensions-area\",\"toolbar-menubar\",\"TabsToolbar\",\"vertical-tabs\"],\"currentVersion\":23,\"newElementCount\":8}");
-// Disable translation for one of the languages
-user_pref("browser.translations.neverTranslateLanguages", "pl");
 
 /*** [SECTION 2800]: SHUTDOWN & SANITIZING ***/
 user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!");
@@ -196,11 +194,16 @@ user_pref("browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcu
 user_pref("browser.newtabpage.activity-stream.showSponsored", false);
 user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false);
 
-// Disable AI and other ML related staff
-user_pref("browser.ml.chat.enabled", false);
-user_pref("browser.ml.chat.shortcuts", false);
+// Disable most of AI/ML related staff
+user_pref("browser.ml.linkPreview.enabled", false);
 user_pref("browser.ml.chat.menu", false);
-user_pref("browser.ml.chat.page", false);
-user_pref("browser.ml.chat.shortcuts.custom", false);
-user_pref("browser.ml.chat.sidebar", false);
-user_pref("browser.ml.enable", false);
+user_pref("browser.ai.control.linkPreviewKeyPoints", "blocked");
+user_pref("browser.ai.control.pdfjsAltText", "blocked");
+user_pref("browser.ai.control.sidebarChatbot", "blocked");
+user_pref("browser.ai.control.smartTabGroups", "blocked");
+
+// Keep translations enabled
+user_pref("browser.ai.control.translations", "available");
+
+// Disable translation for one of the languages
+user_pref("browser.translations.neverTranslateLanguages", "pl");
