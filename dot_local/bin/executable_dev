@@ -38,7 +38,7 @@ cd "$dir" || (echo "Dir doesn't exist" && exit 1)
 kitty @ goto-layout fat
 kitty @ set-window-title "$(basename "$EDITOR"):$projectName"
 
-kitty @ launch --title "terminal:$projectName" --keep-focus --cwd="$(pwd)" --no-response
+kitty @ launch --self --title "terminal:$projectName" --keep-focus --cwd="$(pwd)" --no-response
 kitty @ resize-window --self --axis vertical -i 10
 
 helixSecurityCheck
