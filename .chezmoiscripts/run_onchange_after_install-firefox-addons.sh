@@ -12,7 +12,6 @@ declare -A ADDONS REMOVE_ADDONS WORK_ADDONS
 # https://addons-server.readthedocs.io/en/latest/topics/api/addons.html#detail
 # https://addons.mozilla.org/api/v5/addons/addon/[SLUG]/
 ADDONS=(
-  ["addy_io"]="browser-extension@anonaddy"
   ["canvasblocker"]="CanvasBlocker@kkapsner.de"
   ["cookie-autodelete"]="CookieAutoDelete@kennydo.com"
   ["darkreader"]="addon@darkreader.org"
@@ -26,6 +25,7 @@ ADDONS=(
 )
 
 REMOVE_ADDONS=(
+  ["addy_io"]="browser-extension@anonaddy"
   ["polish-spellchecker-dictionary"]="pl@dictionaries.addons.mozilla.org"
 )
 
@@ -81,9 +81,6 @@ install() {
 postInstallActions() {
   for addon in "$@"; do
     case $addon in
-    addy_io)
-      echo "Remember about logging in using API key"
-      ;;
     cookie-autodelete)
       echo "Remember to set following settings:"
       echo "'Enable Automatic Cleaning'"
