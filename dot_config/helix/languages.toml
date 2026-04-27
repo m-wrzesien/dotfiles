@@ -34,6 +34,11 @@ args = ["--theme=catppuccin-frappe", "--enable-emoji", "--no-auto"]
 # we use yamlfmt ot nothing at all
 format = { enable = false }
 
+# keep new line after format in json files
+# only "keepLines = { enable = true }" is our addition
+[language-server.vscode-json-language-server]
+config = { provideFormatter = true, json = { keepLines = { enable = true }, validate = { enable = true } } }
+
 [[language]]
 name = "yaml"
 auto-format = true
