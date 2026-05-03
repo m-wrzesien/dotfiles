@@ -97,6 +97,7 @@ PACKAGES=(
   shellcheck-bin
   shfmt
   signal-desktop
+  simplescreenrecorder
   smartmontools
   sops
   starship
