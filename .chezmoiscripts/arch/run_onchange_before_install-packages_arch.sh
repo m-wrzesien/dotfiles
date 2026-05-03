@@ -66,6 +66,8 @@ PACKAGES=(
   libreoffice-still
   # fixes problem with missing libxml2.so.2 for gnome-calculator-gtk3
   libxml2-legacy
+  # fixes problem with frontend-tools obs plugin load due to missing libluajit-5.1.so.2
+  luajit
   lxdm
   lxdm-themes
   man-db
@@ -81,6 +83,7 @@ PACKAGES=(
   noto-fonts
   # enabled emojis in terminal
   noto-fonts-emoji
+  obs-studio
   packer
   pacman-cleanup-hook
   # provide pdf preview for yazi
@@ -97,7 +100,6 @@ PACKAGES=(
   shellcheck-bin
   shfmt
   signal-desktop
-  simplescreenrecorder
   smartmontools
   sops
   starship
