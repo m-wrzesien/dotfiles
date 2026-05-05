@@ -7,6 +7,9 @@ echo "Starting script for configuring macos"
 ################################################################################
 
 defaults write com.lwouis.alt-tab-macos showWindowlessApps -int 1
+# hide windows fom non-visible spaces
+# this help with some software that isn't visible by default in Apple app/window switcher
+defaults write com.lwouis.alt-tab-macos spacesToShow -int 1
 
 ################################################################################
 # Rectangle setup
