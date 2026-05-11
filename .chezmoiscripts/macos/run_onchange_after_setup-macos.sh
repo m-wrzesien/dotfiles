@@ -39,7 +39,13 @@ defaults write com.knollsoft.Rectangle topRight {}
 ################################################################################
 
 # Enable key repeat
-defaults write -globaldomain ApplePressAndHoldEnabled -bool false
+defaults write -globalDomain ApplePressAndHoldEnabled -bool false
+# Speed it up
+defaults write -globalDomain InitialKeyRepeat -int 15
+defaults write -globalDomain KeyRepeat -int 2
+
+# Click FN to use function keys (e.g mute audio)
+defaults write -globalDomain com.apple.keyboard.fnState -bool true
 
 # Txt Input > Correct spelling automatically
 defaults write -globalDomain NSAutomaticSpellingCorrectionEnabled -bool false
@@ -51,11 +57,20 @@ defaults write -globalDomain NSAutomaticCapitalizationEnabled -bool false
 defaults write -globalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 
 ################################################################################
-# Finder > Preferences
+# Other
 ################################################################################
+# speedup mouse
+defaults write -globalDomain com.apple.mouse.scaling -float "0.875"
+# disable mouse acceleration
+defaults write -globalDomain com.apple.mouse.linear -bool "true"
 
 # Show all filename extensions
-defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+defaults write -globalDomain AppleShowAllExtensions -bool true
+
+# Autohide dock
+defaults write com.apple.dock autohide -bool true
+
+defaults write com.apple.dock show-recents -bool false
 
 # Kill affected apps
 for app in "Dock" "Finder"; do
