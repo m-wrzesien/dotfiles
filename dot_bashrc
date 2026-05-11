@@ -34,6 +34,7 @@ if [ -f /opt/homebrew/bin/brew ]; then
 
     [ -s "$HOMEBREW_PREFIX/bin/direnv" ] && eval "$(direnv hook bash)"
     [ -s "$HOMEBREW_PREFIX/bin/mise" ] && eval "$(mise activate bash)"
+    [ -s "$HOMEBREW_PREFIX/bin/switcher" ] && source <(switcher init bash)
 fi
 
 sourceAliases() {
