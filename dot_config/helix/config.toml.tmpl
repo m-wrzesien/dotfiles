@@ -6,6 +6,9 @@ bufferline = "always"
 cursorline = true
 completion-trigger-len = 1
 end-of-line-diagnostics = "hint"
+{{- if eq .type "work" }}
+auto-format = false
+{{- end }}
 
 [editor.cursor-shape]
 insert = "bar"

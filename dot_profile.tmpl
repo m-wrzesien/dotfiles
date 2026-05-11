@@ -69,5 +69,5 @@ export NX_TUI="false"
 export PNPM_HOME="${XDG_DATA_HOME}/pnpm"
 
 # force binaries from pnpm + coreutils to appear on path
-export PATH="${PNPM_HOME}:$(brew --prefix)/opt/coreutils/libexec/gnubin:${PATH}"
+export PATH="${PNPM_HOME}:$(brew --prefix)/opt/coreutils/libexec/gnubin:${PATH}:${HOME}/.rd/bin"
 {{- end }}
