@@ -48,6 +48,8 @@ PACKAGES=(
   shfmt
   starship
   terraform-ls
+  # https://github.com/ther0n/UnnaturalScrollWheels
+  unnaturalscrollwheels
   vscode-langservers-extracted
   vscodium
   watch
