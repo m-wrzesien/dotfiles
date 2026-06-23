@@ -13,6 +13,8 @@ PACKAGES=(
   bash-language-server
   chezmoi
   coreutils
+  # load .envrc and similar files
+  direnv
   dockerfile-language-server
   efm-langserver
   entr
@@ -30,10 +32,15 @@ PACKAGES=(
   helix
   helm-ls
   htop
+  # ip and related commands wrapper for mac
+  iproute2mac
   jq
+  k9s
   karabiner-elements
   keepassxc
   kitty
+  kubectx
+  kubernetes-cli
   marksman
   meld
   mise
@@ -62,7 +69,6 @@ REMOVE_PACKAGES=(
 )
 
 REPOS=(
-  common-fate/granted
 )
 
 cdOrFail() {
@@ -169,6 +175,9 @@ postInstallActions() {
       ;;
     "karabiner-elements")
       echo "Open Karabiner and allow all neded permissions + write 'System default configuration' in 'Misc' section of settings!"
+      ;;
+    "unnaturalscrollwheels")
+      echo "Open Unnatural Scroll Wheels app and enable 'Launch at login'!"
       ;;
     "vscodium")
       sudo ln -s "$(brew --prefix)/bin/codium" /usr/local/bin/code

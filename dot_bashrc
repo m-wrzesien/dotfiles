@@ -25,30 +25,30 @@ HISTIGNORE="clear:history:exit:date:* --help"
 shopt -s checkwinsize
 
 # needs to be before other things, as otherwise aliases will have problem with overrides
+# shellcheck source=/dev/null
 if [ -f /opt/homebrew/bin/brew ]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-    [[ -r "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh" ]] && . "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  [[ -r "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh" ]] && . "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
 
-    [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
-    [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+  [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh"                                       # This loads nvm
+  [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 
-    [ -s "$HOMEBREW_PREFIX/bin/direnv" ] && eval "$(direnv hook bash)"
-    [ -s "$HOMEBREW_PREFIX/bin/mise" ] && eval "$(mise activate bash)"
-    [ -s "$HOMEBREW_PREFIX/bin/switcher" ] && source <(switcher init bash)
+  [ -s "$HOMEBREW_PREFIX/bin/direnv" ] && eval "$(direnv hook bash)"
+  [ -s "$HOMEBREW_PREFIX/bin/mise" ] && eval "$(mise activate bash)"
+  [ -s "$HOMEBREW_PREFIX/bin/switcher" ] && source <(switcher init bash)
 fi
 
-sourceAliases() {
-    local file=$1
-    if [ -f "$file" ]; then
+sourceIfExists() {
+  local file=$1
+  if [ -f "$file" ]; then
     # shellcheck source=/dev/null
-        source "$file"
-    fi
+    source "$file"
+  fi
 }
 
-sourceAliases "$HOME/.bash_aliases"
+sourceIfExists "$HOME/.bash_aliases"
 # Aliases that are not part of dotfiles
-sourceAliases "$HOME/.bash_aliases_local"
-
+sourceIfExists "$HOME/.bash_aliases_local"
 
 eval "$(fzf --bash)"
 eval "$(starship init bash)"
