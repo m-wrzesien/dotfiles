@@ -142,7 +142,7 @@ installBrew() {
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
   # workaround for missing brew in PATH
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 }
 
 # mac uses version 3 ...
