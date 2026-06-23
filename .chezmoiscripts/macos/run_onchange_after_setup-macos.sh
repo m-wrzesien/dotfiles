@@ -77,6 +77,15 @@ defaults write com.apple.dock autohide -bool true
 
 defaults write com.apple.dock show-recents -bool false
 
+# show path in finder
+defaults write com.apple.finder "ShowPathbar" -bool true
+
+# hide widgets on desktop
+defaults write com.apple.WindowManager "StandardHideWidgets" -bool true
+
+# disable mouse acceleration also in Unnatural Scroll Wheels app
+defaults write com.theron.UnnaturalScrollWheels "DisableMouseAccel" -bool true
+
 # Kill affected apps
 for app in "Dock" "Finder"; do
   killall "${app}" >/dev/null 2>&1

@@ -65,9 +65,8 @@ export GRANTED_ALIAS_CONFIGURED="true"
 export NVM_DIR="${XDG_DATA_HOME}/nvm"
 export NODE_VERSIONS="${NVM_DIR}/versions/node"
 export NODE_VERSION_PREFIX="v"
-export NX_TUI="false"
-export PNPM_HOME="${XDG_DATA_HOME}/pnpm"
+[[ -f ~/.profile_work ]] && . ~/.profile_work
 
-# force binaries from pnpm + coreutils to appear on path
-export PATH="${PNPM_HOME}:$(brew --prefix)/opt/coreutils/libexec/gnubin:${PATH}:${HOME}/.rd/bin"
+# force binaries from coreutils to appear on path
+export PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:${PATH}:${HOME}/.rd/bin"
 {{- end }}
