@@ -18,5 +18,10 @@ _wg-wrapper-completion() {
 alias start-wg='_wg-wrapper up'
 alias stop-wg='_wg-wrapper down'
 
+# assign cilium cli completion to cilium-cli
+# remove after this is fixed: https://gitlab.archlinux.org/archlinux/packaging/packages/cilium-cli/-/work_items/1
+_completion_loader cilium-cli
+complete -o default -F __start_cilium cilium-cli
+
 # assign wrapper completion to wg aliases
 complete -F _wg-wrapper-completion start-wg stop-wg
