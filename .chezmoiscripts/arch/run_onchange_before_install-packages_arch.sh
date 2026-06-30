@@ -52,6 +52,8 @@ PACKAGES=(
   helm
   helm-diff
   helm-ls-bin
+  # cilium observability
+  hubble-bin
   hydrapaper-no-pandoc-git
   imagemagick
   iperf3
