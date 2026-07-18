@@ -1,3 +1,6 @@
 # https://github.com/twpayne/chezmoi/blob/master/assets/chezmoi.io/docs/reference/special-files/chezmoiremove.md
-# ranger is no longer needed
-.config/ranger
+# maptool removed
+.cache/chezmoi_makepkg/
+.config/java/.java/.userPrefs/MapTool
+.java/.userPrefs/MapTool
+.local/share/maptool-rptools

@@ -143,17 +143,13 @@ PACKAGES=(
 )
 
 REMOVE_PACKAGES=(
-  neofetch
+  maptool-bin
+  maptool-bin-debug
 )
 
 REPOS=(
   multilib
 )
-
-# Version 1.18.5-1
-MAPTOOL_COMMIT="7a58d96a1c437f5bbff638838d56eb21cea9a3e6"
-MAPTOOL_PKG="maptool-bin"
-MAPTOOL_URL="https://aur.archlinux.org/maptool-bin.git"
 
 addToGrp() {
   sudo usermod -aG "$1" "$USER"
@@ -268,26 +264,6 @@ check() {
   yay --editmenu -S hydrapaper-no-pandoc-git --save
 }
 
-installMapTool() {
-  mkdir -p "$HOME/.cache/chezmoi_makepkg"
-  cdOrFail "$HOME/.cache/chezmoi_makepkg"
-  if ! [ -d "$MAPTOOL_PKG" ]; then
-    git clone "$MAPTOOL_URL"
-  fi
-  cdOrFail "$MAPTOOL_PKG"
-  git checkout master
-  git pull
-  git checkout "$MAPTOOL_COMMIT"
-  if yay -Q "$MAPTOOL_PKG" >/dev/null; then
-    # shellcheck source=/dev/null disable=SC2154
-    if [ "$(source PKGBUILD && echo "$MAPTOOL_PKG $pkgver-$pkgrel")" == "$(yay -Q "$MAPTOOL_PKG")" ]; then
-      echo "Maptool is already installed with correct version"
-      return
-    fi
-  fi
-  makepkg -si
-}
-
 installYay() {
   local temp
   local oldPWD
@@ -329,10 +305,6 @@ postInstallActions() {
     lxdm-themes)
       sudo sed -i 's|^gtk_theme=.*|# gtk_theme=disabled|' /etc/lxdm/lxdm.conf
       sudo sed -i 's|^theme=.*|theme=ArchlinuxFull|' /etc/lxdm/lxdm.conf
-      ;;
-    maptool-bin)
-      # Exclude maptool-bin for pacman/yay, as we upgrade it manually
-      grep "IgnorePkg   = maptool-bin" "$PACMAN_CONF" >/dev/null || sudo sed -i 's|^#IgnorePkg   =|###START ADDED BY CHEZMOI###\nIgnorePkg   = maptool-bin\n###STOP ADDED BY CHEZMOI###|' "$PACMAN_CONF"
       ;;
     steam)
       echo "Patching steam application shortcut to use wrapper"
@@ -379,6 +351,10 @@ postInstallActions() {
 postRemoveActions() {
   for package in "$@"; do
     case $package in
+    maptool-bin)
+      # Revert exclude of maptool-bin for pacman/yay
+      grep "#IgnorePkg" "$PACMAN_CONF" >/dev/null || sudo sed -i -z 's|###START ADDED BY CHEZMOI###\nIgnorePkg   = maptool-bin\n###STOP ADDED BY CHEZMOI###|#IgnorePkg   =|' "$PACMAN_CONF"
+      ;;
     *)
       echo "No postRemove action for $package"
       ;;
@@ -404,6 +380,4 @@ IFS=" " read -r -a toInstall <<<"$(getPackagesToInstall)"
 
 install "${toInstall[@]}"
 
-installMapTool
-
-postInstallActions "${toInstall[@]}" "$MAPTOOL_PKG"
+postInstallActions "${toInstall[@]}"
