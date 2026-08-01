@@ -34,7 +34,4 @@
 #github ssh
 [includeIf "hasconfig:remote.*.url:git@github.com*/**"]
 	path = config_gh_private
-#github https
-[includeIf "hasconfig:remote.*.url:https://github.com/**"]
-	path = config_gh_private
 {{ end -}}
