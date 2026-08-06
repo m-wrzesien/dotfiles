@@ -69,3 +69,7 @@ language-servers = ["vscode-html-language-server", "gopls"]
 # unset existing token, as we use html tokens
 comment-token = []
 block-comment-tokens = { start = "<!--", end = "-->" }
+
+[[language]]
+name = "toml"
+auto-format = true
