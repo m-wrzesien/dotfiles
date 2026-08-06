@@ -33,9 +33,9 @@ symbol = " "
 
 [kubernetes]
 disabled = false
-format ="[$symbol$context( \\($namespace\\))]($style)|"
+format = "[$symbol$context( \\($namespace\\))]($style)|"
 style = "blue bold"
-symbol ="󱃾 "
+symbol = "󱃾 "
 
 [hostname]
 ssh_only = false

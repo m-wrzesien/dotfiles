@@ -3,13 +3,13 @@
 #:schema https://yazi-rs.github.io/schemas/keymap.json 
 
 [[mgr.prepend_keymap]]
-on   = "!"
-for  = "unix"
-run  = 'shell "$SHELL" --block'
+on = "!"
+for = "unix"
+run = 'shell "$SHELL" --block'
 desc = "Open $SHELL here"
 
 # by default two <Esc> are required to disable input
 [[input.prepend_keymap]]
-on   = "<Esc>"
-run  = "close"
+on = "<Esc>"
+run = "close"
 desc = "Cancel input"

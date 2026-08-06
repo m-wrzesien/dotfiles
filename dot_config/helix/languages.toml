@@ -22,8 +22,10 @@ command = "efm-langserver"
 [[language]]
 name = "dockerfile"
 language-servers = [
-  { name = "efm", only-features = [ "diagnostics" ] },
-  "docker-langserver"
+  { name = "efm", only-features = [
+    "diagnostics",
+  ] },
+  "docker-langserver",
 ]
 
 [language-server.mpls]
@@ -52,7 +54,7 @@ scope = "source.helm-values"
 roots = ["Chart.yaml"]
 comment-token = "#"
 language-servers = ["helm_ls"]
-file-types = [ { glob = "values*.yaml"}, { glob = "values*.yml"}  ]
+file-types = [{ glob = "values*.yaml" }, { glob = "values*.yml" }]
 
 # custom language to support html with go templates
 # TODO: Check if we still need this after relase of version containing https://github.com/helix-editor/helix/pull/14746
