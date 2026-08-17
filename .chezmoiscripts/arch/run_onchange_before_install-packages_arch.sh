@@ -28,6 +28,8 @@ PACKAGES=(
   chromium
   cilium-cli
   cinnamon
+  # Canon TS3300 driver
+  cnijfilter2
   docker
   docker-buildx
   docker-compose
