@@ -23,7 +23,7 @@ confirm_os_window_close 0
 input_delay 0
 
 allow_remote_control socket-only
-listen_on unix:/tmp/kitty-{kitty_pid}.sock
+listen_on unix:${XDG_STATE_HOME}/kitty-{kitty_pid}.sock
 
 {{- if eq .chezmoi.os "darwin" }}
 # force brew bash in shell instead of zsh
