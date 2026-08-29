@@ -38,4 +38,3 @@ Library
 
 # Ignore dconf dumps, as those are loaded by one of the scripts
 keybindings-cinnamon.dconf
-custom-keybindings-gnome.dconf
