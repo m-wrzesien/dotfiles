@@ -123,13 +123,13 @@ PACKAGES=(
   ttf-nerd-fonts-symbols
   ttf-nerd-fonts-symbols-common
   usbutils
+  vesktop-bin
   vlc
   vlc-plugin-ffmpeg
   vscode-css-languageserver
   vscode-html-languageserver
   vscode-json-languageserver
   vscodium-bin
-  webcord-bin
   whois
   wireguard-tools
   wireshark-qt
@@ -145,8 +145,7 @@ PACKAGES=(
 )
 
 REMOVE_PACKAGES=(
-  maptool-bin
-  maptool-bin-debug
+  webcord-bin
 )
 
 REPOS=(
