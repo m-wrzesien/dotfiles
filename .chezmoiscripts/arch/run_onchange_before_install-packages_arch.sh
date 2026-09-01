@@ -32,6 +32,7 @@ PACKAGES=(
   cinnamon
   # Canon TS3300 driver
   cnijfilter2
+  cups
   docker
   docker-buildx
   docker-compose
@@ -287,6 +288,10 @@ postInstallActions() {
     blueberry)
       sudo systemctl enable bluetooth.service
       sudo systemctl start bluetooth.service
+      ;;
+    cups)
+      sudo systemctl enable cups.service
+      sudo systemctl start cups.service
       ;;
     docker)
       addToGrp docker
