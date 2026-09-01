@@ -22,7 +22,12 @@ syncthing cli config defaults folder versioning type set simple
 if [ "$TYPE" = "private" ]; then
   url="$(chezmoi data | jq .syncthing_url -r)"
   # Use internal discovery server
-  sed -i "s|<globalAnnounceServer>.*</globalAnnounceServer>|<globalAnnounceServer>$url</globalAnnounceServer>|" "$XDG_CONFIG_HOME/syncthing/config.xml"
+  # Two paths are now supported - the one using XDG_STATE_HOME is default on new instalations
+  if [ -f "$XDG_CONFIG_HOME/syncthing/config.xml" ]; then
+    sed -i "s|<globalAnnounceServer>.*</globalAnnounceServer>|<globalAnnounceServer>$url</globalAnnounceServer>|" "$XDG_CONFIG_HOME/syncthing/config.xml"
+  else
+    sed -i "s|<globalAnnounceServer>.*</globalAnnounceServer>|<globalAnnounceServer>$url</globalAnnounceServer>|" "$XDG_STATE_HOME/syncthing/config.xml"
+  fi
 
   # Enable global discovery
   # https://docs.syncthing.net/users/config#config-option-options.globalannounceenabled
