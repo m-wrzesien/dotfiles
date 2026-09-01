@@ -124,6 +124,7 @@ PACKAGES=(
   ttf-nerd-fonts-symbols-common
   usbutils
   vesktop-bin
+  vim
   vlc
   vlc-plugin-ffmpeg
   vscode-css-languageserver
