@@ -7,6 +7,11 @@ export XDG_CONFIG_HOME="{{ .chezmoi.homeDir }}/.config"
 export XDG_DATA_HOME="{{ .chezmoi.homeDir }}/.local/share"
 export XDG_STATE_HOME="{{ .chezmoi.homeDir }}/.local/state"
 
+{{- if eq .chezmoi.os "linux" }}
+# Only needed on this platform, as mac has more sensible default
+export TMPDIR="$XDG_RUNTIME_DIR"
+{{- end }}
+
 {{- if eq .chezmoi.os "darwin" }}
 export BROWSER="open -a Firefox"
 export EDITOR="$(brew --prefix)/bin/hx"
