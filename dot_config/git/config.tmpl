@@ -34,4 +34,7 @@
 #github ssh
 [includeIf "hasconfig:remote.*.url:git@github.com*/**"]
 	path = config_gh_private
+# this is required, as otherwise repos using insteadOf won't be matched
+[includeIf "hasconfig:remote.*.url:https://github.com/**"]
+	path = config_gh_private
 {{ end -}}
