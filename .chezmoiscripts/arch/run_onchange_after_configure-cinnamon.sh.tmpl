@@ -44,3 +44,9 @@ gsettings set org.cinnamon.theme name 'cinnamon'
 
 # force dark mode
 gsettings set org.x.apps.portal color-scheme 'prefer-dark'
+
+# default apps
+gsettings set org.cinnamon.desktop.default-applications.terminal exec 'kitty'
+
+# set default browser via xdg portalxd
+xdg-settings set default-web-browser firefox.desktop
