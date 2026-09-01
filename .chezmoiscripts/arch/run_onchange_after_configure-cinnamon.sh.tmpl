@@ -30,6 +30,10 @@ if ! [ -d "$HOME/.themes/$THEME_NAME" ]; then
   cinnamon-settings -t download themes
 fi
 
+echo "Configure keyboard layout"
+echo "Close window, after this is done"
+cinnamon-settings -t layouts keyboard
+
 # configure theme
 gsettings set org.cinnamon.desktop.interface cursor-theme 'Adwaita'
 gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
@@ -48,5 +52,5 @@ gsettings set org.x.apps.portal color-scheme 'prefer-dark'
 # default apps
 gsettings set org.cinnamon.desktop.default-applications.terminal exec 'kitty'
 
-# set default browser via xdg portalxd
+# set default browser via xdg portal
 xdg-settings set default-web-browser firefox.desktop

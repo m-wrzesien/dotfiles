@@ -43,6 +43,8 @@ PACKAGES=(
   fluffychat-bin
   fzf
   gnome-calculator
+  # required at least by networkmanager
+  gnome-keyring
   go
   golangci-lint
   golangci-lint-langserver-bin
