@@ -56,6 +56,7 @@ PACKAGES=(
   helm
   helm-diff
   helm-ls-bin
+  htop
   # cilium observability
   hubble-bin
   hydrapaper-no-pandoc-git
