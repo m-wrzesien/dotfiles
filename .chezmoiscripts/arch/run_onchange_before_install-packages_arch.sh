@@ -42,7 +42,7 @@ PACKAGES=(
   flameshot
   fluffychat-bin
   fzf
-  gnome-calculator-gtk3
+  gnome-calculator
   go
   golangci-lint
   golangci-lint-langserver-bin
@@ -68,8 +68,6 @@ PACKAGES=(
   kubectl-cnpg
   kubectx
   libreoffice-still
-  # fixes problem with missing libxml2.so.2 for gnome-calculator-gtk3
-  libxml2-legacy
   # fixes problem with frontend-tools obs plugin load due to missing libluajit-5.1.so.2
   luajit
   lxdm
@@ -145,7 +143,9 @@ PACKAGES=(
 )
 
 REMOVE_PACKAGES=(
-  webcord-bin
+  gnome-calculator-gtk3
+  libsoup
+  libxml2-legacy
 )
 
 REPOS=(
