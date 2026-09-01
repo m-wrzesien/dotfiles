@@ -1,9 +1,9 @@
 [/]
-custom-list=['__dummy__', 'custom0']
+custom-list=['custom0']
 
 [custom-keybindings/custom0]
 binding=['Print']
-command='flameshot gui'
+command='flameshot screen --edit --clipboard'
 name='Screenshot by flameshot'
 
 [media-keys]
