@@ -59,7 +59,6 @@ PACKAGES=(
   htop
   # cilium observability
   hubble-bin
-  hydrapaper-no-pandoc-git
   imagemagick
   iperf3
   jq
@@ -147,6 +146,7 @@ PACKAGES=(
 
 REMOVE_PACKAGES=(
   gnome-calculator-gtk3
+  hydrapaper-no-pandoc-git
   libsoup
   libxml2-legacy
 )
@@ -227,9 +227,6 @@ install() {
   local newparams=()
   for package in "$@"; do
     case $package in
-    hydrapaper-no-pandoc-git)
-      installHydrapaper
-      ;;
     *)
       newparams+=("$package")
       ;;
@@ -255,17 +252,6 @@ remove() {
   done
   set -- "${newparams[@]}" # overwrites the original positional params
   yay -Rs "$@"
-}
-
-# workaround for problems with ssl certificate during checks
-installHydrapaper() {
-  echo "Change \"check()\" to look like following code:"
-  echo "
-check() {
-  #meson test -C build --print-errorlogs
-  echo "Disable checks, as they fail due to ssl cert expiration"
-}"
-  yay --editmenu -S hydrapaper-no-pandoc-git --save
 }
 
 installYay() {
