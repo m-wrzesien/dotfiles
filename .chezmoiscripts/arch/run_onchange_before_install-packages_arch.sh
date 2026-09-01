@@ -4,6 +4,8 @@ set -euo pipefail
 
 ARCH="Arch Linux"
 LAPTOP_PACKAGES=(
+  # bluetooth management used in cinnamon
+  blueberry
   steam
   # required for steam
   ttf-liberation
@@ -199,7 +201,8 @@ getPackagesToInstall() {
       output+=("$package")
     fi
   done
-  if chezmoi data | jq .chezmoi.hostname | grep -qi thinkpad; then
+  # TODO: migrate this to something different than hostname...
+  if chezmoi data | jq .chezmoi.hostname | grep -qi pad; then
     for package in "${LAPTOP_PACKAGES[@]}"; do
       if ! yay -Q "$package" &>/dev/null; then
         output+=("$package")
@@ -281,6 +284,10 @@ installYay() {
 postInstallActions() {
   for package in "$@"; do
     case $package in
+    blueberry)
+      sudo systemctl enable bluetooth.service
+      sudo systemctl start bluetooth.service
+      ;;
     docker)
       addToGrp docker
       sudo systemctl enable docker.service
