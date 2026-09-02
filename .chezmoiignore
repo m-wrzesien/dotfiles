@@ -22,8 +22,9 @@
 {{ if ne .type "work" }}
 {{ end }}
 
-{{ if ne .chezmoi.hostname "arch-ThinkPad" }}
-# We use steam only on arch thinkpad
+# TODO: migrate this to something different than hostname...
+{{ if and (ne .chezmoi.hostname "arch-ThinkPad") (ne .chezmoi.hostname "archPad") }}
+# We use steam only on arch laptops
 .local/bin/steam
 .local/share/applications/steam.desktop
 .chezmoiscripts/arch/update-desktop-database.sh
