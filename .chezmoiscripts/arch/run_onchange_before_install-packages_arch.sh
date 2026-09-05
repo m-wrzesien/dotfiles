@@ -2,7 +2,6 @@
 
 set -euo pipefail
 
-ARCH="Arch Linux"
 LAPTOP_PACKAGES=(
   # bluetooth management used in cinnamon
   blueberry
@@ -166,14 +165,6 @@ addToGrp() {
 
 cdOrFail() {
   cd "$1" || echo "Can't cd. $1 not found"
-}
-
-checkDistro() {
-  distroName=$(grep -Po '^NAME="\K.*(?=")' /etc/os-release)
-
-  if [ "$distroName" != "$ARCH" ]; then
-    return 1
-  fi
 }
 
 enableRepo() {
@@ -364,8 +355,6 @@ postRemoveActions() {
     esac
   done
 }
-
-checkDistro || exit 0
 
 installYay
 
