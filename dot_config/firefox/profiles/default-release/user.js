@@ -207,3 +207,5 @@ user_pref("browser.ai.control.translations", "available");
 
 // Disable translation for one of the languages
 user_pref("browser.translations.neverTranslateLanguages", "pl");
+
+user_pref("spellchecker.dictionary", "pl-PL");
