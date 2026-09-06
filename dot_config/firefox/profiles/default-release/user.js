@@ -209,3 +209,6 @@ user_pref("browser.ai.control.translations", "available");
 user_pref("browser.translations.neverTranslateLanguages", "pl");
 
 user_pref("spellchecker.dictionary", "pl-PL");
+
+// disable suggestions for email masking service
+user_pref("signon.firefoxRelay.feature", "disabled");
