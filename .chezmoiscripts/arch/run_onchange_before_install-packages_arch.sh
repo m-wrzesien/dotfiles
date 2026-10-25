@@ -99,6 +99,8 @@ PACKAGES=(
   poppler
   poppler-data
   python-pylibssh
+  # music player
+  rufin-bin
   qbittorrent
   # Required for packer-builder-arm
   qemu-user-static-binfmt

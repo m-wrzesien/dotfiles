@@ -51,6 +51,8 @@ PACKAGES=(
   poppler
   rectangle
   qrencode
+  # music player
+  screwys/tap/rufin
   shellcheck
   shfmt
   starship
@@ -69,6 +71,7 @@ REMOVE_PACKAGES=(
 )
 
 REPOS=(
+  screwys/tap
 )
 
 cdOrFail() {
@@ -120,7 +123,7 @@ install() {
     esac
   done
   set -- "${newparams[@]}" # overwrites the original positional params
-  brew install --ask "$@"
+  brew install "$@"
 }
 
 remove() {
@@ -161,7 +164,7 @@ installBash() {
     return
   fi
 
-  brew install --ask bash
+  brew install bash
   # allow using shell from brew as the default one
   echo "$(brew --prefix)/bin/bash" | sudo tee -a /etc/shells
   # use this shell as default
@@ -175,6 +178,10 @@ postInstallActions() {
       ;;
     "karabiner-elements")
       echo "Open Karabiner and allow all neded permissions + write 'System default configuration' in 'Misc' section of settings!"
+      ;;
+    "screwys/tap/rufin")
+      echo "Removing quantime from the Rufin app.."
+      xattr -dr com.apple.quarantine /Applications/Rufin.app
       ;;
     "unnaturalscrollwheels")
       echo "Open Unnatural Scroll Wheels app and enable 'Launch at login'!"
