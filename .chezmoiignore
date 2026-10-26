@@ -1,9 +1,5 @@
 *.md
 {{ if or (ne .chezmoi.os "linux") (ne .chezmoi.osRelease.name "Arch Linux") }}
-# those scripts should launched at the end somehow?
-.chezmoiscripts/configure-syncthing.sh
-{{ end }}
-{{ if or (ne .chezmoi.os "linux") (ne .chezmoi.osRelease.name "Arch Linux") }}
 .chezmoiscripts/arch/**
 # software only installed on Arch
 .config/flameshot
@@ -27,7 +23,7 @@
 # We use steam only on arch laptops
 .local/bin/steam
 .local/share/applications/steam.desktop
-.chezmoiscripts/arch/update-desktop-database.sh
+.chezmoiscripts/arch/laptop/**
 {{ end }}
 
 {{ if ne .chezmoi.os "darwin" }}
