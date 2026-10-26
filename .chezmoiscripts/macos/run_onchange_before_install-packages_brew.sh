@@ -44,6 +44,8 @@ PACKAGES=(
   marksman
   meld
   mise
+  # disable music app shortcut
+  music-decoy
   ncdu
   # required for lang servers
   node
@@ -178,10 +180,6 @@ postInstallActions() {
       ;;
     "karabiner-elements")
       echo "Open Karabiner and allow all neded permissions + write 'System default configuration' in 'Misc' section of settings!"
-      ;;
-    "screwys/tap/rufin")
-      echo "Removing quantime from the Rufin app.."
-      xattr -dr com.apple.quarantine /Applications/Rufin.app
       ;;
     "unnaturalscrollwheels")
       echo "Open Unnatural Scroll Wheels app and enable 'Launch at login'!"
