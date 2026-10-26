@@ -6,6 +6,9 @@ LAPTOP_PACKAGES=(
   # bluetooth management used in cinnamon
   blueberry
   steam
+  # power management
+  tlp
+  tlp-pd
   # required for steam
   ttf-liberation
 )
