@@ -2,7 +2,10 @@
 
 set -euo pipefail
 
-TYPE="$(chezmoi data | jq .type -r)"
+echo "Configuring syncthing..."
+
+echo "Starting and enabling syncthing..."
+systemctl --user enable --now syncthing.service
 
 # Disable NAT traversal
 # https://docs.syncthing.net/users/config#config-option-options.natenabled
@@ -19,23 +22,19 @@ syncthing cli config defaults folder path set "$HOME/Documents/Syncthing"
 # https://docs.syncthing.net/users/versioning#simple-file-versioning
 syncthing cli config defaults folder versioning type set simple
 
-if [ "$TYPE" = "private" ]; then
-  url="$(chezmoi data | jq .syncthing_url -r)"
-  # Use internal discovery server
-  # Two paths are now supported - the one using XDG_STATE_HOME is default on new instalations
-  if [ -f "$XDG_CONFIG_HOME/syncthing/config.xml" ]; then
-    sed -i "s|<globalAnnounceServer>.*</globalAnnounceServer>|<globalAnnounceServer>$url</globalAnnounceServer>|" "$XDG_CONFIG_HOME/syncthing/config.xml"
-  else
-    sed -i "s|<globalAnnounceServer>.*</globalAnnounceServer>|<globalAnnounceServer>$url</globalAnnounceServer>|" "$XDG_STATE_HOME/syncthing/config.xml"
-  fi
-
-  # Enable global discovery
-  # https://docs.syncthing.net/users/config#config-option-options.globalannounceenabled
-  syncthing cli config options global-ann-enabled set true
+url="$(chezmoi data | jq .syncthing_url -r)"
+# Use internal discovery server
+# Two paths are now supported - the one using XDG_STATE_HOME is default on new instalations
+if [ -f "$XDG_CONFIG_HOME/syncthing/config.xml" ]; then
+  sed -i "s|<globalAnnounceServer>.*</globalAnnounceServer>|<globalAnnounceServer>$url</globalAnnounceServer>|" "$XDG_CONFIG_HOME/syncthing/config.xml"
 else
-  # Disable global discovery for work syncthing
-  # https://docs.syncthing.net/users/config#config-option-options.globalannounceenabled
-  syncthing cli config options global-ann-enabled set false
+  sed -i "s|<globalAnnounceServer>.*</globalAnnounceServer>|<globalAnnounceServer>$url</globalAnnounceServer>|" "$XDG_STATE_HOME/syncthing/config.xml"
 fi
 
+# Enable global discovery
+# https://docs.syncthing.net/users/config#config-option-options.globalannounceenabled
+syncthing cli config options global-ann-enabled set true
+
 systemctl restart --user syncthing.service
+
+echo "Configuration complete..."

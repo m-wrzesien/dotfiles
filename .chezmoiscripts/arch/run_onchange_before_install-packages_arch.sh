@@ -278,89 +278,6 @@ installYay() {
   rm -rf "$temp"
 }
 
-postInstallActions() {
-  for package in "$@"; do
-    case $package in
-    blueberry)
-      sudo systemctl enable bluetooth.service
-      sudo systemctl start bluetooth.service
-      ;;
-    cups)
-      sudo systemctl enable cups.service
-      sudo systemctl start cups.service
-      ;;
-    docker)
-      addToGrp docker
-      sudo systemctl enable docker.service
-      sudo systemctl start docker.service
-      ;;
-    helm-diff)
-      helm plugin install /usr/lib/helm/plugins/diff
-      ;;
-    lxdm)
-      sudo sed -i 's|^# session=/usr/bin/startlxde|session=/usr/bin/cinnamon-session|' /etc/lxdm/lxdm.conf
-      sudo systemctl enable lxdm.service
-      ;;
-    lxdm-themes)
-      sudo sed -i 's|^gtk_theme=.*|# gtk_theme=disabled|' /etc/lxdm/lxdm.conf
-      sudo sed -i 's|^theme=.*|theme=ArchlinuxFull|' /etc/lxdm/lxdm.conf
-      ;;
-    steam)
-      echo "Patching steam application shortcut to use wrapper"
-      sudo sed -i 's|^Exec=/usr/bin/steam-runtime|Exec=steam|' /usr/share/applications/steam.desktop
-      echo "Rembember to install OpenGL for multilib!!!"
-      echo "https://wiki.archlinux.org/title/Xorg#Driver_installation"
-      ;;
-    syncthing)
-      systemctl --user enable syncthing.service
-      systemctl --user start syncthing.service
-      ;;
-    systemd-resolvconf)
-      sudo systemctl enable systemd-resolved
-      sudo systemctl start systemd-resolved
-      # Force NetworkManager, to use systemd-resolved as DNS resolver
-      sudo ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
-      ;;
-    vscodium-bin)
-      sudo ln -s /usr/bin/codium /usr/local/bin/code
-      ;;
-    yaycache-hook)
-      # add configuration to yaycache-hook
-      # without `cache_dirs` it will try to remove yay cache from root,
-      # while it is stored at our user at $XDG_CACHE_HOME/yay/
-      sudo sed -i 's|extra_args=.*|extra_args="-v --remove-build-files"|' /etc/yaycache-hook.conf
-      sudo sed -i "s|^cache_dirs=.*|cache_dirs=(\"$XDG_CACHE_HOME/yay/*/\")|" /etc/yaycache-hook.conf
-      sudo sed -i 's|^uninstalled_keep=.*|uninstalled_keep=0|' /etc/yaycache-hook.conf
-      ;;
-    yubikey-manager)
-      sudo systemctl enable pcscd.service
-      sudo systemctl start pcscd.service
-      ;;
-    wireshark-qt)
-      # Group "wireshark" required, so app won't need to be start as root
-      addToGrp wireshark
-      ;;
-    *)
-      echo "No postInstall action for $package"
-      ;;
-    esac
-  done
-}
-
-postRemoveActions() {
-  for package in "$@"; do
-    case $package in
-    maptool-bin)
-      # Revert exclude of maptool-bin for pacman/yay
-      grep "#IgnorePkg" "$PACMAN_CONF" >/dev/null || sudo sed -i -z 's|###START ADDED BY CHEZMOI###\nIgnorePkg   = maptool-bin\n###STOP ADDED BY CHEZMOI###|#IgnorePkg   =|' "$PACMAN_CONF"
-      ;;
-    *)
-      echo "No postRemove action for $package"
-      ;;
-    esac
-  done
-}
-
 installYay
 
 enableRepo
@@ -370,11 +287,7 @@ IFS=" " read -r -a toRemove <<<"$(getPackagesToRemove)"
 
 remove "${toRemove[@]}"
 
-postRemoveActions "${toRemove[@]}"
-
 # Chech what packages needs to be installed and put them in to array
 IFS=" " read -r -a toInstall <<<"$(getPackagesToInstall)"
 
 install "${toInstall[@]}"
-
-postInstallActions "${toInstall[@]}"

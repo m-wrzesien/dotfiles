@@ -3,8 +3,8 @@
 set -euo pipefail
 
 if ! [ -d /etc/tlp.d ] || ! pacman -Q tlp >/dev/null; then
-  echo "TLP not installed, skipping..."
-  return
+  echo "TLP not installed, Exiting..."
+  exit 1
 fi
 
 echo "Starting TLP configuration"
