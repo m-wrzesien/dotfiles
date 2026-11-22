@@ -153,6 +153,7 @@ PACKAGES=(
 )
 
 REMOVE_PACKAGES=(
+  fcitx5
   gnome-calculator-gtk3
   hydrapaper-no-pandoc-git
   libsoup
